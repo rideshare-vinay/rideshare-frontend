@@ -1,11 +1,56 @@
+a{
+    font: futura;
+    font-weight: bold;
+    color: #717f92;
+}
+a:visited {
+
+}
+a:focus {
+    
+ }
+a:hover { 
+    border-bottom: solid 3px #F26926;
+    text-decoration: none;
+    color: #717f92;
+ }
+a:active { 
+    
+ }
+
+
+
 img {
-    width: 13%;
-    height: 13%;
-    cursor: pointer;
+    width: 10%;
+    height: 10%;
 }
 
 nav {
-    background-color: #FCB414;
+    border-bottom: 1px solid rgba(113,127,156,0.3);
+}
+
+p{
+    font: futura;
+    font-weight: bold;
+    color: #717f92;
+}
+
+.oBut{
+    background-color: #F26926; 
+    border: none;
+    color: white;
+    padding: 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 7em;     /* Static width buttons */
+    outline:none;   /* Removing outline */
+    border-radius: 10em;
+    font: futura;
+    font-weight: bold;
+    color: #ffffff;
 }
 
 

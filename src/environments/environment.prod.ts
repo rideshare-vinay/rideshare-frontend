@@ -6,7 +6,7 @@ const baseUri = `http://localhost`;
 /**
  * Set the port var
  */
-const port = '8080';
+const port = '9000';
 
   /**
  * These are the constants for the production config
