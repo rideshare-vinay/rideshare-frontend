@@ -34,6 +34,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSelectModule } from '@angular/material/select';
 import { FlexLayoutModule } from '@angular/flex-layout';
+//npm i @angular/material@8.2.0
+//npm i @angular/animations@8.2.4
+//npm i @angular/cdk@8.2.0
+//npm install --save hammerjs
+//npm i -s @angular/flex-layout@8.0.0-beta.27
 
 @NgModule({
   declarations: [

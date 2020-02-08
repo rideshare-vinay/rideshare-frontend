@@ -27,7 +27,9 @@
 </div>
 
 <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-    <div fxFlex="20%">Image Here</div>
+    <div fxFlex="20%">
+        Image Here
+    </div>
     <div fxFlex="20%">
       <mat-card class="example-card">
         <mat-card-header>
@@ -38,9 +40,9 @@
                 <mat-label>Select Account:</mat-label>
                 <mat-select>
                   <mat-option>None</mat-option>
-                  <mat-option value="option1">Option 1</mat-option>
-                  <mat-option value="option2">Option 2</mat-option>
-                  <mat-option value="option3">Option 3</mat-option>
+                  <div *ngFor="let user of users">
+                  <mat-option (click)="changeUser(user)">{{user.firstName}} {{user.lastName}}: {{user.driver? "Driver" : "Rider"}}</mat-option>
+                </div>
                 </mat-select>
               </mat-form-field>
               <br>
@@ -49,7 +51,7 @@
               </mat-form-field><br>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button="click" mat-raised-button color="primary">Login</button><p>Need An Account? <a routerLink="/register">Sign Up</a></p>
+            <button type="button" class="button oBut">LOGIN</button><p>Need An Account? <a routerLink="/register">Sign Up</a></p>
         </mat-card-actions>
       </mat-card>
     </div>
