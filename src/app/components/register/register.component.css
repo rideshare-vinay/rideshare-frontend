@@ -1,3 +1,21 @@
 small {
     color:red;
 }
+
+.oBut{
+    background-color: #F26926; 
+    border: none;
+    color: white;
+    padding: 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 7em;     /* Static width buttons */
+    outline:none;   /* Removing outline */
+    border-radius: 10em;
+    font: futura;
+    font-weight: bold;
+    color: #ffffff;
+}
