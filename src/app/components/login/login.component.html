@@ -25,3 +25,32 @@
         <p>Need An Account? <a routerLink="/register">Sign Up</a></p>
     </form>
 </div>
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div fxFlex="20%">Image Here</div>
+    <div fxFlex="20%">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Select Account:</mat-label>
+                <mat-select>
+                  <mat-option>None</mat-option>
+                  <mat-option value="option1">Option 1</mat-option>
+                  <mat-option value="option2">Option 2</mat-option>
+                  <mat-option value="option3">Option 3</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+            <mat-form-field class="example-form-field">
+                <input matInput type="text" color="warn" placeholder="Username">
+              </mat-form-field><br>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button="click" mat-raised-button color="primary">Login</button><p>Need An Account? <a routerLink="/register">Sign Up</a></p>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    </div>
