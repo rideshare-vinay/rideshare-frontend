@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GoogleMapsComponent implements OnInit {
 
-  title: string = 'AGM project';
+  title: string = 'Rideforce Map';
   latitude: number;
   longitude: number;
   zoom: number;
