@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
-import { DriverComponent} from './components/driver/driver.component';
+import { DriverComponent } from './components/driver/driver.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { UserService } from './services/user-service/user.service';
 import { CarService } from './services/car-service/car.service';
@@ -22,6 +22,8 @@ import { PreferenceComponent } from './components/preference/preference.componen
 import { ValidationService } from './services/validation-service/validation.service';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { DriverInfoComponent } from './components/driver-info/driver-info.component';
+import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { DriverInfoComponent } from './components/driver-info/driver-info.compon
     ProfileComponent,
     PreferenceComponent,
     AdminLoginComponent,
-    DriverInfoComponent
+    DriverInfoComponent,
+    GoogleMapsComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,11 @@ import { DriverInfoComponent } from './components/driver-info/driver-info.compon
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'YOUR-API-KEY',
+      libraries: ['places']
+    })
   ],
   providers: [
     UserService,
