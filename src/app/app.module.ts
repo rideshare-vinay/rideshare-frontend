@@ -24,6 +24,7 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { DriverInfoComponent } from './components/driver-info/driver-info.component';
 import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 import { AgmCoreModule } from '@agm/core';
+import { GoogleMapsInputComponent } from './google-maps-input/google-maps-input.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AgmCoreModule } from '@agm/core';
     PreferenceComponent,
     AdminLoginComponent,
     DriverInfoComponent,
-    GoogleMapsComponent
+    GoogleMapsComponent,
+    GoogleMapsInputComponent
   ],
   imports: [
     BrowserModule,
