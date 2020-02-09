@@ -29,4 +29,10 @@ export class GoogleMapsComponent implements OnInit {
     }
   }
 
+  // Do this
+  moveMarker(lat: number, long: number) {
+    this.latitude = lat;
+    this.longitude = long;
+  }
+
 }

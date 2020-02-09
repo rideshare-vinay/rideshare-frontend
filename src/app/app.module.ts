@@ -1,5 +1,3 @@
-
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -23,9 +21,10 @@ import { ValidationService } from './services/validation-service/validation.serv
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { DriverInfoComponent } from './components/driver-info/driver-info.component';
 import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
-import { AgmCoreModule } from '@agm/core';
-import { GoogleMapsInputComponent } from './google-maps-input/google-maps-input.component';
+import { GoogleMapsInputComponent } from './components/google-maps-input/google-maps-input.component';
 import { MatGoogleMapsAutocompleteModule } from "@angular-material-extensions/google-maps-autocomplete"
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -43,8 +42,7 @@ import { MatGoogleMapsAutocompleteModule } from "@angular-material-extensions/go
     AdminLoginComponent,
     DriverInfoComponent,
     GoogleMapsComponent,
-    GoogleMapsInputComponent,
-    
+    GoogleMapsInputComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +55,9 @@ import { MatGoogleMapsAutocompleteModule } from "@angular-material-extensions/go
     AgmCoreModule.forRoot({
       apiKey: 'YOUR-API-KEY',
       libraries: ['places']
-    })
+    }),
+    MatGoogleMapsAutocompleteModule,
+    BrowserAnimationsModule
   ],
   providers: [
     UserService,
