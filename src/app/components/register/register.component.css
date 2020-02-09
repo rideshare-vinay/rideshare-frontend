@@ -21,5 +21,13 @@ small {
 }
 
 .main{
-    margin-top: 15%;
+    margin-top: 5%;
+  }
+
+  .mat-card-header{
+      margin-bottom: 3%;  
+  }
+
+  .mat-card-title{
+    font-size: 200%;
   }

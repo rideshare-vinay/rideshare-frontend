@@ -28,10 +28,10 @@
 
 <section class="main">
 <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-    <div fxFlex="20%" style="text-align: center;">
+    <div fxFlex="30%" style="text-align: center;">
         Image Here
     </div>
-    <div fxFlex="20%" style="text-align: center;">
+    <div fxFlex="30%" style="text-align: center;">
       <mat-card class="example-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
@@ -40,7 +40,7 @@
             <mat-form-field>
                 <input matInput type="text" color="warn" placeholder="Select An Account" name="chosenUserFullName" [(ngModel)]="chosenUserFullName" (click)="toggleDropDown()" (ngModelChange)="searchAccount()">
                 <mat-select>
-                  <mat-option>None</mat-option>
+                  <mat-option></mat-option>
                   <div *ngFor="let user of users">
                   <mat-option (click)="changeUser(user)">{{user.firstName}} {{user.lastName}}: {{user.driver? "Driver" : "Rider"}}</mat-option>
                 </div>
