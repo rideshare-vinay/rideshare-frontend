@@ -16,6 +16,10 @@
     color: #ffffff;
 }
 
+.main{
+    margin-top: 15%;
+  }
+
 p {
     font-size: smaller;
     color: gray;

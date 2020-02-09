@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <form class="text-center" id="login-form">
         <div class="form-group">
             <div class="dropdown">
@@ -24,20 +24,21 @@
         <br><br>
         <p>Need An Account? <a routerLink="/register">Sign Up</a></p>
     </form>
-</div>
+</div> -->
 
+<section class="main">
 <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-    <div fxFlex="20%">
+    <div fxFlex="20%" style="text-align: center;">
         Image Here
     </div>
-    <div fxFlex="20%">
+    <div fxFlex="20%" style="text-align: center;">
       <mat-card class="example-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
         </mat-card-header>
         <mat-card-content>
             <mat-form-field>
-                <mat-label>Select Account:</mat-label>
+                <input matInput type="text" color="warn" placeholder="Select An Account" name="chosenUserFullName" [(ngModel)]="chosenUserFullName" (click)="toggleDropDown()" (ngModelChange)="searchAccount()">
                 <mat-select>
                   <mat-option>None</mat-option>
                   <div *ngFor="let user of users">
@@ -47,12 +48,15 @@
               </mat-form-field>
               <br>
             <mat-form-field class="example-form-field">
-                <input matInput type="text" color="warn" placeholder="Username">
+                <input matInput type="text" color="warn" [(ngModel)]="userName" name="userName" placeholder="Username">
+                <p class="alert alert-danger" *ngIf="failed"><strong>Login Failed!</strong></p>
+                <p class="alert alert-danger" *ngIf="banned"><strong>You are banned</strong></p>
               </mat-form-field><br>
         </mat-card-content>
         <mat-card-actions>
-            <button type="button" class="button oBut">LOGIN</button><p>Need An Account? <a routerLink="/register">Sign Up</a></p>
+            <button type="button" class="button oBut" (click)="login()" (keyup.enter)="login()" [disabled]="!(userName && chosenUserFullName)">LOGIN</button><p>Need An Account? <a routerLink="/register">Sign Up</a></p>
         </mat-card-actions>
       </mat-card>
     </div>
     </div>
+</section>
