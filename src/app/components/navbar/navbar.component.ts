@@ -16,7 +16,7 @@ import { Admin } from 'src/app/models/admin';
    */
 
 export class NavbarComponent implements OnInit {
-
+  public isNavbarCollapsed = false;
   /**
    * This is a name string.
    */
@@ -71,10 +71,15 @@ export class NavbarComponent implements OnInit {
     this.authService.user = {};
     this.name = '';
     this.admin = '';
+    
+    localStorage.clear();
+    sessionStorage.clear();
     this.router.navigate(['']);
   }
 
   redirectToHome() {
     this.authService.user.driver ? this.router.navigate(['home/riders']) : this.router.navigate(['home/drivers']);
   }
+
+  
 }
