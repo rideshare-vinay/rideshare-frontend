@@ -1,45 +1,53 @@
-<div fxLayout="row" fxLayout.xs="column-reverse" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center">
-  <div fxFlex="45%">
-      <img  mat-card-image src="../assets/example.png">
+<section>
+  <div fxLayout="row" fxLayout.xs="column-reverse" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center">
+    <div fxFlex="45%">
+        <img  mat-card-image src="../assets/example.png">
+    </div>
+    <div fxFlex="45%" class="example">
+      <mat-card class="card-detail">
+        <mat-card-header class="card-title" > 
+            <mat-card-title><h3>Driver Details</h3></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div fxLayout="row">
+                <div fxFlex="10%">
+                </div>
+                <div fxFlex="80%">
+                  <table id="detail"> 
+                    <tr>
+                      <th>Name: </th>
+                      <th>{{userDriver?.firstName}} {{userDriver?.lastName}}</th>
+                    </tr>
+                    <tr>
+                      <th>Email: </th>
+                      <th>{{userDriver?.email}}</th>
+                    </tr>
+                    <tr>
+                      <th>Phone: </th>
+                      <th>{{userDriver?.phoneNumber}}</th>
+                    </tr>
+                    <tr>
+                      <th>Batch: </th>
+                      <th>{{userDriver?.batch.batchLocation}}</th>
+                    </tr>
+                    <tr>
+                      <th>Car: </th>
+                      <th>{{myCar.year}} {{myCar.make}} {{myCar.model}}</th>
+                    </tr>
+                    <tr>
+                      <th>Seats:  </th>
+                      <th>{{myCar.seats}}</th>
+                    </tr>
+                  </table>
+                </div>
+            </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
-  <div fxFlex="45%">
-    <mat-card>
-      <mat-card-header class="card-title" > 
-          <mat-card-title><h3>Driver Details</h3></mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-          <div fxLayout="row">
-              <table> 
-                <tr>
-                  <th>Name: </th>
-                  <th>{{userDriver?.firstName}} {{userDriver?.lastName}}</th>
-                </tr>
-                <tr>
-                  <th>Email: </th>
-                  <th>{{userDriver?.email}}</th>
-                </tr>
-                <tr>
-                  <th>Phone: </th>
-                  <th>{{userDriver?.phoneNumber}}</th>
-                </tr>
-                <tr>
-                  <th>Car: </th>
-                  <th>{{myCar.year}} {{myCar.make}} {{myCar.model}}</th>
-                </tr>
-                <tr>
-                  <th>Seats Available:  </th>
-                  <th>{{myCar.seats}}</th>
-                </tr>
-              </table>
-          </div>
+</section>
 
-      </mat-card-content>
-    </mat-card>
-  </div>
-</div>
-<br>
-
-<div class="container-fluid">
+<!-- <div class="container-fluid">
     <div class="row" >
         <div class="col-md-auto">
             <h2 class="align-bottom float-center">Driver: {{userDriver?.firstName}}&nbsp;<span>{{userDriver?.lastName}} &nbsp;</span></h2>
@@ -89,4 +97,4 @@
   
   </table>
 
-</div>
+</div> -->

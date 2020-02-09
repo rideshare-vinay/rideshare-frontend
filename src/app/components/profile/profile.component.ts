@@ -47,7 +47,8 @@ export class ProfileComponent implements OnInit {
   constructor(private log: LogService, private router: Router, private userService: UserService, private batchService: BatchService, public validationService: ValidationService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.user.userId = this.authService.user.userId;;
+    this.user.userId =1;
+    //this.user.userId = this.authService.user.userId;;
     if (!this.user.userId) {
       this.router.navigate(['']);
     } else {

@@ -22,7 +22,7 @@ export class DriverComponent implements OnInit {
 
   userDriver : User ;
   myCar : Car = new Car();
-  riders: User[];
+  //riders: User[];
   location = '';   
    
   /**
@@ -46,17 +46,21 @@ export class DriverComponent implements OnInit {
             this.userDriver = data;
             this.location = data.batch.batchLocation;
             this.getDriverCar(userId);
-            this.userService.getRidersForLocation(this.location)
-            .subscribe(
-              data=> {
-                this.riders = data;
-              });
+            // this.userService.getRidersForLocation(this.location)
+            // .subscribe(
+            //   data=> {
+            //     this.riders = data;
+            //   });
           })
         }
       else {
         this.router.navigate(['']);
       }
     }
+    /**
+   * A GET method that get driver car
+   *
+   */
 
     getDriverCar(userid){
       this.carService.getCarByUserId(userid).then((response)=>{

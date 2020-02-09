@@ -32,7 +32,18 @@ input {
     border-bottom: 1px solid black;
 }
 
+.card-detail {
+    background: rgba(102, 152, 185, 0.4);
+}
 .card-title {
     display: flex;
     justify-content: center;
+}
+#detail th {
+    padding-top: 20px;
+    padding-left: 25px;
+}
+
+section{
+    margin: 15% 2%;
 }

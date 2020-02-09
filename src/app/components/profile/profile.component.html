@@ -3,12 +3,41 @@
         <img  mat-card-image src="../assets/example.png">
     </div>
     <div fxFlex="45%">
-      <mat-card>
+      <mat-card class="card-detail">
         <mat-card-header class="card-title" > 
             <mat-card-title><h3>Profile</h3></mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <p>sss</p>
+            <div fxLayout="row">
+                <div fxFlex="10%"></div>
+                <div fxFlex="80%">
+                  <table id="detail"> 
+                 
+                    <tr>
+                        <th>First Name</th>
+                      
+                    </tr>
+                    <tr>
+                      <th>Email: </th>
+                    
+                    </tr>
+                    <tr>
+                      <th>Phone: </th>
+                      
+                    </tr>
+                    <tr>
+                      <th>Batch: </th>
+                     
+                    </tr>
+                  </table>
+                </div>
+            </div>
+            <div fxLayout="row">
+                <div fxFlex="10%"></div>
+                <div fxFlex="80%">
+                 
+                </div>
+            </div>
         </mat-card-content>
       </mat-card>
     </div>
