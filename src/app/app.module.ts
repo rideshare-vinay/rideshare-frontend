@@ -23,6 +23,7 @@ import { DriverInfoComponent } from './components/driver-info/driver-info.compon
 import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 import { AgmCoreModule } from '@agm/core';
 import { GoogleMapsInputComponent } from './google-maps-input/google-maps-input.component';
+import { MatGoogleMapsAutocompleteModule } from "@angular-material-extensions/google-maps-autocomplete"
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { GoogleMapsInputComponent } from './google-maps-input/google-maps-input.
     AdminLoginComponent,
     DriverInfoComponent,
     GoogleMapsComponent,
-    GoogleMapsInputComponent
+    GoogleMapsInputComponent,
+    
   ],
   imports: [
     BrowserModule,
