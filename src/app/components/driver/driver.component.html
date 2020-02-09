@@ -1,3 +1,42 @@
+<div fxLayout="row" fxLayout.xs="column-reverse" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center">
+  <div fxFlex="45%">
+      <img  mat-card-image src="../assets/example.png">
+  </div>
+  <div fxFlex="45%">
+    <mat-card>
+      <mat-card-header class="card-title" > 
+          <mat-card-title><h3>Driver Details</h3></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+          <div fxLayout="row">
+              <table> 
+                <tr>
+                  <th>Name: </th>
+                  <th>{{userDriver?.firstName}} {{userDriver?.lastName}}</th>
+                </tr>
+                <tr>
+                  <th>Email: </th>
+                  <th>{{userDriver?.email}}</th>
+                </tr>
+                <tr>
+                  <th>Phone: </th>
+                  <th>{{userDriver?.phoneNumber}}</th>
+                </tr>
+                <tr>
+                  <th>Car: </th>
+                  <th>{{myCar.year}} {{myCar.make}} {{myCar.model}}</th>
+                </tr>
+                <tr>
+                  <th>Seats Available:  </th>
+                  <th>{{myCar.seats}}</th>
+                </tr>
+              </table>
+          </div>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
 <br>
 
 <div class="container-fluid">

@@ -31,3 +31,8 @@ input {
     background: transparent;
     border-bottom: 1px solid black;
 }
+
+.card-title {
+    display: flex;
+    justify-content: center;
+}

@@ -1,4 +1,21 @@
-<div class="container">
+<div fxLayout="row" fxLayout.xs="column-reverse" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center">
+    <div fxFlex="45%">
+        <img  mat-card-image src="../assets/example.png">
+    </div>
+    <div fxFlex="45%">
+      <mat-card>
+        <mat-card-header class="card-title" > 
+            <mat-card-title><h3>Profile</h3></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>sss</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+</div>
+
+
+<!-- <div class="container">
     <div id="profile" *ngIf="newUser.userId">
         <h2>Profile</h2>
         <table class="table table-hover">
@@ -61,4 +78,4 @@
         <div class="alert alert-success" *ngIf="updateSuccess">Update Success!</div>
         <div class="alert alert-danger" *ngIf="updateFailed">Update Failed! Please Try Again Later</div>
     </div>
-</div>
+</div> -->
