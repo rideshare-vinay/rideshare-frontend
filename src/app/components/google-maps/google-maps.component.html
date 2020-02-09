@@ -1,3 +1,3 @@
-<agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [streetViewControl]="false">
+<agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [streetViewControl]="false" (mapClick)="moveMarker($event.coords.lat, $event.coords.lng)">
   <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
 </agm-map>
