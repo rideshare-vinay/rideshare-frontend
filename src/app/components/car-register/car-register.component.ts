@@ -24,6 +24,8 @@ export class CarRegisterComponent implements OnInit {
    */
 
   years: number[] = [];
+  makes: String[] = [];
+  models: String[] = [];
   userId: number;
   car: Car = new Car();
   
@@ -47,7 +49,7 @@ export class CarRegisterComponent implements OnInit {
       this.router.navigate(['']);
     } else {
       let currentYear = new Date().getFullYear();
-      let availableYear = currentYear - 15;
+      let availableYear = 1984;
       for (let i = availableYear; i <= currentYear; i++) {
         this.years.push(i);
         this.car.year = this.years[0];
