@@ -68,8 +68,11 @@ export class ProfileComponent implements OnInit {
           this.oldBatchLocation = this.user.batch.batchLocation;
           this.newUser = Object.assign({}, this.user);
 
-          this.batches = this.batchService.getAllBatches();
-          this.batches = this.batches.filter(batch => batch.batchNumber === this.user.batch.batchNumber).concat(this.batches.filter(batch => batch.batchNumber !== this.user.batch.batchNumber))
+          this.batchService.getAllBatches().subscribe(batches =>{
+           
+            this.batches = batches.filter(batch => batch.batchNumber === this.user.batch.batchNumber).concat(this.batches.filter(batch => batch.batchNumber !== this.user.batch.batchNumber))
+
+          });
         } else {
           this.authService.user = {};
           this.router.navigate(['']);
