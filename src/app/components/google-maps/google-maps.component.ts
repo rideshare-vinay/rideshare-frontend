@@ -16,13 +16,11 @@ export class GoogleMapsComponent implements OnInit {
   public longitude: number;
   public zoom: number;
 
-  constructor( private googleMapsService : GoogleMapsService ) { 
-
-  }
+  constructor(private googleMapsService: GoogleMapsService) { }
 
   ngOnInit() {
-    // this.setCurrentLocation();
-    this.getPoints();
+    this.setCurrentLocation();
+    // this.getPoints();
   }
 
   // Get current location coordinates.
@@ -35,15 +33,15 @@ export class GoogleMapsComponent implements OnInit {
       });
     }
   }
-    
+
   private getPoints() {
-    this.googleMapsService.getPoints( 'disneyland', 'universal+studios+hollywood' ).subscribe( res => {
-      console.log( res );
-    } );
+    this.googleMapsService.getPoints('disneyland', 'universal+studios+hollywood').subscribe(res => {
+      console.log(res);
+    });
   }
 
-  // Do this
-  moveMarker( lat : number, long : number ) {
+  // Move the marker to the location the user clicked on.
+  moveMarker(lat: number, long: number) {
     this.latitude = lat;
     this.longitude = long;
   }
