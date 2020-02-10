@@ -4,27 +4,28 @@
 }
 .lHead{
     font: futura;
-    font-size: 2em;
+    font-size: 1.5vw;
     padding: 1.5em 3em;
     background-color: #F36928;
     border-top-left-radius: 1.5em;
+    font-weight: bold;
     border-bottom: 4px solid white;
 
 }
 .rHead{
     font: futura;
-    font-size: 2em;
-    padding: 1.5em 3em;
+    font-size: 1.5vw;
+    padding: 1.25em 3em;
     background-color: #F36928;
     border-top-right-radius: 1.5em;
     border-bottom: 4px solid white;
 }
 td{
     font: futura;
+    font-size: 1.5vw;
     border-bottom: 2px solid white;
     padding: 1em 1.5em;
     color: white;
-    font-size: 1.5em;
     font-weight: bold;
     background-color: #F68C5A;
     
