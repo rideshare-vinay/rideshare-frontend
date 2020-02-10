@@ -20,7 +20,7 @@ export class GoogleMapsComponent implements OnInit {
 
   ngOnInit() {
     // this.setCurrentLocation();
-    this.getDirections();
+    this.getPoints();
   }
 
   // Get Current Location Coordinates
@@ -34,8 +34,10 @@ export class GoogleMapsComponent implements OnInit {
     }
   }
 
-  private getDirections() {
-    this.googleMapsService.getDirections( 'disneyland', 'universal_studios' );
+  private getPoints() {
+    this.googleMapsService.getPoints( 'disneyland', 'universal+studios+hollywood' ).subscribe( res => {
+      console.log( res );
+    } );
   }
 
   // Do this
