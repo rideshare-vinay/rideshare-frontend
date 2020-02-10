@@ -53,7 +53,7 @@ import { AgmCoreModule } from '@agm/core';
     FormsModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'YOUR-API-KEY',
+      apiKey: 'AIzaSyAU91hztcHhrPulSynF3hAk8fXJrZ0Z6Js',
       libraries: ['places']
     }),
     MatGoogleMapsAutocompleteModule,

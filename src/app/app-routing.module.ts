@@ -49,7 +49,11 @@ const routes: Routes = [{
 }, {
   path: 'map',
   component: GoogleMapsComponent
-}, {
+}, 
+// {
+//   path : 'directions'
+// },
+ {
   path: '**',
   pathMatch: 'full',
   redirectTo: ''

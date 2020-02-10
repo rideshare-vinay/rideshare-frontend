@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GoogleMapsService } from '../../services/google-maps-service/google-maps.service';
+
 
 @Component({
   selector: 'app-google-maps',
@@ -12,10 +14,13 @@ export class GoogleMapsComponent implements OnInit {
   longitude: number;
   zoom: number;
 
-  constructor() { }
+  constructor( private googleMapsService : GoogleMapsService ) { 
+
+  }
 
   ngOnInit() {
-    this.setCurrentLocation();
+    // this.setCurrentLocation();
+    this.getDirections();
   }
 
   // Get Current Location Coordinates
@@ -29,8 +34,12 @@ export class GoogleMapsComponent implements OnInit {
     }
   }
 
+  private getDirections() {
+    this.googleMapsService.getDirections( 'disneyland', 'universal_studios' );
+  }
+
   // Do this
-  moveMarker(lat: number, long: number) {
+  moveMarker( lat : number, long : number ) {
     this.latitude = lat;
     this.longitude = long;
   }
