@@ -22,7 +22,7 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { DriverInfoComponent } from './components/driver-info/driver-info.component';
 import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 import { GoogleMapsInputComponent } from './components/google-maps-input/google-maps-input.component';
-import { MatGoogleMapsAutocompleteModule } from "@angular-material-extensions/google-maps-autocomplete"
+import { MatGoogleMapsAutocompleteModule } from "@angular-material-extensions/google-maps-autocomplete";  
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 
@@ -53,7 +53,7 @@ import { AgmCoreModule } from '@agm/core';
     FormsModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAU91hztcHhrPulSynF3hAk8fXJrZ0Z6Js',
+      apiKey: 'AIzaSyDs0E5tknUrDhawMx1FkKSmjKccBB030YU',
       libraries: ['places']
     }),
     MatGoogleMapsAutocompleteModule,
