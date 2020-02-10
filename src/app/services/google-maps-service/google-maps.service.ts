@@ -12,11 +12,11 @@ export class GoogleMapsService {
     this.url = 'http://localhost:9000/';
   }
 
-  public getDirections( origin : string , destination : string ) : Observable <any> {
+  public getPoints( origin : string , destination : string ) : Observable <any> {
     // console.log( origin )
     // return this.http.post <any>( 'http://localhost:4200/directions/' + origin + '/' + destination );
     console.log( origin, destination );
-    return this.http.get<any>( this.url +'directions/' + origin + '/' + destination );
+    return this.http.get<any>( this.url +'points/' + origin + '/' + destination );
   };
 
   public decodePolyline() {
