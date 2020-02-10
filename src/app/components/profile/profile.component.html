@@ -1,47 +1,82 @@
-<div fxLayout="row" fxLayout.xs="column-reverse" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center">
-    <div fxFlex="45%">
-        <img  mat-card-image src="../assets/example.png">
-    </div>
-    <div fxFlex="45%">
-      <mat-card class="card-detail">
-        <mat-card-header class="card-title" > 
-            <mat-card-title><h3>Profile</h3></mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <div fxLayout="row">
-                <div fxFlex="10%"></div>
-                <div fxFlex="80%">
-                  <table id="detail"> 
-                 
-                    <tr>
-                        <th>First Name</th>
-                      
-                    </tr>
-                    <tr>
-                      <th>Email: </th>
-                    
-                    </tr>
-                    <tr>
-                      <th>Phone: </th>
-                      
-                    </tr>
-                    <tr>
-                      <th>Batch: </th>
-                     
-                    </tr>
-                  </table>
+<section>
+    <div fxLayout="row" fxLayout.xs="column-reverse" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center">
+        <div fxFlex="45%">
+            <img  mat-card-image src="../assets/example.png">
+        </div>
+        <div fxFlex="45%">
+        <mat-card class="card-detail">
+            <mat-card-header class="card-title" > 
+                <mat-card-title><h3>Profile</h3></mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div fxLayout="row">
+                    <div fxFlex="10%"></div>
+                    <div fxFlex="80%">
+                    <table id="detail"> 
+                        <tr>
+                            <th>First Name</th>
+                            <th>{{user.firstName}} {{user.lastName}}</th>
+                        </tr>
+                        <tr>
+                            <th>Email: </th>
+                            <th>{{user.email}}</th>
+                        </tr>
+                        <tr>
+                            <th>Phone: </th>
+                            <th>{{user.phoneNumber}}</th>
+                        </tr>
+                        <tr>
+                            <th>Batch: </th>
+                            <th>{{user.batch.batchLocation}}</th>
+                        </tr>
+                    </table>
+                    </div>
                 </div>
-            </div>
-            <div fxLayout="row">
-                <div fxFlex="10%"></div>
-                <div fxFlex="80%">
-                 
+                <br>
+                <div fxLayout="row">
+                    <div fxFlex="10%"></div>
+                    <div fxFlex="40%">
+                        <div *ngIf="user.driver">
+                           <button class="oBut">View Vehicle</button>
+                        </div>
+                        <div *ngIf="!user.driver">
+                            <button class="oBut">Add Vehicle</button>
+                        </div>
+                        <br>
+                        <div *ngIf= "user.driver"><input type="text" name="seats" [(ngModel)]="myCar.seats"  [readonly]="editable!=='seats'" [ngClass]="editable==='seats' ? 'editField' : ''"/> 
+                            <img class="edit" (click)="edit('seats')" src="assets/pencil.png"/>
+                        </div>
+                    </div>
+                    <div fxFlex="40%">
+                        <div>
+                            <mat-slide-toggle
+                            class="toggle-example"
+                            [color]="color"
+                            [checked]="user.driver"
+                            (change) ="toggleDriver()" 
+                            [disabled]="!(user.active)">
+                                <div *ngIf="user.driver">Driver</div>
+                                <div *ngIf="!user.driver">Rider</div>
+                            </mat-slide-toggle>
+                        </div><br>
+                        <div *ngIf="user.driver">
+                            <mat-slide-toggle
+                                class="toggle-example"
+                                [color]="color"
+                                [checked]="user.acceptingRides"
+                                (change) ="toggleAcceptRider()" 
+                                [disabled]="!(user.driver && user.active)">
+                                <div *ngIf="user.acceptingRides">Accepting</div>
+                                <div *ngIf="!user.acceptingRides">Decline</div>
+                            </mat-slide-toggle>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </mat-card-content>
-      </mat-card>
+            </mat-card-content>
+        </mat-card>
+        </div>
     </div>
-</div>
+</section>
 
 
 <!-- <div class="container">
