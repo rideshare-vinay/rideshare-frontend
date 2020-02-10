@@ -42,28 +42,26 @@
         </li>
       </ul>
   </nav> -->
-
-
 <!-- HOME PROFILE OPTIONS LOGOUT -->
 
 
 
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light fixed-top">
   <div class="container">
-    <img src="../assets/Logo.svg" alt="RideShare"/>
+    <img src="../assets/Logo_2.svg" alt="RideShare"/>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarRideshare" aria-controls="navbarRideshare" aria-expanded="false" aria-label="navbarRideshare">
     <span class="navbar-toggler-icon"></span>
   </button>
     <div class="collapse navbar-collapse" id="navbarRideshare" >
       <ul class="ml-auto headList navbar-nav" *ngIf="!name && !admin">
         <li class="nav-item tList">
-          <a [routerLink]="['/login']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="isNavbarCollapsed = true" >SIGN IN</a>
+          <a [routerLink]="['/login']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">SIGN IN</a>
         </li>
         <li class="nav-item tList">
-          <a [routerLink]="['/register']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="isNavbarCollapsed = true" >SIGN UP</a>
+          <a [routerLink]="['/register']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">SIGN UP</a>
         </li>
         <li class="nav-item tList">
-          <a [routerLink]="['/login/admin']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="isNavbarCollapsed = true" >ADMIN</a>
+          <a [routerLink]="['/login/admin']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">ADMIN</a>
         </li>
       </ul>
       <ul class="ml-auto headList navbar-nav" *ngIf="name">
@@ -77,24 +75,9 @@
           <a [routerLink]="['/preference']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="isNavbarCollapsed = true">OPTIONS</a>
         </li>
         <li class="nav-item tList">
-          <a (click)="logout()" >LOGOUT</a> <!--NEED TO ADD A LOGOUT-->
+          <a (click)="logout()" >LOGOUT</a> 
         </li>
       </ul>
     </div>
   </div>
 </nav>
-
-<!-- <div class="collapse navbar-collapse" [ngbCollapse]="isNavbarCollapsed" id="navbarSupportedContent">
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
-      <a class="nav-link" [routerLink]="['/dash/', someParam]" (click)="isNavbarCollapsed = true">Dashboard <span
-          class="sr-only">(current)</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/archive" (click)="isNavbarCollapsed = true">Archive</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/help" (click)="isNavbarCollapsed = true">Help</a>
-    </li>
-  </ul>
-</div> -->

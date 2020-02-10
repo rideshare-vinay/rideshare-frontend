@@ -34,6 +34,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSelectModule } from '@angular/material/select';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MapDetailComponent } from './components/map-detail/map-detail.component';
 //npm i @angular/material@8.2.0
 //npm i @angular/animations@8.2.4
 //npm i @angular/cdk@8.2.0
@@ -54,7 +55,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ProfileComponent,
     PreferenceComponent,
     AdminLoginComponent,
-    DriverInfoComponent
+    DriverInfoComponent,
+    MapDetailComponent
   ],
   imports: [
     BrowserModule,
