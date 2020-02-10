@@ -38,4 +38,10 @@ export class GoogleMapsComponent implements OnInit {
     this.googleMapsService.getDirections( 'disneyland', 'universal_studios' );
   }
 
+  // Do this
+  moveMarker( lat : number, long : number ) {
+    this.latitude = lat;
+    this.longitude = long;
+  }
+
 }

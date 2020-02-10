@@ -1,5 +1,3 @@
-
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +21,9 @@ import { ValidationService } from './services/validation-service/validation.serv
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { DriverInfoComponent } from './components/driver-info/driver-info.component';
 import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
+import { GoogleMapsInputComponent } from './components/google-maps-input/google-maps-input.component';
+import { MatGoogleMapsAutocompleteModule } from "@angular-material-extensions/google-maps-autocomplete"
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
@@ -40,7 +41,8 @@ import { AgmCoreModule } from '@agm/core';
     PreferenceComponent,
     AdminLoginComponent,
     DriverInfoComponent,
-    GoogleMapsComponent
+    GoogleMapsComponent,
+    GoogleMapsInputComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,9 @@ import { AgmCoreModule } from '@agm/core';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAU91hztcHhrPulSynF3hAk8fXJrZ0Z6Js',
       libraries: ['places']
-    })
+    }),
+    MatGoogleMapsAutocompleteModule,
+    BrowserAnimationsModule
   ],
   providers: [
     UserService,
