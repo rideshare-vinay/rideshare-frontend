@@ -1,0 +1,13 @@
+@media only screen and (max-width: 768px) {
+  agm-map {
+    height: 70vw;
+    width: 70vw;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  agm-map {
+    height: 70vh;
+    width: 70vh;
+  }
+}
