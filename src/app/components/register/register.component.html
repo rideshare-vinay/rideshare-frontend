@@ -68,58 +68,81 @@
     </mat-card-header>
 </div>
 <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-        <div fxFlex="15%" style="text-align: center;">
-            <mat-form-field class="example-form-field">
-                <input matInput type="text" placeholder="Username" [(ngModel)]="user.userName" name="userName">
-                <small *ngIf="user.userName && !validationService.validateUserName(user.userName)">User Name Should Be 3 to 8 Characters</small>
-              </mat-form-field><br>
-              <mat-form-field class="example-form-field">
-                <input matInput type="text" placeholder="Email" [(ngModel)]="user.email" name="email">
-                <small *ngIf="user.email && !validationService.validateEmail(user.email)">Invalid Email</small>
-              </mat-form-field><br>
-              <mat-form-field>
-                <mat-label>Location</mat-label>
-                <mat-select>
-                    <mat-option>None</mat-option>
-                    <mat-option>VWU - Morgantown, WV</mat-option>
-                    <mat-option>UTA - Arlington, TX</mat-option>
-                    <mat-option>USF - Tampa, FL</mat-option>
-                    <mat-option>Revature HQ - Reston, VA</mat-option>
-                    <mat-option>CUNY SPS - New York, NY</mat-option>
-                    <mat-option>CUNY Queens College - Flushing, NY</mat-option>
-                </mat-select>
-              </mat-form-field><br>
-        </div>  
-        <div fxFlex="15%" style="text-align: center;">
-            <mat-form-field class="example-form-field">
-                <input matInput type="text" placeholder="First Name" [(ngModel)]="user.firstName" name="firstName">
-                <small *ngIf="user.firstName && !validationService.validateName(user.firstName)">Invalid Name</small>
-              </mat-form-field><br>
-              <mat-form-field class="example-form-field">
-                <input matInput type="text" placeholder="Phone #" [(ngModel)]="user.phoneNumber" name="phone">
-                <small *ngIf="user.phoneNumber && !validationService.validatePhone(user.phoneNumber)">Invalid Phone Number</small>
-              </mat-form-field><br>
-              <mat-form-field class="example-form-field">
-                <input matInput type="text" placeholder="Batch Number" [(ngModel)]="user.userName">
-              </mat-form-field><br>
-        </div>  
-        <div fxFlex="15%" style="text-align: center;">
-            <mat-form-field class="example-form-field">
-                <input matInput type="text" placeholder="Last Name" [(ngModel)]="user.lastName" name="lastName">
-                <small *ngIf="user.lastName && !validationService.validateName(user.lastName)">Invalid Name</small>
-              </mat-form-field><br>
-              <mat-form-field class="example-form-field">
-                <!-- spacer -->
-              </mat-form-field><br>
-              <mat-form-field class="example-form-field">
-                <input matInput type="text" placeholder="Driver/Rider" [(ngModel)]="user.userName">
-              </mat-form-field><br>
-        </div>     
+    <div fxFlex="15%" style="text-align: center;">        
+        <mat-form-field class="example-form-field">
+            <input matInput type="text" placeholder="Username" [(ngModel)]="user.userName" name="userName">
+            <small *ngIf="user.userName && !validationService.validateUserName(user.userName)">User Name Should Be 3 to 8 Characters</small>
+          </mat-form-field><br>
+          <mat-form-field class="example-form-field">
+            <input matInput type="text" placeholder="Email" [(ngModel)]="user.email" name="email">
+            <small *ngIf="user.email && !validationService.validateEmail(user.email)">Invalid Email</small>
+          </mat-form-field><br>
+          <mat-form-field>
+            <mat-label>Location</mat-label>
+            <mat-select id="location" [(value)]="location" (change)='changeLocation($event)' class="form-control">
+                <mat-option value=""></mat-option>
+                <mat-option value="VWU - Morgantown, WV">VWU - Morgantown, WV</mat-option>
+                <mat-option value="UTA - Arlington, TX">UTA - Arlington, TX</mat-option>
+                <mat-option value="USF - Tampa, FL">USF - Tampa, FL</mat-option>
+                <mat-option value="Revature HQ - Reston, VA">Revature HQ - Reston, VA</mat-option>
+                <mat-option value="CUNY SPS - New York, NY">CUNY SPS - New York, NY</mat-option>
+                <mat-option value="CUNY Queens College - Flushing, NY">CUNY Queens College - Flushing, NY</mat-option>
+            </mat-select>
+          </mat-form-field><br>      
+    </div> 
+    <div fxFlex="15%" style="text-align: center;">
+        <mat-form-field class="example-form-field">
+            <input matInput type="text" placeholder="First Name" [(ngModel)]="user.firstName" name="firstName">
+            <small *ngIf="user.firstName && !validationService.validateName(user.firstName)">Invalid Name</small>
+          </mat-form-field><br>
+          <mat-form-field class="example-form-field">
+            <input matInput type="text" placeholder="Phone #" [(ngModel)]="user.phoneNumber" name="phone">
+            <small *ngIf="user.phoneNumber && !validationService.validatePhone(user.phoneNumber)">Invalid Phone Number</small>
+          </mat-form-field><br>
+          <mat-form-field class="example-form-field">
+            <mat-label>Batch Number</mat-label>
+            <mat-select id="batch number" [(value)]="batchNumber" (change)='changeBatchNumber($event)' class="form-control">
+                <mat-option value=""></mat-option>
+                <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+                <mat-option value="3">3</mat-option>
+                <mat-option value="4">4</mat-option>
+                <mat-option value="5">5</mat-option>
+                <mat-option value="6">6</mat-option>
+            </mat-select>
+          </mat-form-field><br>
+    </div>  
+    <div fxFlex="15%" style="text-align: center;">
+        <mat-form-field class="example-form-field">
+            <input matInput type="text" placeholder="Last Name" [(ngModel)]="user.lastName" name="lastName">
+            <small *ngIf="user.lastName && !validationService.validateName(user.lastName)">Invalid Name</small>
+          </mat-form-field><br>
+          <mat-form-field class="example-form-field">
+            <input matInput type="text" placeholder="Address">
+            <small *ngIf="user.email && !validationService.validateEmail(user.email)">Invalid Email</small>
+          </mat-form-field><br>
+          <mat-form-field class="example-form-field">
+            <mat-label>Driver/Rider</mat-label>
+            <mat-select id="batch number" [(value)]="role" (change)='changeBatchNumber($event)' class="form-control">
+                <mat-option value=""></mat-option>
+                <mat-option value="driver">Driver</mat-option>
+                <mat-option value="rider">Rider</mat-option>
+            </mat-select>
+          </mat-form-field><br>
+    </div>     
 </div>
 <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
     <mat-card-actions>
-        <button type="submit" (click)="signUp('driver')" [disabled]="!(user.userName && user.firstName && user.lastName && user.email && user.phoneNumber)" class="button oBut">DRIVER</button>
-        <button type="submit" (click)="signUp('rider')" [disabled]="!(user.userName && user.firstName && user.lastName && user.email && user.phoneNumber)" class="button oBut">RIDER</button>
+        <button type="submit" (click)="signUp()" [disabled]="!(user.userName && user.firstName && user.lastName && user.email && user.phoneNumber)" class="button oBut">SUBMIT</button>
     </mat-card-actions>
 </div>
 </section>
+<select id="location" (change)='changeLocation($event)' class="form-control">
+    <option></option>
+    <option>VWU - Morgantown, WV</option>
+    <option>UTA - Arlington, TX</option>
+    <option>USF - Tampa, FL</option>
+    <option>Revature HQ - Reston, VA</option>
+    <option>CUNY SPS - New York, NY</option>
+    <option>CUNY Queens College - Flushing, NY</option>
+</select>
