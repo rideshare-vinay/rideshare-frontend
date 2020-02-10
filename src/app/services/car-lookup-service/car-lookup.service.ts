@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CarServiceService {
+export class CarLookupService {
   private CarDB:string
 
   constructor(private http:HttpClient) {
