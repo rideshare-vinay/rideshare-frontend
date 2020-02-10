@@ -23,7 +23,7 @@ export class CarLookupService {
 
 
   //When given a year and make, returns a list of models associated with that year and make.
-  public lookupModels(Year: number, make: string): Observable<String[]>{
+  public lookupModels(Year: number, make: String): Observable<String[]>{
 
     var value = this.http.get<String[]>(this.CarDB + "/model?year=" + Year + "&make=" + make);
     return value;

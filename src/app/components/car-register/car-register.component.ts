@@ -4,6 +4,7 @@ import { CarService } from 'src/app/services/car-service/car.service';
 import { ValidationService } from 'src/app/services/validation-service/validation.service';
 import { Car } from 'src/app/models/car';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
+import { CarLookupService } from 'src/app/services/car-lookup-service/car-lookup.service';
 
 @Component({
   selector: 'app-car-register',
@@ -26,16 +27,18 @@ export class CarRegisterComponent implements OnInit {
   years: number[] = [];
   makes: String[] = [];
   models: String[] = [];
+  selectedYear: number;
   userId: number;
   car: Car = new Car();
   
   /**
    * This is constructor
    * @param carService A dependency of a car service is injected.
+   * @param CarLookupService A dependency of a car model and make database is injected.
    * @param router Provides an instance of a router.
    */
 
-  constructor(private carService: CarService, private router: Router, public validationService: ValidationService, private authService: AuthService) { }
+  constructor(private carService: CarService, private router: Router, public validationService: ValidationService, private lookupService: CarLookupService, private authService: AuthService) { }
 
   /**
    * This is an OnInit function that sets the user id as the parsed string in session storage.
@@ -49,7 +52,7 @@ export class CarRegisterComponent implements OnInit {
       this.router.navigate(['']);
     } else {
       let currentYear = new Date().getFullYear();
-      let availableYear = 1984;
+      let availableYear = 1984; //Lowest
       for (let i = availableYear; i <= currentYear; i++) {
         this.years.push(i);
         this.car.year = this.years[0];
@@ -75,4 +78,45 @@ export class CarRegisterComponent implements OnInit {
     }
   }
 
+ /**
+   * Calls on the car lookup service to retrieve a list of makes given a year, and
+   * pass that onto the make field.
+   */
+  updateMakeList(year:number){
+    this.selectedYear=year;
+    this.grayFields(2);
+    this.lookupService.lookupMakes(year).subscribe(
+      data=>{this.makes=data;
+      this.grayFields(1);
+    });
+  }
+
+   /**
+   * Calls on the car lookup service to retrieve a list of makes given a year, and
+   * pass that onto the make field.
+   */
+  updateModelList(make:String){
+    this.grayFields(1);
+    this.lookupService.lookupModels(this.selectedYear,make).subscribe(
+      data=>{this.makes=data;
+      this.grayFields(0);
+    });
+  }
+
+  /*grays and disables vehicle selector fields not yet fillable. Low priority*/
+  grayFields(fields:number){
+    // Gray out Make and Model
+    if(fields == 2){
+      
+    }
+
+    // Gray out Model only, enable Make
+    if(fields == 1){
+
+    }
+  // Enable both make and model.
+    if(fields == 0){
+
+    }
+    }
 }

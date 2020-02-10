@@ -1,25 +1,34 @@
 <div class="container">
-    <form>
+
+    <!--
         <h3>Add Car To Become A Driver</h3>
         <div class="form-group">
             <label for="color">Color <small>*</small></label><br>
             <input id="color" type="text" placeholder="Color of the Car" [(ngModel)]="car.color" name="color" required><br>
         </div>                
         
-        //make and model
+         make and model - Communicate with fueleconomy API
 
-    
-        <mat-label>Model</mat-label>
-        <select matNativeControl [(ngModel)]="selectedMake" name="car">
+        <mat-label>Year</mat-label>
+        <select matNativeControl [(ngModel)]="selectedYear" name="year" (change)="updateMakeList()">
           <option value="" selected></option>
-          <option *ngFor="let make of makes" [value]="car.value">
-            {{car.viewValue}}
+          <option *ngFor="let year of years" [value]="year">
+            {{year}}
+          </option>
+    
+        <mat-label>Make</mat-label>
+        <select matNativeControl [(ngModel)]="selectedMake" name="make">
+          <option value="" selected></option>
+          <option *ngFor="let make of makes" [value]="makes">
+            {{make}}
           </option>
 
+          <mat-label>Make</mat-label>
+          <select matNativeControl [(ngModel)]="selectedModel" name="make">
+            <option value="" selected></option>
+            <option *ngFor="let make of makes" [value]="makes">
+              {{make}}
+            </option>
 
-        <div class="form-group">
-            <button id="add-car-btn" class="btn btn-primary" type="submit" (click)="addCar()" (keyup.enter)="addCar()" [disabled]="!(car.color && car.seats && car.make && car.model)">Add New Car</button>
-            <a routerLink="/home">Cancel</a>
-        </div>
-    </form>
+        -->
 </div>
