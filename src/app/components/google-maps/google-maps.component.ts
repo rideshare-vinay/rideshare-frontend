@@ -12,6 +12,7 @@ export class GoogleMapsComponent implements OnInit {
   private readonly longKey = 'longitude';
   private readonly latKey = 'latitude';
   public selectedAddress: PlaceResult;
+  public inputVisibility: boolean;
   public latitude: number;
   public longitude: number;
   public zoom: number;
@@ -19,8 +20,12 @@ export class GoogleMapsComponent implements OnInit {
   constructor(private googleMapsService: GoogleMapsService) { }
 
   ngOnInit() {
+    this.googleMapsService.googleMapsInputVisibilityEvent.subscribe((visibility) => {
+      this.inputVisibility = visibility;
+    });
+
     this.setCurrentLocation();
-    // this.getPoints();
+    this.getPoints();
   }
 
   // Get current location coordinates.
