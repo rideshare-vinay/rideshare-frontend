@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import PlaceResult = google.maps.places.PlaceResult;
 import { GoogleMapsService } from '../../services/google-maps-service/google-maps.service';
-
 
 @Component({
   selector: 'app-google-maps',
@@ -9,10 +9,12 @@ import { GoogleMapsService } from '../../services/google-maps-service/google-map
 })
 export class GoogleMapsComponent implements OnInit {
 
-  title: string = 'Rideforce Map';
-  latitude: number;
-  longitude: number;
-  zoom: number;
+  private readonly longKey = 'longitude';
+  private readonly latKey = 'latitude';
+  public selectedAddress: PlaceResult;
+  public latitude: number;
+  public longitude: number;
+  public zoom: number;
 
   constructor( private googleMapsService : GoogleMapsService ) { 
 
@@ -23,17 +25,17 @@ export class GoogleMapsComponent implements OnInit {
     this.getPoints();
   }
 
-  // Get Current Location Coordinates
+  // Get current location coordinates.
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        this.zoom = 15;
+        this.zoom = 20;
       });
     }
   }
-
+    
   private getPoints() {
     this.googleMapsService.getPoints( 'disneyland', 'universal+studios+hollywood' ).subscribe( res => {
       console.log( res );
@@ -44,6 +46,12 @@ export class GoogleMapsComponent implements OnInit {
   moveMarker( lat : number, long : number ) {
     this.latitude = lat;
     this.longitude = long;
+  }
+
+  // Move the marker to the location set by the input bar.
+  onLocationSelected(location: Location) {
+    this.latitude = location[this.latKey];
+    this.longitude = location[this.longKey];
   }
 
 }
