@@ -43,7 +43,7 @@
           <div mat-card-avatar class="example-header-image"></div>
         </mat-card-header>
         <mat-card-content>
-            <mat-form-field>
+            <mat-form-field class="roundInput">
                 <mat-label>Account</mat-label>
                 <input matInput type="text" color="warn" placeholder="Select An Account" name="chosenUserFullName" [(ngModel)]="chosenUserFullName" (click)="toggleDropDown()" (ngModelChange)="searchAccount()">
                 <mat-select>
@@ -54,7 +54,7 @@
                 </mat-select>
             </mat-form-field>
               <br>
-            <mat-form-field class="example-form-field">
+            <mat-form-field class="roundInput">
                 <mat-label>Username</mat-label>
                 <input matInput type="text" color="warn" [(ngModel)]="userName" name="userName" placeholder="Username">
               </mat-form-field><br>

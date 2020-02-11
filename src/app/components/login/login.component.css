@@ -133,3 +133,14 @@ mat-label{
     font-size: 1.25em;
     color: black; 
 }
+
+::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+
+
+.roundInput{
+    margin-top: 5%;
+    text-align: center;
+    width: 30vw;
+}
