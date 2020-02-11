@@ -24,7 +24,3 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Generate Documentation for Angular using Compodoc
 
 Run `npm run compodoc`. The build artifacts will be stored in the `documentation/` directory. Use the `-s --port [port]` to serve the documentation locally.
-
-## Generate Documentation for User Service using JavaDocs
-
-Run the command `maven javadoc:javadoc`. The build artifacts will be stored in the `target/` directory.
