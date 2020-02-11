@@ -5,6 +5,12 @@
       (onLocationSelected)="onLocationSelected($event)"
     />
   </div>
+  <!-- <div *ngIf="true">
+    <input matGoogleMapsAutocomplete (onLocationSelected)="setOrigin($event)" />
+  </div>
+  <div *ngIf="true">
+    <input matGoogleMapsAutocomplete (onLocationSelected)="setDestination($event)" />
+  </div> -->
   <agm-map
     [latitude]="latitude"
     [longitude]="longitude"
