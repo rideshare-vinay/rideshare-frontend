@@ -7,6 +7,8 @@ import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { CarService } from 'src/app/services/car-service/car.service';
 import { Car } from 'src/app/models/car';
+import { Observable, of } from 'rxjs';
+import { LogService } from 'src/app/services/log.service';
 
 describe("MyCarComponent", () => {
   let myCarComponent:MyCarComponent;
@@ -16,6 +18,7 @@ describe("MyCarComponent", () => {
   let routerSpy = jasmine.createSpyObj("Router", ['navigate']);
   let mockUser:User; 
   let mockCar:Car;
+  let logService:LogService;
 
   class MockAuthService{
     user:User;
@@ -27,6 +30,9 @@ describe("MyCarComponent", () => {
         resolve(mockCar);
       });
     }
+    removeCar(carId:number):Observable<Car>{
+      return of(mockCar);
+    }
   }
 
   beforeEach(() => {
@@ -36,13 +42,15 @@ describe("MyCarComponent", () => {
       providers: [
         { provide: AuthService, useClass: MockAuthService }, 
         { provide: Router, useValue: routerSpy },
-        { provide: CarService, useClass: MockCarService }
+        { provide: CarService, useClass: MockCarService },
+        LogService,
       ]
     });
     myCarFixture = TestBed.createComponent(MyCarComponent); 
     myCarComponent = myCarFixture.componentInstance; 
     mockAuthService = TestBed.get(AuthService);
     mockCarService = TestBed.get(CarService);
+    logService = TestBed.get(LogService);
     mockUser = {
       userId: 1, 
       userName: "killianC", 
@@ -98,4 +106,20 @@ describe("MyCarComponent", () => {
       done();
     });
   });
+
+  fit("should remove car from MyCarComponent after calling CarService remove car function", () => {
+    myCarComponent.myCar = mockCar;
+    myCarComponent.removeMyCar();
+    expect(myCarComponent.myCar).not.toEqual(mockCar);
+  })
+
+  fit("should call the LogService.info function if the car is removed", (done) => {
+    spyOn(logService, "info").and.callThrough();
+    mockCarService.getCarByUserId(mockCar.carId).then( car => {
+      expect(logService.info).toHaveBeenCalled();
+      done();
+    } )
+    myCarComponent.removeMyCar();
+  });
+
 });
