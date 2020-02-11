@@ -30,6 +30,12 @@
     border: none;
 }
 
+.mat-form-field{
+    background-color: #c4d7e5;
+    width: 10vw;
+    border-radius: 10vw;
+ }
+
 ::ng-deep .mat-form-field{
   color: rgb(150, 150, 150) !important; 
   font-size: 110%;  
