@@ -1,38 +1,72 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from "@angular/core/testing";
+import { UserService } from 'src/app/services/user-service/user.service';
 import { LoginComponent } from './login.component';
-import { APP_BASE_HREF } from '@angular/common';
-import { AdminComponent } from '../admin/admin.component';
-import { CarRegisterComponent } from '../car-register/car-register.component';
-import { RegisterComponent } from '../register/register.component';
-import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { MyCarComponent } from '../my-car/my-car.component';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { PreferenceComponent } from '../preference/preference.component';
-import { ProfileComponent } from '../profile/profile.component';
+import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { User } from 'src/app/models/user';
+import { of, Observable } from 'rxjs';
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe("Login Component", () => {
+  let userService:UserService;
+  let loginComponent:LoginComponent;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [AdminComponent, CarRegisterComponent, RegisterComponent, LoginComponent, MyCarComponent, NavbarComponent, PreferenceComponent, ProfileComponent],
-      imports: [HttpClientModule, AppRoutingModule, FormsModule],
-      providers: [{provide: APP_BASE_HREF, useValue: '/my/app'}]
-    })
-    .compileComponents();
-  }));
+  class MockUserService{
+    getAllUsers():Observable<User[]>{
+      return of(mockUsers);
+    }
+  }
+
+  let mockUsers:User[] = [
+    {userId: 1, 
+      userName: "johns", 
+      firstName: "John", 
+      lastName: "Smith",
+      phoneNumber: "5555555555",
+      email: "email@email.com",
+      driver: false, 
+      batch: {batchLocation: "123abc", batchNumber: 123},
+      acceptingRides: false,
+      active: true},
+    {userId: 2, 
+      userName: "kimj", 
+      firstName: "Kim", 
+      lastName: "Jhonson",
+      phoneNumber: "5555555555",
+      email: "email@email.com",
+      driver: false, 
+      batch: {batchLocation: "123abc", batchNumber: 123},
+      acceptingRides: false,
+      active: true},
+  ];
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      declarations: [LoginComponent],
+      providers: [UserService],
+      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule]
+    });
+    let fixture = TestBed.createComponent(LoginComponent);
+    loginComponent = fixture.componentInstance;
+    userService = TestBed.get(UserService);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  fit("should create LoginComponent", () => {
+    expect(loginComponent).toBeTruthy();
   });
-});
+
+  fit("should get a list of users from UserService on init", (done) => {
+    spyOn(userService, "getAllUsers").and.returnValue(of(mockUsers));
+    loginComponent.ngOnInit();
+    done();
+    let totalPageExpectation = Math.ceil(loginComponent.allUsers.length / 5);
+    let usersExpectation = loginComponent.allUsers.slice(0,5);
+    expect(loginComponent.allUsers).toEqual(mockUsers);
+    expect(loginComponent.totalPage).toBe(totalPageExpectation);
+    expect(loginComponent.users).toEqual(usersExpectation);
+  });
+
+
+})
+
+
