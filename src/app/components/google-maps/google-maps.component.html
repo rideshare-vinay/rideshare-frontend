@@ -5,12 +5,6 @@
       (onLocationSelected)="onLocationSelected($event)"
     />
   </div>
-  <!-- <div *ngIf="true">
-    <input matGoogleMapsAutocomplete (onLocationSelected)="setOrigin($event)" />
-  </div>
-  <div *ngIf="true">
-    <input matGoogleMapsAutocomplete (onLocationSelected)="setDestination($event)" />
-  </div> -->
   <agm-map
     [latitude]="latitude"
     [longitude]="longitude"
@@ -19,6 +13,16 @@
     (mapClick)="moveMarker($event.coords.lat, $event.coords.lng)"
   >
     <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+    <agm-circle
+      [latitude]="latitude"
+      [longitude]="longitude"
+      [clickable]="false"
+      [draggable]="true"
+      [editable]="false"
+      [fillColor]="green"
+      [fillOpacity]="0.5"
+      [radius]="150"
+    ></agm-circle>
     <agm-direction
       [origin]="origin"
       [destination]="destination"
