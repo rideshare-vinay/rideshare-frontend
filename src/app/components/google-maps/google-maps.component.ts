@@ -35,7 +35,7 @@ export class GoogleMapsComponent implements OnInit {
       }
     );
 
-    this.googleMapsService.showMarkerEvent.subscribe(marker => {
+    this.googleMapsService.showMarkerOrCircleEvent.subscribe(marker => {
       this.marker = marker;
     });
 
