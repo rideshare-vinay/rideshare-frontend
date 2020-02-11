@@ -4,14 +4,14 @@ import { CarService } from 'src/app/services/car-service/car.service';
 import { ValidationService } from 'src/app/services/validation-service/validation.service';
 import { Car } from 'src/app/models/car';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
-import { CarLookupService } from 'src/app/services/car-lookup-service/car-lookup.service';
-import { HttpClient } from '@angular/common/http';
+import { CarLookupService } from 'src/app/services/car-lookup/car-lookup.service';
 
 @Component({
   selector: 'app-car-register',
   templateUrl: './car-register.component.html',
   styleUrls: ['./car-register.component.css']
 })
+
   /**
    * The Car Register component
    */
@@ -23,29 +23,26 @@ export class CarRegisterComponent implements OnInit {
    * Set userId
    * Instantiates a car
    */
-
-  years: number[] = [];
-  makes: String[] = [];
-  models: String[] = [];
-  selectedYear: number;
-  selectedMake: String;
-  selectedModel: String;
+  allYears: string[] = [];
+  years: string[] = [];
+  allMakes: string[] = [];
+  makes: string[] = [];
+  allModels: string[] = [];
+  models: string[] = [];
   userId: number;
   car: Car = new Car();
+  
+  curPage: number=1;
+  totalPage: number=1;
+  showDropDown: boolean = false;
   
   /**
    * This is constructor
    * @param carService A dependency of a car service is injected.
-   * @param CarLookupService A dependency of a car model and make database is injected.
    * @param router Provides an instance of a router.
    */
 
-  constructor(
-    private carService: CarService, 
-    private router: Router, 
-    public validationService: ValidationService, 
-    private lookupService: CarLookupService, 
-    private authService: AuthService) { }
+  constructor(private carService: CarService, private router: Router, private carLookupService:CarLookupService, public validationService: ValidationService, private authService: AuthService) { }
 
   /**
    * This is an OnInit function that sets the user id as the parsed string in session storage.
@@ -54,29 +51,88 @@ export class CarRegisterComponent implements OnInit {
    */
   ngOnInit() {
     this.userId = this.authService.user.userId;
-
     if (!this.userId) {
-      console.log("You aren't supposed to be here!");
-      //this.router.navigate(['']);
+      this.router.navigate(['']);
+    } else {
+      this.carLookupService.getYears().subscribe(data =>{
+        this.allYears=this.xmlParser(data);
+        console.log(this.allYears)
+        this.years = this.allYears.slice(this.curPage * 5 - 5, this.curPage * 5);
+        this.totalPage = Math.ceil(this.allYears.length / 5);
+      })
+      
     }
-      let currentYear = new Date().getFullYear();
-      let availableYear = 1984; //Lowest
-      for (let i = availableYear; i <= currentYear; i++) {
-        this.years.push(i);
-        this.car.year = this.years[0];
-    }
-    this.grayFields(2);
   }
 
  /**
+  * Changes year for the styled dropdown widget
+  * @param year
+  * @returns {void}
+  */
+ newChangeYear(year:number) {
+  this.showDropDown = false;
+  this.curPage = 1;
+  this.years = this.allYears.slice(this.curPage * 5 - 5, this.curPage * 5);
+  this.car.year = year;
+  this.car.make="";
+  this.car.model="";
+  this.makes=[];
+  this.models=[];
+  this.carLookupService.getMakes(""+year).subscribe(data =>{
+    this.makes=this.xmlParser(data);
+    this.car.make=this.makes[0];
+  })
+}
+
+	/**
+	 * Set next page
+	 */
+	nextPage() {
+		this.curPage++;
+		this.years = this.allYears.slice(this.curPage * 5 - 5, this.curPage * 5);
+	}
+
+	/**
+	 * Set prev page
+	 */
+
+	prevPage() {
+		this.curPage--;
+		this.years = this.allYears.slice(this.curPage * 5 - 5, this.curPage * 5);
+  }
+  
+  /**
+	 * Toggles drop-down
+	 */
+
+  toggleDropDown() {
+		this.showDropDown = !this.showDropDown;
+  }
+  /**
+  * Changes make for the options
   * @param event
   * @returns {void}
   */
-  changeYear(event) {
+  changeMake(event) {
 		let option = event.target.options.selectedIndex;
-		this.car.year = this.years[option];
+    this.car.make = this.makes[option];
+    this.car.model="";
+    this.models=[];
+    this.carLookupService.getModels(""+this.car.year,this.car.make).subscribe(data =>{     
+      this.models=this.xmlParser(data);
+      this.models=this.modelFilter(this.models)
+      this.car.model=this.models[0];
+    })
   }
-  
+  /**
+  * Changes model for the options
+  * @param event
+  * @returns {void}
+  */
+  changeModel(event) {
+		let option = event.target.options.selectedIndex;
+		this.car.model = this.models[option];
+  }
   /**
    * A POST method that adds a car object to the user
    */
@@ -86,46 +142,46 @@ export class CarRegisterComponent implements OnInit {
     }
   }
 
- /**
-   * Calls on the car lookup service to retrieve a list of makes given a year, and
-   * pass that onto the make field.
-   */
-  updateMakeList(year:number){
-    this.selectedYear=year;
-    this.grayFields(2);
-    this.lookupService.lookupMakes(year).subscribe(
-      data=>{this.makes=data;console.log("Returned from server with: " + this.makes);
-      this.grayFields(1);
-    });
+    /**
+    *     function that parses through fueleconomy.gov xmls and returns an array of strings
+    *     @param text - raw XML data from fueleconomy.gov api
+    *     @returns {string[]} - parsed values
+    */
+  xmlParser(text:String):string[]{
+    var output:string[];
+    output = [];
+    console.log(text)
+    var values = text.split("\"value\":\"")
+    values.reduce((prev,next,idx,arr) =>{
+      output.push(next.split("\"")[0])
+      return ""
+    })
+    console.log(output)
+    return output;
   }
-
-   /**
-   * Calls on the car lookup service to retrieve a list of makes given a year, and
-   * pass that onto the make field.
-   */
-  updateModelList(year:number,make:String){
-    this.grayFields(1);
-    
-    this.lookupService.lookupModels(this.selectedYear,make).subscribe(
-      data=>{this.models=data;
-      this.grayFields(0);
-    });
-  }
-
-  /*grays and disables vehicle selector fields not yet fillable. Low priority*/
-  grayFields(fields:number){
-    // Gray out Make and Model
-    if(fields == 2){
-      
-    }
-
-    // Gray out Model only, enable Make
-    if(fields == 1){
-
-    }
-  // Enable both make and model.
-    if(fields == 0){
-
-    }
-    }
+    /**
+    *     function that parses through an arry of models and gets rid of duplicates the best it can
+    *     @param text - raw XML data from fueleconomy.gov api
+    *     @returns {string[]} - parsed values
+    */
+   modelFilter(models:string[]):string[]{
+      var i = 0;
+      var previousmodel="";
+      var model:string;
+      while(i<models.length){
+        model=models[i];
+        if(previousmodel!="" && model.split(" ")[0]==previousmodel.split(" ")[0]){
+          //presumed duplicate needs to be removed
+          models.splice(i,1)
+        }
+        else{
+          //new model, need to clean up bogus keywords
+          model=model.split(/ \wWD/)[0]; //clean up wheel driver nonsense
+          models[i]=model
+          previousmodel=model;
+          i+=1
+        }
+      }
+      return models;
+   }
 }

@@ -1,60 +1,44 @@
 <div class="container">
-  <h3>Add Car To Become A Driver</h3>
-  <p><small>*</small> indicates required fields </p>
+    <form>
+        <h3>Add Car To Become A Driver</h3>
+        <div class="form-group">
+            <label for="color">Color <small>*</small></label><br>
+            <input id="color" type="text" placeholder="Color of the Car" [(ngModel)]="car.color" name="color" required><br>
+        </div>
+        <div class="form-group">
+            <label for="seats">Seats <small>*</small></label><br>
+            <input id="seats" type="number" placeholder="Seats" [(ngModel)]="car.seats" name="seats" min="1" max="6" step="1" required><br>
+            <small *ngIf="(car.seats || car.seats===0) && !validationService.validateSeats(car.seats)">The Passenger Capacity Must Between 1 To 6</small>
+        </div>
+        
+        <label for="years">Year:</label><br>
+        <input type="text" placeholder="Year" name="year" [(ngModel)]="car.year" (click)="toggleDropDown()" (ngModelChange)="searchMake()" autocomplete="off"/>
+        <button type="button" class="dropbtn" (click)="toggleDropDown()"><small>▼</small></button>
+        <div class="dropdown-content" [ngStyle]="showDropDown? {'display': 'block'} : {'display': 'none'}">
+            <button type="button" id="prev-btn" *ngIf="curPage>1" (click)="prevPage()">^</button>
+            <div *ngFor="let year of years">
+                <p (click)="newChangeYear(year)">{{year}}</p>
+            </div>
+            <button type="button" id="next-btn" *ngIf="curPage<totalPage" (click)="nextPage()">v</button>
+        </div>
+        
+        <div class="form-group">
+            <label for="year">Make <small>*</small></label><br>
+            <select id="year" (change)='changeMake($event)'>
+                <option *ngFor="let make of makes" [value]="make">{{make}}</option>
+            </select>
+        </div>
 
-  <div class="grid">
-    <div class="form-group row">
-      <div class="col text-center">
-        <label for="color">Color <small>*</small></label><br>
-        <input id="color" type="text" placeholder="Car Color" [(ngModel)]="car.color" name="color" required>
-      </div>
-      <div class="col text-center">
-        <label for="color">Number of available seats <small>*</small></label><br>
-        <input id="color" type="text" placeholder="Passenger Seats" [(ngModel)]="car.seats" name="seats" required><br>
-      </div>
-    </div>
-  </div>
+        <div class="form-group">
+            <label for="model">Model <small>*</small></label><br>
+            <select id="model" (change)='changeModel($event)'>
+                <option *ngFor="let model of models" [value]="model">{{model}}</option>
+            </select>
+        </div>
 
-  <!-- make and model - Communicate with fueleconomy API -->
-
-  <div class="grid">
-    <div class="row">
-
-      <div class="col text-center">
-        <mat-form-field>
-          <mat-label>Year <small>*</small></mat-label>
-          <!-- When year is selected, fill the NEXT list with the makes of that year -->
-          <mat-select [(ngModel)]="selectedYear" (selectionChange)="updateMakeList(selectedYear)" required>
-            <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="col text-center mx-4">
-          <mat-form-field>
-              <mat-label>Make <small>*</small></mat-label>
-              <!-- When year is selected, fill the NEXT list with the makes of that year -->
-              <mat-select [(ngModel)]="selectedMake" (selectionChange)="updateModelList(selectedYear,selectedMake)" required>
-                <mat-option *ngFor="let make of makes" [value]="make">{{make}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-      </div>
-      <div class="col text-center">
-          <mat-form-field>
-              <mat-label>Model <small>*</small></mat-label>
-              <!-- When year is selected, fill the NEXT list with the makes of that year -->
-              <mat-select [(ngModel)]="selectedModel" required>
-                <mat-option *ngFor="let model of models" [value]="model">{{model}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="text-center">
-  <button type="button" class="button oBut" (click)="login()" [disabled]="!(selectedMake && seats && color)">REGISTER</button>
-  </div>
-
-
-
+        <div class="form-group">
+            <button id="add-car-btn" class="btn btn-primary" type="submit" (click)="addCar()" (keyup.enter)="addCar()" [disabled]="!(car.color && car.seats && car.make && car.model)">Add New Car</button>
+            <a routerLink="/home">Cancel</a>
+        </div>
+    </form>
 </div>
