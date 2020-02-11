@@ -107,14 +107,14 @@ describe("Login Component", () => {
     });
   });
 
-  fdescribe("searchAccount function", () => {
+  describe("searchAccount function", () => {
     it("should set the showDropDown variable to true", () => {
       loginComponent.showDropDown = false;
       loginComponent.searchAccount();
       expect(loginComponent.showDropDown).toBeTruthy();
     })
 
-    it("should set users based off of searchAccount function", () => {
+    it("should set users and totalPage based off of searchAccount function", () => {
       loginComponent.chosenUserFullName = `${mockUsers[0].firstName} ${mockUsers[0].lastName}: ${mockUsers[0].driver ? "Driver" : "Rider"}`;
 
       loginComponent.allUsers = mockUsers;
@@ -122,7 +122,17 @@ describe("Login Component", () => {
       loginComponent.searchAccount();
 
       expect(loginComponent.users.every( user => mockUsers.includes(user) )).toBeTruthy();
-      
+
+      expect(loginComponent.totalPage).toEqual(Math.ceil(loginComponent.users.length / 5));
+    });
+
+    it("should set curPage, totalPage and users based off of allUsers", () => {
+      loginComponent.chosenUserFullName = "";
+      loginComponent.allUsers = mockUsers;
+      loginComponent.searchAccount();
+      expect(loginComponent.curPage).toBe(1);
+      expect(loginComponent.totalPage).toEqual(Math.ceil(loginComponent.allUsers.length / 5)); 
+      expect(loginComponent.users).toEqual(mockUsers.slice(loginComponent.curPage * 5 - 5, loginComponent.curPage * 5));
     });
   });
 })
