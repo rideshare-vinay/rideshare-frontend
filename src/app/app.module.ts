@@ -24,6 +24,7 @@ import { GoogleMapsComponent } from './components/google-maps/google-maps.compon
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AgmCoreModule } from '@agm/core';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    AgmDirectionModule,
     AgmCoreModule.forRoot({
       apiKey: '',
       libraries: ['places']
@@ -66,5 +68,4 @@ import { AgmCoreModule } from '@agm/core';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
-
+export class AppModule {}
