@@ -91,8 +91,6 @@ export class CarRegisterComponent implements OnInit {
    * pass that onto the make field.
    */
   updateMakeList(year:number){
-    
-    console.log(this.selectedYear);
     this.selectedYear=year;
     this.grayFields(2);
     this.lookupService.lookupMakes(year).subscribe(
@@ -105,7 +103,7 @@ export class CarRegisterComponent implements OnInit {
    * Calls on the car lookup service to retrieve a list of makes given a year, and
    * pass that onto the make field.
    */
-  updateModelList(make:String){
+  updateModelList(year:number,make:String){
     this.grayFields(1);
     
     this.lookupService.lookupModels(this.selectedYear,make).subscribe(

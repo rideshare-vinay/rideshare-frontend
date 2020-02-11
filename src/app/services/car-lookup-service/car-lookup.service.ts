@@ -9,7 +9,7 @@ export class CarLookupService {
   private CarDB: string
 
   constructor(private http: HttpClient) {
-    this.CarDB = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/"
+    this.CarDB = "https://www.fueleconomy.gov/ws/rest/vehicle/menu"
   }
 
   //When given a year, returns a list of makes associated with that given year
@@ -17,8 +17,7 @@ export class CarLookupService {
   public lookupMakes(Year: number): Observable<String[]> {
     var obs = new Observable<String[]>((observer) => {
       this.http.get<MakeList>(this.CarDB + "/make?year=" + Year).subscribe(data => 
-       observer.next (this.convertMakeArray(data)));
-      observer.complete();
+       observer.next(this.convertMakeArray(data)));
     });
     return obs;
   }
@@ -26,9 +25,11 @@ export class CarLookupService {
 
   //When given a year and make, returns a list of models associated with that year and make.
   public lookupModels(Year: number, make: String): Observable<String[]> {
-
-    var value = this.http.get<String[]>(this.CarDB + "/model?year=" + Year + "&make=" + make);
-    return value;
+    var obs = new Observable<String[]>((observer) => {
+      this.http.get<MakeList>(this.CarDB + "/model?year=" + Year + "&make=" + make).subscribe(data => 
+       observer.next(this.convertMakeArray(data)));
+    });
+    return obs;
   }
 
   private convertMakeArray(ListObj: MakeList): String[] {
