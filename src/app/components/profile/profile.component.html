@@ -37,7 +37,7 @@
                     <div fxFlex="10%"></div>
                     <div fxFlex="40%">
                         <div *ngIf="user.driver">
-                           <button class="oBut" routerLink="car">View Vehicle</button>
+                           <button class="oBut" routerLink="/car">View Vehicle</button>
                         </div>
                         <div *ngIf="!user.driver">
                             <button class="oBut" routerLink="new/car">Add Vehicle</button>
@@ -57,7 +57,7 @@
                             [color]="color"
                             [checked]="user.driver"
                             (change) ="toggleDriver()" 
-                            [disabled]="!(user.active)">
+                            [disabled]="!(user.active && ownCar)">
                                 <div *ngIf="user.driver">Driver</div>
                                 <div *ngIf="!user.driver">Rider</div>
                             </mat-slide-toggle>
