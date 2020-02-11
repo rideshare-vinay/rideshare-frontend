@@ -1,22 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import PlaceResult = google.maps.places.PlaceResult;
-import { GoogleMapsService } from '../../services/google-maps-service/google-maps.service';
+import { GoogleMapsService } from "../../services/google-maps-service/google-maps.service";
 
 @Component({
-  selector: 'app-google-maps',
-  templateUrl: './google-maps.component.html',
-  styleUrls: ['./google-maps.component.css']
+  selector: "app-google-maps",
+  templateUrl: "./google-maps.component.html",
+  styleUrls: ["./google-maps.component.css"]
 })
 export class GoogleMapsComponent implements OnInit {
-
-  private readonly longKey = 'longitude';
-  private readonly latKey = 'latitude';
+  private readonly longKey = "longitude";
+  private readonly latKey = "latitude";
   public selectedAddress: PlaceResult;
   public latitude: number;
   public longitude: number;
   public zoom: number;
 
-  constructor(private googleMapsService: GoogleMapsService) { }
+  constructor(private googleMapsService: GoogleMapsService) {}
 
   ngOnInit() {
     this.setCurrentLocation();
@@ -25,19 +24,21 @@ export class GoogleMapsComponent implements OnInit {
 
   // Get current location coordinates.
   private setCurrentLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(position => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        this.zoom = 20;
+        this.zoom = 15;
       });
     }
   }
 
   private getPoints() {
-    this.googleMapsService.getPoints('disneyland', 'universal+studios+hollywood').subscribe(res => {
-      console.log(res);
-    });
+    this.googleMapsService
+      .getPoints("disneyland", "universal+studios+hollywood")
+      .subscribe(res => {
+        console.log(res);
+      });
   }
 
   // Move the marker to the location the user clicked on.
@@ -51,5 +52,4 @@ export class GoogleMapsComponent implements OnInit {
     this.latitude = location[this.latKey];
     this.longitude = location[this.longKey];
   }
-
 }
