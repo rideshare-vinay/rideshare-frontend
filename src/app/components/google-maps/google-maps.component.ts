@@ -34,10 +34,7 @@ export class GoogleMapsComponent implements OnInit {
     );
 
     this.setCurrentLocation();
-
-    };
-
-
+  }
 
   // Get Current Location Coordinates
   private setCurrentLocation() {
@@ -56,20 +53,19 @@ export class GoogleMapsComponent implements OnInit {
     this.longitude = long;
   }
 
-
   // set origin to be used in agm-direction
   // setOrigin( location : Location ) {
-  //   this.origin = { 
-  //     lat: location[this.latKey], 
+  //   this.origin = {
+  //     lat: location[this.latKey],
   //     lng: location[this.longKey]
   //   };
   // }
 
-  // set destination to be used in agm-direction 
+  // set destination to be used in agm-direction
   // setDestination( location : Location ) {
-  //   this.destination = { 
-  //     lat: location[this.latKey], 
-  //     lng: location[this.longKey] 
+  //   this.destination = {
+  //     lat: location[this.latKey],
+  //     lng: location[this.longKey]
   //   };
   // }
 
