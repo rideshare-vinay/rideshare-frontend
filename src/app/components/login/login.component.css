@@ -124,14 +124,8 @@ a{
 }
 mat-label{
     font: futura;
-    font-size: 1.25em;
-    color: black; 
+    font-size: 110%;
 }
-
-::ng-deep .mat-form-field-underline {
-    display: none;
-  }
-
 
 .roundInput{
     margin-top: 5%;
