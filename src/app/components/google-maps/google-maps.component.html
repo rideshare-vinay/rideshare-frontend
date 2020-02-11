@@ -1,5 +1,5 @@
 <main>
-  <div *ngIf="true">
+  <div *ngIf="inputVisibility">
     <input
       matGoogleMapsAutocomplete
       (onLocationSelected)="onLocationSelected($event)"
@@ -23,5 +23,9 @@
       [fillOpacity]="0.5"
       [radius]="150"
     ></agm-circle>
+    <agm-direction
+      [origin]="origin"
+      [destination]="destination"
+    ></agm-direction>
   </agm-map>
 </main>
