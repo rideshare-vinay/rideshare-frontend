@@ -107,13 +107,13 @@ describe("MyCarComponent", () => {
     });
   });
 
-  fit("should remove car from MyCarComponent after calling CarService remove car function", () => {
+  it("should remove car from MyCarComponent after calling CarService remove car function", () => {
     myCarComponent.myCar = mockCar;
     myCarComponent.removeMyCar();
     expect(myCarComponent.myCar).not.toEqual(mockCar);
   })
 
-  fit("should call the LogService.info function if the car is removed", (done) => {
+  it("should call the LogService.info function if the car is removed", (done) => {
     spyOn(logService, "info").and.callThrough();
     mockCarService.getCarByUserId(mockCar.carId).then( car => {
       expect(logService.info).toHaveBeenCalled();
