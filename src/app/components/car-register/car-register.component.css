@@ -5,3 +5,33 @@ small {
 #add-car-btn {
     margin-right: 1%;
 }
+
+.container{
+    background-color: #F26926; 
+    border: 1px solid #dddddd;
+    border-radius: 7px;
+    padding: 3%;
+    margin-top: 8%;
+}
+
+mat-select {
+    background-color: #FFFFFF; 
+}
+
+.oBut{
+    background-color: #717F92; 
+    border: none;
+    color: white;
+    padding: 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 7em;     /* Static width buttons */
+    outline:none;   /* Removing outline */
+    border-radius: 10em;
+    font: futura;
+    font-weight: bold;
+    color: #ffffff;
+}

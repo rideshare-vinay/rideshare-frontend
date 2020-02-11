@@ -5,13 +5,13 @@ import { ValidationService } from 'src/app/services/validation-service/validatio
 import { Car } from 'src/app/models/car';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { CarLookupService } from 'src/app/services/car-lookup-service/car-lookup.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-car-register',
   templateUrl: './car-register.component.html',
   styleUrls: ['./car-register.component.css']
 })
-
   /**
    * The Car Register component
    */
@@ -38,7 +38,12 @@ export class CarRegisterComponent implements OnInit {
    * @param router Provides an instance of a router.
    */
 
-  constructor(private carService: CarService, private router: Router, public validationService: ValidationService, private lookupService: CarLookupService, private authService: AuthService) { }
+  constructor(
+    private carService: CarService, 
+    private router: Router, 
+    public validationService: ValidationService, 
+    private lookupService: CarLookupService, 
+    private authService: AuthService) { }
 
   /**
    * This is an OnInit function that sets the user id as the parsed string in session storage.
@@ -49,14 +54,14 @@ export class CarRegisterComponent implements OnInit {
     this.userId = this.authService.user.userId;
 
     if (!this.userId) {
-      this.router.navigate(['']);
-    } else {
+      console.log("You aren't supposed to be here!");
+      //this.router.navigate(['']);
+    }
       let currentYear = new Date().getFullYear();
       let availableYear = 1984; //Lowest
       for (let i = availableYear; i <= currentYear; i++) {
         this.years.push(i);
         this.car.year = this.years[0];
-      }
     }
   }
 
@@ -83,10 +88,14 @@ export class CarRegisterComponent implements OnInit {
    * pass that onto the make field.
    */
   updateMakeList(year:number){
+    
+    console.log(this.selectedYear);
+
+
     this.selectedYear=year;
     this.grayFields(2);
     this.lookupService.lookupMakes(year).subscribe(
-      data=>{this.makes=data;
+      data=>{console.log(data);this.makes=data;
       this.grayFields(1);
     });
   }
@@ -97,8 +106,9 @@ export class CarRegisterComponent implements OnInit {
    */
   updateModelList(make:String){
     this.grayFields(1);
+    
     this.lookupService.lookupModels(this.selectedYear,make).subscribe(
-      data=>{this.makes=data;
+      data=>{this.models=data;
       this.grayFields(0);
     });
   }

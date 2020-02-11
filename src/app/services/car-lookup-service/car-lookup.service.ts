@@ -6,26 +6,57 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CarLookupService {
-  private CarDB:string
+  private CarDB: string
 
-  constructor(private http:HttpClient) {
-    this.CarDB="https://www.fueleconomy.gov/ws/rest/vehicle/menu/"
-  
+  constructor(private http: HttpClient) {
+    this.CarDB = "https://www.fueleconomy.gov/ws/rest/vehicle/menu/"
   }
 
   //When given a year, returns a list of makes associated with that given year
 
   public lookupMakes(Year: number): Observable<String[]> {
+    var returnArray: String[];
+    this.http.get<MakeList>(this.CarDB + "/make?year=" + Year).subscribe(data => returnArray=this.populateMakeArray(data));
 
-    var value = this.http.get<String[]>(this.CarDB + "/make?year=" + Year);
-    return value;
+    var returnObs = new Observable<String[]>((observer) => {
+      observer.next(returnArray);
+      observer.complete();
+    });
+
+    return returnObs;
   }
 
 
   //When given a year and make, returns a list of models associated with that year and make.
-  public lookupModels(Year: number, make: String): Observable<String[]>{
+  public lookupModels(Year: number, make: String): Observable<String[]> {
 
     var value = this.http.get<String[]>(this.CarDB + "/model?year=" + Year + "&make=" + make);
     return value;
-  } 
+  }
+
+  public populateMakeArray(ListObj: MakeList): String[] {
+    var arraylist = [];
+
+    ListObj.menuItem.forEach(element => arraylist.push(element.value));
+    console.log("List converted into Array: ")
+    console.log(arraylist);
+
+    return arraylist;
+  }
 }
+
+
+class MakeList {
+  /**
+   * Set Car model
+   */
+  menuItem: MakeListItem[];
+
+
+}
+class MakeListItem {
+  text: String;
+  value: String;
+}
+
+
