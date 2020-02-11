@@ -42,7 +42,9 @@ export class RegisterComponent implements OnInit {
    * This is an OnInit function that sets the token to the parsed token string.
    * The system will check if the token is valid; once validated a batch service is called.
    */
-	ngOnInit() { }
+	ngOnInit() { 
+		this.batchService.getAllBatche().subscribe(data=>this.batches=data);
+	}
 
 	/**
 	 * This function allows the user to select the batch location.

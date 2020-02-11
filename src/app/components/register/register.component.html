@@ -80,13 +80,10 @@
           <mat-form-field>
             <mat-label>Location</mat-label>
             <mat-select id="location" [(value)]="location" (change)='changeLocation($event)' class="form-control">
-                <mat-option value=""></mat-option>
-                <mat-option value="VWU - Morgantown, WV">VWU - Morgantown, WV</mat-option>
-                <mat-option value="UTA - Arlington, TX">UTA - Arlington, TX</mat-option>
-                <mat-option value="USF - Tampa, FL">USF - Tampa, FL</mat-option>
-                <mat-option value="Revature HQ - Reston, VA">Revature HQ - Reston, VA</mat-option>
-                <mat-option value="CUNY SPS - New York, NY">CUNY SPS - New York, NY</mat-option>
-                <mat-option value="CUNY Queens College - Flushing, NY">CUNY Queens College - Flushing, NY</mat-option>
+                <mat-option value=""></mat-option>             
+                <div *ngFor="let batch of batches">
+                    <mat-option value="{{batch.batchLocation}}">{{batch.batchLocation}}</mat-option>
+                </div>
             </mat-select>
           </mat-form-field><br>      
     </div> 
