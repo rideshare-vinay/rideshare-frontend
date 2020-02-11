@@ -15,15 +15,12 @@ export class CarLookupService {
   //When given a year, returns a list of makes associated with that given year
 
   public lookupMakes(Year: number): Observable<String[]> {
-    var returnArray: String[];
-    this.http.get<MakeList>(this.CarDB + "/make?year=" + Year).subscribe(data => returnArray=this.populateMakeArray(data));
-
-    var returnObs = new Observable<String[]>((observer) => {
-      observer.next(returnArray);
+    var obs = new Observable<String[]>((observer) => {
+      this.http.get<MakeList>(this.CarDB + "/make?year=" + Year).subscribe(data => 
+       observer.next (this.convertMakeArray(data)));
       observer.complete();
     });
-
-    return returnObs;
+    return obs;
   }
 
 
@@ -34,7 +31,7 @@ export class CarLookupService {
     return value;
   }
 
-  public populateMakeArray(ListObj: MakeList): String[] {
+  private convertMakeArray(ListObj: MakeList): String[] {
     var arraylist = [];
 
     ListObj.menuItem.forEach(element => arraylist.push(element.value));

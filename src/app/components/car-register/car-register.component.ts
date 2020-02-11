@@ -28,6 +28,8 @@ export class CarRegisterComponent implements OnInit {
   makes: String[] = [];
   models: String[] = [];
   selectedYear: number;
+  selectedMake: String;
+  selectedModel: String;
   userId: number;
   car: Car = new Car();
   
@@ -63,6 +65,7 @@ export class CarRegisterComponent implements OnInit {
         this.years.push(i);
         this.car.year = this.years[0];
     }
+    this.grayFields(2);
   }
 
  /**
@@ -90,12 +93,10 @@ export class CarRegisterComponent implements OnInit {
   updateMakeList(year:number){
     
     console.log(this.selectedYear);
-
-
     this.selectedYear=year;
     this.grayFields(2);
     this.lookupService.lookupMakes(year).subscribe(
-      data=>{console.log(data);this.makes=data;
+      data=>{this.makes=data;console.log("Returned from server with: " + this.makes);
       this.grayFields(1);
     });
   }
