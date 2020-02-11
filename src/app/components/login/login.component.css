@@ -33,15 +33,10 @@
     border: none;
 }
 
-.mat-form-field{
-    background-color: #c4d7e5;
-    width: 10vw;
-    border-radius: 10vw;
- }
-
 ::ng-deep .mat-form-field{
   color: rgb(150, 150, 150) !important; 
   font-size: 110%;  
+  border: #F26926;
 }
 
 ::ng-deep .mat-form-field-ripple{
@@ -106,7 +101,6 @@ p {
     margin-top: 5vw;
 }
 .loginCard{
-    background-color: #f9b493;
     border-radius: 1.5em;
     padding-top: 3vw;
     margin-top: 3vw;
@@ -141,6 +135,5 @@ mat-label{
 
 .roundInput{
     margin-top: 5%;
-    text-align: center;
     width: 30vw;
 }

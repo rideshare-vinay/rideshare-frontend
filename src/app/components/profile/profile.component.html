@@ -1,4 +1,5 @@
 <section>
+    
     <div fxLayout="row" fxLayout.xs="column-reverse" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center">
         <div fxFlex="45%">
             <img  mat-card-image src="../assets/profile.jpeg" class="responsive">
@@ -40,7 +41,7 @@
                            <button class="oBut" routerLink="/car">View Vehicle</button>
                         </div>
                         <div *ngIf="!user.driver">
-                            <button class="oBut" routerLink="new/car">Add Vehicle</button>
+                            <button class="oBut" routerLink="/new/car">Add Vehicle</button>
                         </div>
                         <br>
                         <div *ngIf= "user.driver" >

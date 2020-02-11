@@ -67,7 +67,8 @@ input {
 }
 
 .card-detail {
-    background: rgba(102, 152, 185, 0.4);
+    background: url('/src/assets/blueBck.svg');
+    /* background: rgba(150, 185, 102, 0.374); */
 }
 .card-title {
     display: flex;

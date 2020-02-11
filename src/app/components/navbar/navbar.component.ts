@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
 
   name: string = '';
   admin: string = '';
+  isDriver : boolean;
 
   /**
    * This is a constructor
@@ -50,6 +51,7 @@ export class NavbarComponent implements OnInit {
     this.authService.getEmitter().subscribe((user: any) => {
       if (user.userId) {
         this.name = user.firstName;
+        this.isDriver = user.driver
       } else if (user.adminId) {
         this.admin = user.userName;
       }
@@ -77,9 +79,9 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  redirectToHome() {
-    this.authService.user.driver ? this.router.navigate(['home/riders']) : this.router.navigate(['home/drivers']);
-  }
+  // redirectToHome() {
+  //   this.authService.user.driver ? this.router.navigate(['home/riders']) : this.router.navigate(['home/drivers']);
+  // }
 
   
 }
