@@ -14,8 +14,8 @@ import { MapDetailComponent } from './components/map-detail/map-detail.component
 
 
 const routes: Routes = [
-  {path: 'home/drivers',component: MapDetailComponent}, 
-  {path: 'home/riders',component: DriverComponent}, 
+  {path: 'home/drivers',component: DriverComponent}, 
+  {path: 'home/riders',component: MapDetailComponent}, 
   {path: 'all-drivers',component: DriverInfoComponent}, 
   {path: 'login',component: LoginComponent}, 
   {path: 'login/admin',component: AdminLoginComponent}, 

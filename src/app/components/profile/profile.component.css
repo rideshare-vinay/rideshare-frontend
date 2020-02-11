@@ -84,3 +84,7 @@ section{
 .seat{
     width:2vw;
 }
+.responsive {
+    max-width: 90%;
+    height: auto;
+}
