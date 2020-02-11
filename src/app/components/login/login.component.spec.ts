@@ -6,6 +6,7 @@ import { HttpTestingController, HttpClientTestingModule } from '@angular/common/
 import { RouterTestingModule } from '@angular/router/testing';
 import { User } from 'src/app/models/user';
 import { of, Observable } from 'rxjs';
+import { log } from 'util';
 
 describe("Login Component", () => {
   let userService:UserService;
@@ -106,12 +107,23 @@ describe("Login Component", () => {
     });
   });
 
-  describe("searchAccount function", () => {
+  fdescribe("searchAccount function", () => {
     it("should set the showDropDown variable to true", () => {
       loginComponent.showDropDown = false;
       loginComponent.searchAccount();
       expect(loginComponent.showDropDown).toBeTruthy();
     })
+
+    it("should set users based off of searchAccount function", () => {
+      loginComponent.chosenUserFullName = `${mockUsers[0].firstName} ${mockUsers[0].lastName}: ${mockUsers[0].driver ? "Driver" : "Rider"}`;
+
+      loginComponent.allUsers = mockUsers;
+
+      loginComponent.searchAccount();
+
+      expect(loginComponent.users.every( user => mockUsers.includes(user) )).toBeTruthy();
+      
+    });
   });
 })
 
