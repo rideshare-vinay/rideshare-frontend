@@ -37,6 +37,7 @@ export class ProfileComponent implements OnInit {
   noChange: boolean = false;
   updateSuccess: boolean = false;
   updateFailed: boolean = false;
+  ownCar: boolean;
   truthy: string = 'btn btn-success';
   falsy: string = 'btn btn-danger';
 
@@ -52,13 +53,13 @@ export class ProfileComponent implements OnInit {
   constructor(private log: LogService, private router: Router, private userService: UserService, private batchService: BatchService, public validationService: ValidationService, private authService: AuthService,private carService: CarService) { }
 
   ngOnInit() {
-    this.user.userId =1;
-    //this.user.userId = this.authService.user.userId;;
+    this.user.userId = this.authService.user.userId;;
     if (!this.user.userId) {
       this.router.navigate(['']);
     } else {
       this.getUserInfo();
       this.getDriverCar(this.user.userId);
+      console.log("end")
     }
   }
 
@@ -85,7 +86,7 @@ export class ProfileComponent implements OnInit {
   }
   
    /**
-   * A GET method that get driver car
+   * A GET method that get driver car 
    *
    */
 
@@ -93,6 +94,9 @@ export class ProfileComponent implements OnInit {
     this.carService.getCarByUserId(userid).then((response)=>{
       if (response) {
         this.myCar = response;
+        this.ownCar = true;
+      }else {
+        this.ownCar = false;
       }
     })
   }

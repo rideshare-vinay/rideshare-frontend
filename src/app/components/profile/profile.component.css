@@ -81,3 +81,10 @@ input {
 section{
     margin: 10% 2%;
 }
+.seat{
+    width:2vw;
+}
+.responsive {
+    max-width: 90%;
+    height: auto;
+}

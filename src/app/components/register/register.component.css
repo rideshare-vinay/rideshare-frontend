@@ -3,7 +3,7 @@ small {
 }
 
 .oBut{
-    background-color: #F26926; 
+    background-color: #F26926 !important; 
     border: none;
     color: white;
     padding: 7px;
@@ -17,11 +17,11 @@ small {
     border-radius: 10em;
     font: futura;
     font-weight: bold;
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .main{
-    margin-top: 5%;
+    margin: 15% 2%;
   }
 
   .mat-card-header{

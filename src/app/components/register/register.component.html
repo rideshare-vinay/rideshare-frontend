@@ -133,16 +133,7 @@
 </div>
 <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
     <mat-card-actions>
-        <button type="submit" (click)="signUp()" [disabled]="!(user.userName && user.firstName && user.lastName && user.email && user.phoneNumber)" class="button oBut">SUBMIT</button>
+        <button mat-raised-button type="submit" (click)="signUp()" [disabled]="!(user.userName && user.firstName && user.lastName && user.email && user.phoneNumber)" class="button oBut">SUBMIT</button>
     </mat-card-actions>
 </div>
 </section>
-<select id="location" (change)='changeLocation($event)' class="form-control">
-    <option></option>
-    <option>VWU - Morgantown, WV</option>
-    <option>UTA - Arlington, TX</option>
-    <option>USF - Tampa, FL</option>
-    <option>Revature HQ - Reston, VA</option>
-    <option>CUNY SPS - New York, NY</option>
-    <option>CUNY Queens College - Flushing, NY</option>
-</select>

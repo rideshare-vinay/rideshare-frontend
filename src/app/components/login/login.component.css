@@ -1,5 +1,5 @@
 .oBut{
-    background-color: #F26926; 
+    background-color: #F26926 ; 
     border: none;
     color: white;
     padding: 7px;
@@ -8,12 +8,21 @@
     display: inline-block;
     margin: 4px 2px;
     cursor: pointer;
-    width: 7em;     /* Static width buttons */
-    outline:none;   /* Removing outline */
-    border-radius: 10em;
+    width: 150px;       /* Static width buttons */
+    outline:none;       /* Removing outline */
+    border-radius: 10vw;
     font: futura;
     font-weight: bold;
-    color: #ffffff;
+    color: #ffffff ;
+    transition-duration: 0.4s
+}
+.oBut:hover{
+    background-color:#ffffff;
+    color: black;
+}
+.oBut:disabled{
+    background-color: #F26926 ; 
+    color: #ffffff ;
 }
 
 .main{
@@ -24,6 +33,12 @@
     border: none;
 }
 
+.mat-form-field{
+    background-color: #c4d7e5;
+    width: 10vw;
+    border-radius: 10vw;
+ }
+
 ::ng-deep .mat-form-field{
   color: rgb(150, 150, 150) !important; 
   font-size: 110%;  
@@ -32,7 +47,6 @@
 ::ng-deep .mat-form-field-ripple{
   background-color: #F26926 !important;   
 }
-
 
 p {
     font-size: smaller;
@@ -80,3 +94,53 @@ p {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }  
+.responsive {
+    max-width: 90%;
+    height: auto;
+}
+.topBorder{
+    max-width: 100%;
+    height: auto;
+}
+.divSpace{
+    margin-top: 5vw;
+}
+.loginCard{
+    background-color: #f9b493;
+    border-radius: 1.5em;
+    padding-top: 3vw;
+    margin-top: 3vw;
+}
+
+input{
+    font: futura;
+
+    color: black;
+}
+p{
+    font: futura;
+    font-weight: bold;
+    color: black;   
+    padding: 1.5vw;
+
+}
+a{
+    font: futura;
+    font-weight: bold; 
+}
+mat-label{
+    font: futura;
+    font-size: 1.25em;
+    color: black; 
+}
+
+::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+
+
+.roundInput{
+    margin-top: 5%;
+    text-align: center;
+    width: 30vw;
+}

@@ -22,7 +22,7 @@
 }
 td{
     font: futura;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     border-bottom: 2px solid white;
     padding: 1em 1.5em;
     color: white;
@@ -52,12 +52,14 @@ td{
 .rBot{
     border-bottom-right-radius: 1.5em;
 }
-
 table{
-    display:inline;
-    
+    display:inline;  
 }
 .responsive {
     max-width: 90%;
     height: auto;
+}
+
+section{
+    margin: 7% 2%;
 }
