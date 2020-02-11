@@ -1,9 +1,15 @@
 .card-detail {
-    background: rgba(102, 152, 185, 0.4);
+    background-image: url('/../assets/blueBck.svg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .card-title {
     display: flex;
     justify-content: center;
+    
 }
 #detail th {
     padding-top: 20px;
@@ -17,4 +23,13 @@ section{
 .responsive {
     max-width: 100%;
     height: auto;
+}
+th{
+    font: futura;
+    font-size: 1.25em;
+}
+h3{
+    font: futura;
+    font-size: 1.5em;
+    font-weight: bold;
 }
