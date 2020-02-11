@@ -31,4 +31,17 @@ small {
   .mat-card-title{
     font-size: 200%;
   }
+
+  .mat-select{
+      border: none;
+  }
+
+  ::ng-deep .mat-form-field-label{
+    color: rgb(150, 150, 150) !important; 
+    font-size: 110%;  
+  }
+  
+  ::ng-deep .mat-form-field-ripple{
+    background-color: #F26926 !important;   
+  }
   

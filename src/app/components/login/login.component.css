@@ -20,6 +20,20 @@
     margin-top: 5%;
   }
 
+  .mat-select{
+    border: none;
+}
+
+::ng-deep .mat-form-field{
+  color: rgb(150, 150, 150) !important; 
+  font-size: 110%;  
+}
+
+::ng-deep .mat-form-field-ripple{
+  background-color: #F26926 !important;   
+}
+
+
 p {
     font-size: smaller;
     color: gray;
