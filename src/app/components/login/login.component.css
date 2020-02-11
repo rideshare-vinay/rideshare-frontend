@@ -90,6 +90,7 @@ p {
     z-index: 1;
 }  
 .responsive {
+    margin-top: 5%;
     max-width: 90%;
     height: auto;
 }
@@ -127,7 +128,3 @@ mat-label{
     font-size: 110%;
 }
 
-.roundInput{
-    margin-top: 5%;
-    width: 30vw;
-}
