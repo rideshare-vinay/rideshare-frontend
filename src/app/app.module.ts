@@ -26,8 +26,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,5 +68,4 @@ import { AgmDirectionModule } from 'agm-direction';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
-
+export class AppModule {}
