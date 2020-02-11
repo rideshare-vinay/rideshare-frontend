@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleMapsService } from '../../services/google-maps-service/google-maps.service';
-import PlaceResult = google.maps.places.PlaceResult;
 import { MapsAPILoader } from '@agm/core';
+import PlaceResult = google.maps.places.PlaceResult;
 
 @Component({
   selector: 'app-google-maps',
@@ -34,16 +34,6 @@ export class GoogleMapsComponent implements OnInit {
     );
 
     this.setCurrentLocation();
-
-    this.origin = {
-      lat: 24.799448,
-      lng: 120.979021
-    };
-
-    this.destination = {
-      lat: 24.799524,
-      lng: 120.975017
-    };
   }
 
   // Get Current Location Coordinates
@@ -62,6 +52,22 @@ export class GoogleMapsComponent implements OnInit {
     this.latitude = lat;
     this.longitude = long;
   }
+
+  // set origin to be used in agm-direction
+  // setOrigin( location : Location ) {
+  //   this.origin = {
+  //     lat: location[this.latKey],
+  //     lng: location[this.longKey]
+  //   };
+  // }
+
+  // set destination to be used in agm-direction
+  // setDestination( location : Location ) {
+  //   this.destination = {
+  //     lat: location[this.latKey],
+  //     lng: location[this.longKey]
+  //   };
+  // }
 
   // Move the marker to the location set by the input bar.
   onLocationSelected(location: Location) {
