@@ -44,3 +44,11 @@ select {
 .main{
     margin-top: 5%;
   }
+
+.responsive {
+    max-width: 90%;
+    height: auto;
+}
+.divSpace{
+    margin-top: 5vw;
+}

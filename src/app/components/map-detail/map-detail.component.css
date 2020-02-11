@@ -59,3 +59,7 @@ table{
     max-width: 90%;
     height: auto;
 }
+
+section{
+    margin: 7% 2%;
+}

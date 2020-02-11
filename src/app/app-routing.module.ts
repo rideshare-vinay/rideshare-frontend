@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: 'car',component: MyCarComponent}, 
   {path: 'profile',component: ProfileComponent},  
   {path: 'preference',component: PreferenceComponent},
-  {path: '**',pathMatch: 'full',redirectTo: ''}
+  {path: '**',pathMatch: 'full',redirectTo: 'login'}
 ];
 
 @NgModule({

@@ -16,10 +16,13 @@
     color: #ffffff ;
     transition-duration: 0.4s
 }
-
 .oBut:hover{
     background-color:#ffffff;
     color: black;
+}
+.oBut:disabled{
+    background-color: #F26926 ; 
+    color: #ffffff ;
 }
 
 .main{

@@ -62,7 +62,7 @@
               <p class="alert alert-danger" *ngIf="banned"><strong>You are banned</strong></p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button type="button" class="oBut" (click)="login()" (keyup.enter)="login()" >LOGIN</button>
+            <button mat-raised-button type="button" class="button oBut" (click)="login()" (keyup.enter)="login()" [disabled]="!(userName && chosenUserFullName)">LOGIN</button>
             <p>Need An Account? <a routerLink="/register">Sign Up</a></p>
         </mat-card-actions>
       </mat-card>
