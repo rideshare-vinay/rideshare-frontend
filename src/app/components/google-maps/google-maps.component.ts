@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleMapsService } from '../../services/google-maps-service/google-maps.service';
 import { MapsAPILoader } from '@agm/core';
+import PlaceResult = google.maps.places.PlaceResult;
 
 
 @Component({
@@ -14,12 +15,11 @@ export class GoogleMapsComponent implements OnInit {
   latitude: number;
   longitude: number;
   zoom: number;
-  lines : any;
-  polyline : google.maps.Polyline;
   origin : any;
   destination : any;
-
-
+  public selectedAddress: PlaceResult;
+  private readonly longKey = "longitude";
+  private readonly latKey = "latitude";
 
   constructor( private googleMapsService : GoogleMapsService, private mapsAPILoader: MapsAPILoader ) { 
 
@@ -27,15 +27,8 @@ export class GoogleMapsComponent implements OnInit {
 
   ngOnInit() : any {  
     this.setCurrentLocation();
-    // this.getPoints();
-    this.origin = { 
-      lat: 24.799448, 
-      lng: 120.979021 
-  };
-  this.destination = { 
-      lat: 24.799524, 
-      lng: 120.975017 
-  };
+   
+    
   }
 
   // Get Current Location Coordinates
@@ -53,6 +46,28 @@ export class GoogleMapsComponent implements OnInit {
   moveMarker( lat : number, long : number ) {
     this.latitude = lat;
     this.longitude = long;
+  }
+
+
+  // set origin to be used in agm-direction
+  // setOrigin( location : Location ) {
+  //   this.origin = { 
+  //     lat: location[this.latKey], 
+  //     lng: location[this.longKey]
+  //   };
+  // }
+
+  // set destination to be used in agm-direction 
+  // setDestination( location : Location ) {
+  //   this.destination = { 
+  //     lat: location[this.latKey], 
+  //     lng: location[this.longKey] 
+  //   };
+  // }
+
+  onLocationSelected(location: Location) {
+    this.latitude = location[this.latKey];
+    this.longitude = location[this.longKey];
   }
 
 }
