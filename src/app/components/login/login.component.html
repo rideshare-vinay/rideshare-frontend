@@ -47,22 +47,22 @@
                 <mat-label>Account</mat-label>
                 <input matInput type="text" color="warn" placeholder="Select An Account" name="chosenUserFullName" [(ngModel)]="chosenUserFullName" (click)="toggleDropDown()" (ngModelChange)="searchAccount()">
                 <mat-select>
-                  <mat-option></mat-option>
-                  <div *ngFor="let user of users">
-                  <mat-option (click)="changeUser(user)">{{user.firstName}} {{user.lastName}}: {{user.driver? "Driver" : "Rider"}}</mat-option>
-                </div>
+                  <!-- <mat-option></mat-option> -->
+                    <div *ngFor="let user of users">
+                    <mat-option (click)="changeUser(user)">{{user.firstName}} {{user.lastName}}: {{user.driver? "Driver" : "Rider"}}</mat-option>
+                    </div>
                 </mat-select>
             </mat-form-field>
               <br>
             <mat-form-field class="example-form-field">
                 <mat-label>Username</mat-label>
                 <input matInput type="text" color="warn" [(ngModel)]="userName" name="userName" placeholder="Username">
-                <p class="alert alert-danger" *ngIf="failed"><strong>Login Failed!</strong></p>
-                <p class="alert alert-danger" *ngIf="banned"><strong>You are banned</strong></p>
               </mat-form-field><br>
+              <p class="alert alert-danger" *ngIf="failed"><strong>Login Failed!</strong></p>
+              <p class="alert alert-danger" *ngIf="banned"><strong>You are banned</strong></p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button type="button" class="button oBut" (click)="login()" (keyup.enter)="login()" [disabled]="!(userName && chosenUserFullName)">LOGIN</button>
+            <button mat-raised-button type="button" class="oBut" (click)="login()" (keyup.enter)="login()" >LOGIN</button>
             <p>Need An Account? <a routerLink="/register">Sign Up</a></p>
         </mat-card-actions>
       </mat-card>

@@ -1,5 +1,5 @@
 .oBut{
-    background-color: #F26926 !important; 
+    background-color: #F26926 ; 
     border: none;
     color: white;
     padding: 7px;
@@ -8,12 +8,18 @@
     display: inline-block;
     margin: 4px 2px;
     cursor: pointer;
-    width: 7em;     /* Static width buttons */
-    outline:none;   /* Removing outline */
+    width: 150px;       /* Static width buttons */
+    outline:none;       /* Removing outline */
     border-radius: 10vw;
     font: futura;
     font-weight: bold;
-    color: #ffffff !important;
+    color: #ffffff ;
+    transition-duration: 0.4s
+}
+
+.oBut:hover{
+    background-color:#ffffff;
+    color: black;
 }
 
 .main{
@@ -93,6 +99,8 @@ p {
 .loginCard{
     background-color: #f9b493;
     border-radius: 1.5em;
+    padding-top: 3vw;
+    margin-top: 3vw;
 }
 
 input{
@@ -113,6 +121,6 @@ a{
 }
 mat-label{
     font: futura;
-
+    font-size: 1.25em;
     color: black; 
 }
