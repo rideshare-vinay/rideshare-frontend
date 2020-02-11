@@ -1,0 +1,31 @@
+<main>
+  <div *ngIf="inputVisibility">
+    <input
+      matGoogleMapsAutocomplete
+      (onLocationSelected)="onLocationSelected($event)"
+    />
+  </div>
+  <agm-map
+    [latitude]="latitude"
+    [longitude]="longitude"
+    [zoom]="zoom"
+    [streetViewControl]="false"
+    (mapClick)="moveMarker($event.coords.lat, $event.coords.lng)"
+  >
+    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+    <agm-circle
+      [latitude]="latitude"
+      [longitude]="longitude"
+      [clickable]="false"
+      [draggable]="true"
+      [editable]="false"
+      [fillColor]="green"
+      [fillOpacity]="0.5"
+      [radius]="150"
+    ></agm-circle>
+    <agm-direction
+      [origin]="origin"
+      [destination]="destination"
+    ></agm-direction>
+  </agm-map>
+</main>

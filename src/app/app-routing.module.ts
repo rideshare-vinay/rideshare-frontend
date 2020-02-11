@@ -10,6 +10,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { PreferenceComponent } from './components/preference/preference.component';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { DriverInfoComponent } from './components/driver-info/driver-info.component';
+import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 
 
 const routes: Routes = [{
@@ -42,10 +43,13 @@ const routes: Routes = [{
 }, {
   path: 'profile',
   component: ProfileComponent
-},  {
+}, {
   path: 'preference',
   component: PreferenceComponent
-},{
+}, {
+  path: 'map',
+  component: GoogleMapsComponent
+}, {
   path: '**',
   pathMatch: 'full',
   redirectTo: ''
