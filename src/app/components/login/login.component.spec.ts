@@ -51,11 +51,11 @@ describe("Login Component", () => {
     userService = TestBed.get(UserService);
   });
 
-  fit("should create LoginComponent", () => {
+  it("should create LoginComponent", () => {
     expect(loginComponent).toBeTruthy();
   });
 
-  fit("should get a list of users from UserService on init", (done) => {
+  it("should get a list of users from UserService on init", (done) => {
     spyOn(userService, "getAllUsers").and.returnValue(of(mockUsers));
     loginComponent.ngOnInit();
     done();
@@ -66,7 +66,53 @@ describe("Login Component", () => {
     expect(loginComponent.users).toEqual(usersExpectation);
   });
 
+  describe("changeUser function", () => {
+    it("should show drop down in the changeUser funciton is called", () => {
+      loginComponent.showDropDown = true;
+      loginComponent.changeUser(mockUsers[0]);
+      expect(loginComponent.showDropDown).toBeFalsy();
+    }); 
+  
+    it("should set curPage variable to 1 when changeUser is called", () => {
+      loginComponent.curPage = 0;
+      loginComponent.changeUser(mockUsers[0]);
+      expect(loginComponent.curPage).toBe(1);
+    });
+  
+    it("should set totalPage variable based on allUsers variable", () => {
+      loginComponent.allUsers = mockUsers;
+      let totalPageExpectation = Math.ceil(loginComponent.allUsers.length / 5);
+      loginComponent.changeUser(mockUsers[0]);
+      expect(loginComponent.totalPage).toBe(totalPageExpectation);
+    });
 
+    it("should set user variable based on allUsers variable", () => {
+      let curPage = 1;
+      let expectedUsers = mockUsers.slice(curPage * 5 - 5, curPage * 5);
+      loginComponent.allUsers = mockUsers;
+      loginComponent.changeUser(mockUsers[0]);
+      expect(loginComponent.users).toEqual(expectedUsers);
+    });
+
+    it("should set chosenUserFullName variable based on user variable", () => {
+      let expectedChosenFullName = `${mockUsers[0].firstName} ${mockUsers[0].lastName}: ${mockUsers[0].driver ? "Drive" : "Rider"}`;
+      loginComponent.changeUser(mockUsers[0]);
+      expect(loginComponent.chosenUserFullName).toEqual(expectedChosenFullName);
+    });
+
+    it("should set chosenUser varible to passed user argument", () => {
+      loginComponent.changeUser(mockUsers[0]);
+      expect(loginComponent.chosenUser).toEqual(mockUsers[0]);
+    });
+  });
+
+  describe("searchAccount function", () => {
+    it("should set the showDropDown variable to true", () => {
+      loginComponent.showDropDown = false;
+      loginComponent.searchAccount();
+      expect(loginComponent.showDropDown).toBeTruthy();
+    })
+  });
 })
 
 
