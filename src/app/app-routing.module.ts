@@ -10,46 +10,23 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { PreferenceComponent } from './components/preference/preference.component';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { DriverInfoComponent } from './components/driver-info/driver-info.component';
+import { MapDetailComponent } from './components/map-detail/map-detail.component';
 
 
-const routes: Routes = [{
-  path: 'home/drivers',
-  component: DriverInfoComponent
-}, {
-  path: 'home/riders',
-  component: DriverComponent
-}, {
-  path: 'all-drivers',
-  component: DriverInfoComponent
-}, {
-  path: 'login',
-  component: LoginComponent
-}, {
-  path: 'login/admin',
-  component: AdminLoginComponent
-}, {
-  path: 'login/adminhome',
-  component: AdminComponent
-}, {
-  path: 'register',
-  component: RegisterComponent
-}, {
-  path: 'new/car',
-  component: CarRegisterComponent
-}, {
-  path: 'car',
-  component: MyCarComponent
-}, {
-  path: 'profile',
-  component: ProfileComponent
-},  {
-  path: 'preference',
-  component: PreferenceComponent
-},{
-  path: '**',
-  pathMatch: 'full',
-  redirectTo: ''
-}];
+const routes: Routes = [
+  {path: 'home/drivers',component: MapDetailComponent}, 
+  {path: 'home/riders',component: DriverComponent}, 
+  {path: 'all-drivers',component: DriverInfoComponent}, 
+  {path: 'login',component: LoginComponent}, 
+  {path: 'login/admin',component: AdminLoginComponent}, 
+  {path: 'login/adminhome',component: AdminComponent}, 
+  {path: 'register',component: RegisterComponent}, 
+  {path: 'new/car',component: CarRegisterComponent}, 
+  {path: 'car',component: MyCarComponent}, 
+  {path: 'profile',component: ProfileComponent},  
+  {path: 'preference',component: PreferenceComponent},
+  {path: '**',pathMatch: 'full',redirectTo: ''}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

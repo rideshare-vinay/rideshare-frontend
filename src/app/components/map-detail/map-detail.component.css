@@ -52,10 +52,8 @@ td{
 .rBot{
     border-bottom-right-radius: 1.5em;
 }
-
 table{
-    display:inline;
-    
+    display:inline;  
 }
 .responsive {
     max-width: 90%;

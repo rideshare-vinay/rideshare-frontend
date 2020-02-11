@@ -10,7 +10,7 @@
     cursor: pointer;
     width: 7em;     /* Static width buttons */
     outline:none;   /* Removing outline */
-    border-radius: 10em;
+    border-radius: 10vw;
     font: futura;
     font-weight: bold;
     color: #ffffff !important;
@@ -32,7 +32,6 @@
 ::ng-deep .mat-form-field-ripple{
   background-color: #F26926 !important;   
 }
-
 
 p {
     font-size: smaller;
@@ -80,3 +79,40 @@ p {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }  
+.responsive {
+    max-width: 90%;
+    height: auto;
+}
+.topBorder{
+    max-width: 100%;
+    height: auto;
+}
+.divSpace{
+    margin-top: 5vw;
+}
+.loginCard{
+    background-color: #f9b493;
+    border-radius: 1.5em;
+}
+
+input{
+    font: futura;
+
+    color: black;
+}
+p{
+    font: futura;
+    font-weight: bold;
+    color: black;   
+    padding: 1.5vw;
+
+}
+a{
+    font: futura;
+    font-weight: bold; 
+}
+mat-label{
+    font: futura;
+
+    color: black; 
+}

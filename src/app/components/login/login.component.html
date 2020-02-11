@@ -26,18 +26,25 @@
     </form>
 </div> -->
 
-<section class="main">
-<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-    <div fxFlex="30%" style="text-align: center;">
-        Image Here
+<section class="main" style="padding-top: 0%;margin-top: 0%;">
+    <div class="container-fluid " >
+        <img src="../assets/border.svg" alt="border" class="topBorder" />
     </div>
-    <div fxFlex="30%" style="text-align: center;">
-      <mat-card class="example-card">
+    <div class="divSpace">
+        <!--Space From Top-->
+    </div>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div fxFlex="45%" style="text-align: center;">
+        <img src="../assets/login.jpeg" alt="RideShare" class="responsive"/>
+    </div>
+    <div fxFlex="45%" style="text-align: center;">
+      <mat-card class="example-card loginCard" >
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
         </mat-card-header>
         <mat-card-content>
             <mat-form-field>
+                <mat-label>Account</mat-label>
                 <input matInput type="text" color="warn" placeholder="Select An Account" name="chosenUserFullName" [(ngModel)]="chosenUserFullName" (click)="toggleDropDown()" (ngModelChange)="searchAccount()">
                 <mat-select>
                   <mat-option></mat-option>
@@ -45,16 +52,18 @@
                   <mat-option (click)="changeUser(user)">{{user.firstName}} {{user.lastName}}: {{user.driver? "Driver" : "Rider"}}</mat-option>
                 </div>
                 </mat-select>
-              </mat-form-field>
+            </mat-form-field>
               <br>
             <mat-form-field class="example-form-field">
+                <mat-label>Username</mat-label>
                 <input matInput type="text" color="warn" [(ngModel)]="userName" name="userName" placeholder="Username">
                 <p class="alert alert-danger" *ngIf="failed"><strong>Login Failed!</strong></p>
                 <p class="alert alert-danger" *ngIf="banned"><strong>You are banned</strong></p>
               </mat-form-field><br>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button type="button" class="button oBut" (click)="login()" (keyup.enter)="login()" [disabled]="!(userName && chosenUserFullName)">LOGIN</button><p>Need An Account? <a routerLink="/register">Sign Up</a></p>
+            <button mat-raised-button type="button" class="button oBut" (click)="login()" (keyup.enter)="login()" [disabled]="!(userName && chosenUserFullName)">LOGIN</button>
+            <p>Need An Account? <a routerLink="/register">Sign Up</a></p>
         </mat-card-actions>
       </mat-card>
     </div>
