@@ -9,6 +9,7 @@ import { CarService } from 'src/app/services/car-service/car.service';
 import { Car } from 'src/app/models/car';
 import { Observable, of } from 'rxjs';
 import { LogService } from 'src/app/services/log.service';
+import { log } from 'util';
 
 describe("MyCarComponent", () => {
   let myCarComponent:MyCarComponent;
@@ -115,11 +116,10 @@ describe("MyCarComponent", () => {
 
   it("should call the LogService.info function if the car is removed", (done) => {
     spyOn(logService, "info").and.callThrough();
-    mockCarService.getCarByUserId(mockCar.carId).then( car => {
-      expect(logService.info).toHaveBeenCalled();
+    mockCarService.removeCar(mockCar.carId).subscribe( car => {
       done();
-    } )
+    });
     myCarComponent.removeMyCar();
+    expect(logService.info).toHaveBeenCalled();
   });
-
 });
