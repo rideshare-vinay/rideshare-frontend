@@ -33,6 +33,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MapDetailComponent } from './components/map-detail/map-detail.component';
 //npm i @angular/material@8.2.0
@@ -73,6 +74,7 @@ import { MapDetailComponent } from './components/map-detail/map-detail.component
     MatTableModule,
     MatCardModule,
     MatSlideToggleModule,
+    MatButtonModule,
     MatMenuModule,
     MatSidenavModule,
     MatSelectModule,
