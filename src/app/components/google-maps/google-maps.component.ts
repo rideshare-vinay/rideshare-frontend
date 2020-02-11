@@ -9,15 +9,17 @@ import PlaceResult = google.maps.places.PlaceResult;
   styleUrls: ['./google-maps.component.css']
 })
 export class GoogleMapsComponent implements OnInit {
-  private readonly longKey = 'longitude';
   private readonly latKey = 'latitude';
-  public selectedAddress: PlaceResult;
-  public inputVisibility: boolean;
+  private readonly longKey = 'longitude';
   public polyline: google.maps.Polyline;
-  public latitude: number;
+  public selectedAddress: PlaceResult;
+  public color: string = '#EA4335';
+  public inputVisibility: boolean;
   public longitude: number;
-  public zoom: number;
+  public latitude: number;
   public destination: any;
+  public marker: boolean;
+  public zoom: number;
   public origin: any;
   public lines: any;
 
@@ -32,6 +34,10 @@ export class GoogleMapsComponent implements OnInit {
         this.inputVisibility = visibility;
       }
     );
+
+    this.googleMapsService.showMarkerEvent.subscribe(marker => {
+      this.marker = marker;
+    });
 
     this.setCurrentLocation();
   }
