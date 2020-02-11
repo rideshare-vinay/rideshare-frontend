@@ -67,9 +67,15 @@ input {
 }
 
 .card-detail {
-    background: url('/src/assets/blueBck.svg');
+    background-image: url('/../assets/blueBck.svg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
     /* background: rgba(150, 185, 102, 0.374); */
 }
+
 .card-title {
     display: flex;
     justify-content: center;
