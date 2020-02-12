@@ -7,7 +7,7 @@ font: futura;
 }
 
 .oBut{
-    background-color: #F26926 !important; 
+    background-color: #F26926 ; 
     border: none;
     color: white;
     padding: 7px;
@@ -16,14 +16,21 @@ font: futura;
     display: inline-block;
     margin: 4px 2px;
     cursor: pointer;
-    width: 7em;     /* Static width buttons */
+    width: 150px;     /* Static width buttons */
     outline:none;   /* Removing outline */
     border-radius: 10em;
     font: futura;
     font-weight: bold;
-    color: #ffffff !important;
+    color: #ffffff;
 }
-
+.oBut:hover{
+  background-color:#717F92;
+  color: white;
+}
+.oBut:disabled{
+  background-color: #F26926 ; 
+  color: #ffffff ;
+}
 .main{
     margin: 5% 2%;
   }
@@ -86,5 +93,10 @@ font: futura;
 }
 
 input{
+  color: black;
+}
+mat-label{
+  font-size: 1.1vw;
+  font-weight: bold;
   color: black;
 }

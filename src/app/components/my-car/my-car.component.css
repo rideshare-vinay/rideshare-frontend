@@ -1,14 +1,10 @@
 section {
     font: futura;
+    margin: 3% 2%;
 }
 
 p {
     font-size: 2em;
-}
-
-section{
-    margin: 3% 2%;
-    font: futura;
 }
 
 .oBut{
@@ -73,10 +69,14 @@ th, td{
     background-color: rgba(255, 255, 255, 0.144);
     font-size: 1.25em;
     border-bottom: 2px solid white;
-    padding: 1.4vw;
-    padding-left: 20%;
+
 }
 
-.tabA{
-    padding-left:25%;
+table{
+    width:100%;
+    padding:0px;
+    margin: 0px;
+}
+.spacer{
+    padding-top: 50vw;
 }
