@@ -8,16 +8,28 @@ import { environment } from 'src/environments/environment';
 })
 export class GoogleMapsService {
   /**
-   *
+   * A boolean determining the visibility of the google maps input bar.
    */
   private googleMapsInputVisibility: boolean = true;
+  /**
+   * A boolean determining whether to show a marker or a circle.
+   */
   private showMarkerOrCircle: boolean = true;
+  /**
+   * A string url for HttpClient requests.
+   */
   private url: string;
 
   // prettier-ignore
+  /**
+   * An event to change the value of inputVisibility in the google-maps.component.ts when emitted.
+   */
   public googleMapsInputVisibilityEvent: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(this.googleMapsInputVisibility);
   // prettier-ignore
+  /**
+   * An event to change the value of marker in the google-maps.component.ts when emitted.
+   */
   public showMarkerOrCircleEvent: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(this.showMarkerOrCircle);
 
@@ -56,7 +68,7 @@ export class GoogleMapsService {
 
   /**
    * A getter method for whether a marker or circle is shown.
-   * true == marker and false == circle
+   * True is a marker and false is a circle.
    */
   public getShowMarkerOrCircle(): boolean {
     return this.showMarkerOrCircle;
