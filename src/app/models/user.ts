@@ -41,4 +41,16 @@ export class User {
      * Set accepting ride as a boolean
      */
     acceptingRides: boolean;
+    /**
+     * The user's home address.
+     */
+    address: string;
+    /**
+     * The latitude of the user's home address.
+     */
+    latitude: number;
+    /**
+     * The longitude of the user's home address.
+     */
+    longitude: number;
 }

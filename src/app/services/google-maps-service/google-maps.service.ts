@@ -1,7 +1,8 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { User } from 'src/app/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -72,5 +73,12 @@ export class GoogleMapsService {
    */
   public getShowMarkerOrCircle(): boolean {
     return this.showMarkerOrCircle;
+  }
+
+  /**
+   * Undocumented
+   */
+  public getDriverRecommendations(numberOfDrivers: number, riderInformation: User): Observable<User[]> {
+    return this.http.post<User[]>('/recommendations/' + numberOfDrivers, riderInformation);
   }
 }
