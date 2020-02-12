@@ -36,15 +36,26 @@ small {
 }
 
 .container{
-    background-color: #6698b9; 
+    background-image: url(/../assets/blueBck.svg);
     border: 1px solid #dddddd;
     border-radius: 7px;
     padding: 3%;
     margin-top: 8%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 mat-select {
     background-color: #FFFFFF; 
+}
+mat-label{
+    color: black;
+}
+input{
+    color: black;
 }
 
 .oBut{
@@ -57,10 +68,24 @@ mat-select {
     display: inline-block;
     margin: 4px 2px;
     cursor: pointer;
-    width: 7em;     /* Static width buttons */
+    width: 150px;     /* Static width buttons */
     outline:none;   /* Removing outline */
     border-radius: 10em;
     font: futura;
     font-weight: bold;
     color: #ffffff;
+}
+.oBut:hover{
+    background-color:#717F92;
+    color: white;
+}
+.oBut:disabled{
+    background-color: #F26926 ; 
+    color: #ffffff ;
+}
+section{
+    font: futura;
+}
+#year, #make, #model, #color {
+    background-color: rgba(1,1,1,0.0);
 }

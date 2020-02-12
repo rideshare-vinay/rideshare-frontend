@@ -1,7 +1,7 @@
 <section>
   <div fxLayout="row" fxLayout.xs="column-reverse" fxLayoutWrap fxLayoutGap="3%" fxLayoutAlign="center">
     <div fxFlex="45%" class="image">
-        <img  mat-card-image src="../assets/driverDetails.jpeg" class="responsive">
+        <img  mat-card-image src="../assets/driverDetails.jpeg" alt="Driver details" class="responsive">
     </div>
     <div fxFlex="45%" class="example">
       <mat-card class="card-detail">
@@ -15,28 +15,28 @@
                 <div fxFlex="100%">
                   <table id="detail"> 
                     <tr class="tHeader">
-                      <th >Name: </th>
-                      <th>{{userDriver?.firstName}} {{userDriver?.lastName}}</th>
+                      <th id="name">Name: </th>
+                      <td>{{userDriver?.firstName}} {{userDriver?.lastName}}</td>
                     </tr>
                     <tr>
-                      <th>Email: </th>
-                      <th>{{userDriver?.email}}</th>
+                      <th id="Email">Email: </th>
+                      <td>{{userDriver?.email}}</td>
                     </tr>
                     <tr>
-                      <th>Phone: </th>
-                      <th>{{userDriver?.phoneNumber}}</th>
+                      <th id="Phone">Phone: </th>
+                      <td>{{userDriver?.phoneNumber}}</td>
                     </tr>
                     <tr>
-                      <th>Batch: </th>
-                      <th>{{userDriver?.batch.batchLocation}}</th>
+                      <th id="Batch">Batch: </th>
+                      <td>{{userDriver?.batch.batchLocation}}</td>
                     </tr>
                     <tr>
                       <th>Car: </th>
-                      <th>{{myCar.year}} {{myCar.make}} {{myCar.model}}</th>
+                      <td>{{myCar.year}} {{myCar.make}} {{myCar.model}}</td>
                     </tr>
                     <tr>
                       <th>Seats:  </th>
-                      <th>{{myCar.seats}}</th>
+                      <td>{{myCar.seats}}</td>
                     </tr>
                   </table>
                 </div>

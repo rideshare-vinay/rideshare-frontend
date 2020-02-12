@@ -23,6 +23,7 @@ export class CarRegisterComponent implements OnInit {
    * Set userId
    * Instantiates a car
    */
+  colors : string[] = ["Black", "Grey", "White", "Silver", "Blue", "Green", "Red", "Gold", "Orange", "Pink", "Purple","Yellow"];
   allYears: string[] = [];
   years: string[] = [];
   allMakes: string[] = [];
@@ -55,7 +56,6 @@ export class CarRegisterComponent implements OnInit {
     }
       this.carLookupService.getYears().subscribe(data =>{
         this.allYears=this.xmlParser(data);
-        console.log(this.allYears)
         this.years = this.allYears;
       })
       

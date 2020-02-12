@@ -105,16 +105,18 @@ export class UserService {
 				this.user.acceptingRides = (this.user.active && isDriver);
 
 				this.http.put(this.url+userId, this.user).subscribe(
-					(response) => {
-						this.authService.user = response;
-						this.log.info(JSON.stringify(response));
-					},
+					(response) => this.updateDriver(response),
 					(error) => this.log.error(error)
 				);
 			})
 			.catch(e => {
 				this.log.error(e)
 			})
+	}
+
+	updateDriver(response):void{
+			this.authService.user = response;
+			this.log.info(JSON.stringify(response));
 	}
 
 	/**
@@ -145,6 +147,7 @@ export class UserService {
 				this.log.error(e);
 			})
 	}
+
 
 	/**
 	 * A PUT method that updates user's information
