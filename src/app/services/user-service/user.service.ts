@@ -96,26 +96,23 @@ export class UserService {
 	 * @param userId 
 	 */
 
-	updateIsDriver(userId, isDriver) {
-
+	updateIsDriver(isDriver, userId) {
 		this.getUserById(userId)
-			.then((response) => this.updateForDriver(response, isDriver, userId))
+			.then((response) => {
+				this.user = response;
+				this.user.driver = isDriver;
+				this.user.acceptingRides = (this.user.active && isDriver);
+
+				this.http.put(this.url+userId, this.user).subscribe(
+					(response) => this.updateDriver(response),
+					(error) => this.log.error(error)
+				);
+			})
 			.catch(e => {
 				this.log.error(e)
 			})
 	}
-	updateForDriver(response, isDriver, userId){
-			this.user = response;
-			this.user.driver = isDriver;
-			this.user.acceptingRides = (this.user.active && isDriver);
-			console.log("hit");
 
-			this.http.put(this.url+userId, this.user).subscribe(
-				(response) => this.updateDriver(response),
-				(error) => this.log.error(error)
-			);
-
-	}
 	updateDriver(response):void{
 			this.authService.user = response;
 			this.log.info(JSON.stringify(response));

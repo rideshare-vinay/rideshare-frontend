@@ -36,11 +36,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MapDetailComponent } from './components/map-detail/map-detail.component';
-//npm i @angular/material@8.2.0
-//npm i @angular/animations@8.2.4
-//npm i @angular/cdk@8.2.0
-//npm install --save hammerjs
-//npm i -s @angular/flex-layout@8.0.0-beta.27
+
 
 @NgModule({
   declarations: [

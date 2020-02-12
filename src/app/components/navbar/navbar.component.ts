@@ -51,7 +51,7 @@ export class NavbarComponent implements OnInit {
     this.authService.getEmitter().subscribe((user: any) => {
       if (user.userId) {
         this.name = user.firstName;
-        this.isDriver = user.driver
+        this.isDriver = user.driver;
       } else if (user.adminId) {
         this.admin = user.userName;
       }
@@ -59,6 +59,7 @@ export class NavbarComponent implements OnInit {
 
     this.userService.getEmitter().subscribe((user: User) => {
       this.name = user.firstName;
+      
     });
   }
 
@@ -78,10 +79,5 @@ export class NavbarComponent implements OnInit {
     sessionStorage.clear();
     this.router.navigate(['']);
   }
-
-  // redirectToHome() {
-  //   this.authService.user.driver ? this.router.navigate(['home/riders']) : this.router.navigate(['home/drivers']);
-  // }
-
   
 }
