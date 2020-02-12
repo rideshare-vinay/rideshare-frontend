@@ -5,6 +5,7 @@
     -o-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
+    margin-top: 5%;
 }
 .card-title {
     display: flex;
@@ -44,4 +45,14 @@ table{
 }
 .tHeader{
     border-top: 6px solid white;
+}
+
+.image{
+    margin-top: 1%;
+    text-align: center;
+    
+}
+
+.mat-card-image:first-child{
+    margin-top: 16px !important;
 }

@@ -21,8 +21,8 @@ small {
 }
 
 input {
-    background-color: white;
-    border: none;
+    color: #000;
+    font-weight: bold;
 }
 
 .oBut{
@@ -43,12 +43,42 @@ input {
     color: #ffffff;
 }
 
-.toggle-example{
-    padding: 7px;
-    size: 50px;
+.oBut:hover{
+    background-color:#717F92;
+    color: white;
 }
 
-/* CSS to change Default/'Accent' color */
+.oBut:disabled{
+    background-color: #F26926 ; 
+    color: #ffffff ;
+}
+
+
+::ng-deep .mat-slide-toggle-bar {
+    width: 58px !important;
+    height: 31px !important;
+    border-radius: 16px !important;
+}
+
+::ng-deep .mat-slide-toggle-thumb {
+    height: 30px !important;
+    width: 40px !important;
+    margin-left: 1.5px !important;
+    margin-top: 3.4px !important;
+    border-radius: 16px !important;
+}
+
+::ng-deep .mat-form-field-infix {
+    border-top: 0px !important;
+}
+
+.toggle-example{
+    margin-top: 10px;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
 
 ::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
     background-color: white; /*replace with your color*/
@@ -73,6 +103,7 @@ input {
     -o-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
+    margin-top: 5%;
     /* background: rgba(150, 185, 102, 0.374); */
 }
 
@@ -88,13 +119,21 @@ input {
 section{
     margin: 5% 2%;
 }
+
 .seat{
     width:2vw;
+    padding-left: 5px;
 }
+
+.field-input{
+    font: bold !important;
+}
+
 .responsive {
-    max-width: 90%;
+    max-width: 100%;
     height: auto;
 }
+
 th{
     font: futura;
     background-color: rgba(255, 255, 255, 0.144);
@@ -102,11 +141,13 @@ th{
     border-bottom: 2px solid white;
     padding: 1.4vw;
 }
+
 h3{
     font: futura;
     font-size: 1.5em;
     font-weight: bold;
 }
+
 table{
     width:100%;
     padding:0px;
@@ -118,4 +159,17 @@ table{
 
 section{
     font: futura;
+}
+
+.image{
+    margin-top: 1%;
+    text-align: center; 
+}
+
+.mat-card-image:first-child{
+    margin-top: 16px !important; 
+}
+
+@media (max-width: 800px){
+  
 }

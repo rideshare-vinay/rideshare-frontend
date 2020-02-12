@@ -41,12 +41,12 @@ select {
     color: #ffffff;
 }
 
-.main{
-    margin-top: 5%;
+section{
+    margin: 5% 2%;
   }
 
 .responsive {
-    max-width: 90%;
+    max-width: 100%;
     height: auto;
 }
 .divSpace{
