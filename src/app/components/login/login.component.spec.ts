@@ -135,6 +135,34 @@ describe("Login Component", () => {
       expect(loginComponent.users).toEqual(mockUsers.slice(loginComponent.curPage * 5 - 5, loginComponent.curPage * 5));
     });
   });
+
+  it("should toggle showDropDown", () => {
+    loginComponent.showDropDown = false;
+    loginComponent.toggleDropDown();
+    expect(loginComponent.showDropDown).toBeTruthy();
+    loginComponent.toggleDropDown();
+    expect(loginComponent.showDropDown).toBeFalsy();
+  });
+
+  fdescribe("nextPage function", () => {
+    it("should increase the curPage variable it nextPage() is called", () => {
+      loginComponent.curPage = 1;
+      loginComponent.nextPage();
+      expect(loginComponent.curPage).toBe(2);
+      loginComponent.nextPage();
+      expect(loginComponent.curPage).toBe(3);
+    });
+
+    it("should update users variable when nextPage() is called", () => {
+      loginComponent.curPage = 1;
+      loginComponent.allUsers = mockUsers;
+      let expectedUsers = mockUsers.slice(loginComponent.curPage * 5 - 5, loginComponent.curPage * 5);
+
+      loginComponent.nextPage();
+
+      expect(loginComponent.users).toEqual(expectedUsers);
+    });
+  })
 })
 
 
