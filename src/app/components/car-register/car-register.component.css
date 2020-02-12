@@ -36,11 +36,15 @@ small {
 }
 
 .container{
-    background-color: #F26926; 
+    background-color: #6698b9; 
     border: 1px solid #dddddd;
     border-radius: 7px;
     padding: 3%;
     margin-top: 8%;
+}
+
+mat-select {
+    background-color: #FFFFFF; 
 }
 
 .oBut{

@@ -57,8 +57,7 @@ export class CarRegisterComponent implements OnInit {
       this.carLookupService.getYears().subscribe(data =>{
         this.allYears=this.xmlParser(data);
         console.log(this.allYears)
-        this.years = this.allYears.slice(this.curPage * 5 - 5, this.curPage * 5);
-        this.totalPage = Math.ceil(this.allYears.length / 5);
+        this.years = this.allYears;
       })
       
   }
