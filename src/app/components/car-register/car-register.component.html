@@ -28,11 +28,8 @@
                 <div class="col-sm mx-3">
 
                     <mat-label>Vehicle Year <small>*</small></mat-label>
-                    <mat-select [(ngModel)]="car.year" name="year">
-                        <!-- <mat-option></mat-option> -->
-                        <div *ngFor="let year of years">
-                            <mat-option *ngFor="let year of years" [value]="year" (selectionChange)="searchMake()">{{year}}</mat-option>
-                        </div>
+                    <mat-select [(ngModel)]="car.year" name="year" (selectionChange)="changeYear()">
+                        <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
                     </mat-select>
 
                 </div>
@@ -41,11 +38,8 @@
                 <div class="form-group col-sm mx-3">
 
                     <mat-label>Vehicle Make <small>*</small></mat-label>
-                    <mat-select [(ngModel)]="car.make" name="make">
-                        <!-- <mat-option></mat-option> -->
-                        <div *ngFor="let make of makes">
-                            <mat-option *ngFor="let make of makes" [value]="make" (selectionChange)="searchModel()">{{make}}</mat-option>
-                        </div>
+                    <mat-select [(ngModel)]="car.make" name="make" (selectionChange)="changeMake()">
+                        <mat-option *ngFor="let make of makes" [value]="make">{{make}}</mat-option>
                     </mat-select>
 
                 </div>
@@ -54,12 +48,9 @@
                 <div class="form-group col-sm mx-3">
                     <mat-label>Vehicle Model <small>*</small></mat-label>
                     <mat-select [(ngModel)]="car.model" name="model">
-                        <!-- <mat-option></mat-option> -->
-                        <div *ngFor="let model of models">
-                            <mat-option *ngFor="let model of model" [value]="model">{{model}}</mat-option>
-                        </div>
+                        <mat-option *ngFor="let model of models" [value]="model">{{model}}</mat-option>
                     </mat-select>
-                    
+
                 </div>
             </div>
         </div>

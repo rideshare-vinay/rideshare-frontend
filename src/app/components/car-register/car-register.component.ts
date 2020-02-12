@@ -27,7 +27,6 @@ export class CarRegisterComponent implements OnInit {
   years: string[] = [];
   allMakes: string[] = [];
   makes: string[] = [];
-  allModels: string[] = [];
   models: string[] = [];
   userId: number;
   car: Car = new Car();
@@ -67,16 +66,12 @@ export class CarRegisterComponent implements OnInit {
   * @param year
   * @returns {void}
   */
- newChangeYear(year:number) {
-  this.showDropDown = false;
-  this.curPage = 1;
-  this.years = this.allYears.slice(this.curPage * 5 - 5, this.curPage * 5);
-  this.car.year = year;
+ changeYear() {
   this.car.make="";
   this.car.model="";
   this.makes=[];
   this.models=[];
-  this.carLookupService.getMakes(""+year).subscribe(data =>{
+  this.carLookupService.getMakes(""+this.car.year).subscribe(data =>{
     this.makes=this.xmlParser(data);
     this.car.make=this.makes[0];
   })
@@ -111,14 +106,13 @@ export class CarRegisterComponent implements OnInit {
   * @param event
   * @returns {void}
   */
-  changeMake(event) {
-		let option = event.target.options.selectedIndex;
-    this.car.make = this.makes[option];
+  changeMake() {
     this.car.model="";
     this.models=[];
     this.carLookupService.getModels(""+this.car.year,this.car.make).subscribe(data =>{     
       this.models=this.xmlParser(data);
       this.models=this.modelFilter(this.models)
+      console.log(this.models);
       this.car.model=this.models[0];
     })
   }
@@ -127,9 +121,7 @@ export class CarRegisterComponent implements OnInit {
   * @param event
   * @returns {void}
   */
-  changeModel(event) {
-		let option = event.target.options.selectedIndex;
-		this.car.model = this.models[option];
+  changeModel() {
   }
   /**
    * A POST method that adds a car object to the user
@@ -154,7 +146,6 @@ export class CarRegisterComponent implements OnInit {
       output.push(next.split("\"")[0])
       return ""
     })
-    console.log(output)
     return output;
   }
     /**
