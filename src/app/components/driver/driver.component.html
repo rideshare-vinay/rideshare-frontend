@@ -1,6 +1,51 @@
-<br>
+<section>
+  <div fxLayout="row" fxLayout.xs="column-reverse" fxLayoutWrap fxLayoutGap="3%" fxLayoutAlign="center">
+    <div fxFlex="45%" class="image">
+        <img  mat-card-image src="../assets/driverDetails.jpeg" alt="Driver details" class="responsive">
+    </div>
+    <div fxFlex="45%" class="example">
+      <mat-card class="card-detail">
+        <mat-card-header class="card-title" > 
+            <mat-card-title><h3>Driver Details</h3></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div fxLayout="row">
+                <div fxFlex="100%">
+                  <table id="detail" aria-describedby="Driver Details"> 
+                    <tr class="tHeader">
+                      <th id="name">Name: </th>
+                      <td>{{userDriver?.firstName}} {{userDriver?.lastName}}</td>
+                    </tr>
+                    <tr>
+                      <th id="Email">Email: </th>
+                      <td>{{userDriver?.email}}</td>
+                    </tr>
+                    <tr>
+                      <th id="Phone">Phone: </th>
+                      <td>{{userDriver?.phoneNumber}}</td>
+                    </tr>
+                    <tr>
+                      <th id="Batch">Batch: </th>
+                      <td>{{userDriver?.batch.batchLocation}}</td>
+                    </tr>
+                    <tr>
+                      <th id="Car">Car: </th>
+                      <td>{{myCar.year}} {{myCar.make}} {{myCar.model}}</td>
+                    </tr>
+                    <tr>
+                      <th id="Seats">Seats:  </th>
+                      <td>{{myCar.seats}}</td>
+                    </tr>
+                  </table>
+                </div>
+            </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</section>
 
-<div class="container-fluid">
+<!-- <div class="container-fluid">
     <div class="row" >
         <div class="col-md-auto">
             <h2 class="align-bottom float-center">Driver: {{userDriver?.firstName}}&nbsp;<span>{{userDriver?.lastName}} &nbsp;</span></h2>
@@ -50,4 +95,4 @@
   
   </table>
 
-</div>
+</div> -->

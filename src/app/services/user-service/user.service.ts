@@ -63,23 +63,25 @@ export class UserService {
 		user.acceptingRides = false;
 
 		this.http.post(this.url, user, {observe: 'response'}).subscribe(
-			(response) => {
-				this.authService.user = response.body;
-				this.fireIsLoggedIn.emit(response.body);
-
-				if (role === 'driver') {
-					this.router.navigate(['new/car']);
-				} else {
-					this.router.navigate(['home/drivers']);
-				}
-			},
+			(response) => this.addDriver(response , role),
 			(error) => {
 				this.log.error(error)
 			}
 		);
-
 	}
 
+	addDriver(response , role): void{
+		
+			this.authService.user = response.body;
+			this.fireIsLoggedIn.emit(response.body);
+
+			if (role === 'driver') {
+				this.router.navigate(['new/car']);
+			} else {
+				this.router.navigate(['home/drivers']);
+			}
+
+	}
 	/**
 	 * This function returns the fireIsLoggedIn variable
 	 */
@@ -95,7 +97,6 @@ export class UserService {
 	 */
 
 	updateIsDriver(isDriver, userId) {
-
 		this.getUserById(userId)
 			.then((response) => {
 				this.user = response;
@@ -103,16 +104,18 @@ export class UserService {
 				this.user.acceptingRides = (this.user.active && isDriver);
 
 				this.http.put(this.url+userId, this.user).subscribe(
-					(response) => {
-						this.authService.user = response;
-						this.log.info(JSON.stringify(response));
-					},
+					(response) => this.updateDriver(response),
 					(error) => this.log.error(error)
 				);
 			})
 			.catch(e => {
 				this.log.error(e)
 			})
+	}
+
+	updateDriver(response):void{
+			this.authService.user = response;
+			this.log.info(JSON.stringify(response));
 	}
 
 	/**
@@ -125,23 +128,27 @@ export class UserService {
 	updatePreference(property, bool, userId) {
 
 		this.getUserById(userId)
-			.then((response) => {
-				this.user = response;
-				this.user[property] = bool;
-				if (property === 'active' && bool === false) {
-					this.user.acceptingRides = false;
-				}
-
-				this.http.put(this.url+userId, this.user).subscribe(
-					(response) => {
-						this.authService.user = response;
-					},
-					(error) => console.warn(error)
-				);
-			})
+			.then((response) => this.putResponse(response, property, bool, userId)
+			)
 			.catch(e => {
 				this.log.error(e);
 			})
+	}
+	putResponse(response, property, bool, userId){
+			this.user = response;
+			this.user[property] = bool;
+			if (property === 'active' && bool === false) {
+				this.user.acceptingRides = false;
+			}
+
+			this.http.put(this.url+userId, this.user).subscribe(
+				(response) => this.updatePref(response),
+				(error) => console.warn(error)
+			);
+		
+	}
+	updatePref(response){
+			this.authService.user = response;
 	}
 
 	/**
