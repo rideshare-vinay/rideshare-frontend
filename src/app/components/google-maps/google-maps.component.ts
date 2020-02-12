@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleMapsService } from '../../services/google-maps-service/google-maps.service';
-import { MapsAPILoader } from '@agm/core';
 import PlaceResult = google.maps.places.PlaceResult;
 
 @Component({
@@ -23,11 +22,18 @@ export class GoogleMapsComponent implements OnInit {
   public origin: any;
   public lines: any;
 
-  constructor(
-    private googleMapsService: GoogleMapsService,
-    private mapsAPILoader: MapsAPILoader
-  ) {}
+  /**
+   * Injects the necessary services for the GoogleMapsComponent.
+   * @param googleMapsService A service that manipulates the variables in this component.
+   */
+  constructor(private googleMapsService: GoogleMapsService) {}
 
+  /**
+   * Subscribes to events in the googleMapsService.
+   * Event to change the input bar visibility.
+   * Event to show markers or circles on the map.
+   * Sets the map location using setCurrentLocation.
+   */
   ngOnInit() {
     this.googleMapsService.googleMapsInputVisibilityEvent.subscribe(
       visibility => {
@@ -35,14 +41,16 @@ export class GoogleMapsComponent implements OnInit {
       }
     );
 
-    this.googleMapsService.showMarkerEvent.subscribe(marker => {
+    this.googleMapsService.showMarkerOrCircleEvent.subscribe(marker => {
       this.marker = marker;
     });
 
     this.setCurrentLocation();
   }
 
-  // Get Current Location Coordinates
+  /**
+   * Set the location and zoom level of the map to a rider's position.
+   */
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -53,29 +61,20 @@ export class GoogleMapsComponent implements OnInit {
     }
   }
 
-  // Move the marker to the location the user clicked on.
+  /**
+   * Move the marker to the location the user clicked on.
+   * @param lat the value to set the marker's latitude too.
+   * @param long the value to set the marker's longitude too.
+   */
   moveMarker(lat: number, long: number) {
     this.latitude = lat;
     this.longitude = long;
   }
 
-  // set origin to be used in agm-direction
-  // setOrigin( location : Location ) {
-  //   this.origin = {
-  //     lat: location[this.latKey],
-  //     lng: location[this.longKey]
-  //   };
-  // }
-
-  // set destination to be used in agm-direction
-  // setDestination( location : Location ) {
-  //   this.destination = {
-  //     lat: location[this.latKey],
-  //     lng: location[this.longKey]
-  //   };
-  // }
-
-  // Move the marker to the location set by the input bar.
+  /**
+   * Moves the marker to the location set in the input bar.
+   * @param location contains the latitude and longitude of the selected location.
+   */
   onLocationSelected(location: Location) {
     this.latitude = location[this.latKey];
     this.longitude = location[this.longKey];
