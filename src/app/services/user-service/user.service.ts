@@ -63,23 +63,25 @@ export class UserService {
 		user.acceptingRides = false;
 
 		this.http.post(this.url, user, {observe: 'response'}).subscribe(
-			(response) => {
-				this.authService.user = response.body;
-				this.fireIsLoggedIn.emit(response.body);
-
-				if (role === 'driver') {
-					this.router.navigate(['new/car']);
-				} else {
-					this.router.navigate(['home/drivers']);
-				}
-			},
+			(response) => this.pushDriver(response , role),
 			(error) => {
 				this.log.error(error)
 			}
 		);
-
 	}
 
+	pushDriver(response , role): void{
+		
+			this.authService.user = response.body;
+			this.fireIsLoggedIn.emit(response.body);
+
+			if (role === 'driver') {
+				this.router.navigate(['new/car']);
+			} else {
+				this.router.navigate(['home/drivers']);
+			}
+
+	}
 	/**
 	 * This function returns the fireIsLoggedIn variable
 	 */
