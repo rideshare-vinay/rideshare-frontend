@@ -11,24 +11,23 @@
             </mat-card-header>
             <mat-card-content>
                 <div fxLayout="row">
-                    <!-- <div fxFlex="10%"></div> -->
                     <div fxFlex="100%">
-                    <table id="detail"> 
+                    <table id="detail" aria-describedby="Profile">
                         <tr class="tHeader">
-                            <th>Name: </th>
-                            <th>{{user.firstName}} {{user.lastName}}</th>
+                            <th id="Name">Name: </th>
+                            <td>{{user.firstName}} {{user.lastName}}</td>
                         </tr>
                         <tr>
-                            <th>Email: </th>
-                            <th>{{user.email}}</th>
+                            <th id="Email">Email: </th>
+                            <td>{{user.email}}</td>
                         </tr>
                         <tr>
-                            <th>Phone: </th>
-                            <th>{{user.phoneNumber}}</th>
+                            <th id="Phone">Phone: </th>
+                            <td>{{user.phoneNumber}}</td>
                         </tr>
                         <tr>
-                            <th>Batch: </th>
-                            <th>{{user.batch.batchLocation}}</th>
+                            <th id="Batch">Batch: </th>
+                            <td>{{user.batch.batchLocation}}</td>
                         </tr>
                     </table>
                     </div>
@@ -55,7 +54,6 @@
                             <mat-form-field class="seat">
                                 <input matInput type="text" name="seats" [(ngModel)]="myCar.seats"/> 
                             </mat-form-field>
-                            <!-- <img class="edit" (click)="edit('seats')" src="assets/pencil.png"/> -->
                         </div>
                     </div>
                     <div fxFlex="40%">

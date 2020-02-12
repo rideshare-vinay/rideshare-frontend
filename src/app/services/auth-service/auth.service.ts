@@ -12,7 +12,6 @@ export class AuthService {
 	 * This is the Authorization Service
 	 */
 
-
 	@Output() fireIsLoggedIn: EventEmitter<any> = new EventEmitter<any>();
 
 	/**
@@ -42,7 +41,6 @@ export class AuthService {
 			else{
 				this.router.navigate(['/home/riders']);
 			}
-			
 			this.fireIsLoggedIn.emit(this.user);
 		} else {
 			return false;

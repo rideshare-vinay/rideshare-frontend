@@ -54,10 +54,8 @@ export class CarService {
 	 */
 	
 	createCar(car, userId) {
-
 		this.user.userId = userId;
 		car.user = this.user;
-
 		this.http.post(this.url, car, {observe: 'response'}).subscribe(
 			(response) => this.addCar(response, userId),
 			(error) => {
@@ -65,6 +63,7 @@ export class CarService {
 			}
 		);
 	}
+	
 	addCar(response, userId){
 		if (response) {
 			this.userService.updateIsDriver(true, userId);

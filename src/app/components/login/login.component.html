@@ -13,7 +13,6 @@
                 <mat-label>Account</mat-label>
                 <input matInput type="text" color="warn" placeholder="Select An Account" name="chosenUserFullName" [(ngModel)]="chosenUserFullName" (click)="toggleDropDown()" (ngModelChange)="searchAccount()">
                 <mat-select>
-                  <!-- <mat-option></mat-option> -->
                     <div *ngFor="let user of users">
                     <mat-option (click)="changeUser(user)">{{user.firstName}} {{user.lastName}}: {{user.driver? "Driver" : "Rider"}}</mat-option>
                     </div>

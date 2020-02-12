@@ -1,5 +1,5 @@
 <section>
-    <div class="container">
+    <div class="container" id="centered">
         <form>
             <h3>Add a Vehicle To Become A Driver</h3>
 
@@ -59,11 +59,10 @@
                     </div>
                 </div>
             </div>
-
-            <div class="form-group">
-                <button id="add-car-btn" class="oBut" type="submit" (click)="addCar()" (keyup.enter)="addCar()"
+            <br/>
+            <div class="form-group" >
+                <button mat-raised-button id="add-car-btn" class="oBut" type="submit" (click)="addCar()" (keyup.enter)="addCar()"
                     [disabled]="!(car.color && car.seats && car.make && car.model)">Add New Car</button>
-                <button id="cancel-btn" class="oBut" routerLink="/home">Cancel</button>
             </div>
         </form>
     </div>

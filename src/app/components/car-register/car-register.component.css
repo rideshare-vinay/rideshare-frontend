@@ -59,7 +59,7 @@ input{
 }
 
 .oBut{
-    background-color: #717F92; 
+    background-color: #F26926; 
     border: none;
     color: white;
     padding: 7px;
@@ -88,4 +88,10 @@ section{
 }
 #year, #make, #model, #color {
     background-color: rgba(1,1,1,0.0);
+}
+#centered{
+    text-align: center;
+}
+h3{
+    padding-bottom: 3vw;
 }
