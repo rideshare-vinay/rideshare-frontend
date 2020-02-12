@@ -2,6 +2,10 @@ small {
     color:red;
 }
 
+section{
+font: futura;
+}
+
 .oBut{
     background-color: #F26926 !important; 
     border: none;
@@ -21,7 +25,7 @@ small {
 }
 
 .main{
-    margin: 15% 2%;
+    margin: 5% 2%;
   }
 
   .register-form {
@@ -31,6 +35,12 @@ small {
     margin:0px auto;
     width: 80%;
     text-align: center;
+    background-image: url(/../assets/oBack.svg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
   .mat-card-header{
@@ -39,6 +49,7 @@ small {
 
   .mat-card-title{
     font: futura;
+    font-weight: bold;
     font-size: 200%;
   }
 
@@ -72,4 +83,8 @@ small {
 
 .table-mobile .cell {
 	display: table-cell;
+}
+
+input{
+  color: black;
 }
