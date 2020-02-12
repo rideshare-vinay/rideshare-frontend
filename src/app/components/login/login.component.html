@@ -30,17 +30,17 @@
     <div class="divSpace">
         <!--Space From Top-->
     </div>
-<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-    <div fxFlex="45%" style="text-align: center;">
+<div fxLayout="row" fxLayout.xs="column-reverse" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center">
+    <div fxFlex="45%">
         <img src="../assets/login.jpeg" alt="RideShare" class="responsive"/>
     </div>
-    <div fxFlex="45%" style="text-align: center;">
+    <div fxFlex="45%" >
       <mat-card class="example-card loginCard" >
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
         </mat-card-header>
         <mat-card-content>
-            <mat-form-field class="roundInput">
+            <mat-form-field>
                 <mat-label>Account</mat-label>
                 <input matInput type="text" color="warn" placeholder="Select An Account" name="chosenUserFullName" [(ngModel)]="chosenUserFullName" (click)="toggleDropDown()" (ngModelChange)="searchAccount()">
                 <mat-select>
@@ -51,7 +51,7 @@
                 </mat-select>
             </mat-form-field>
               <br>
-            <mat-form-field class="roundInput">
+            <mat-form-field>
                 <mat-label>Username</mat-label>
                 <input matInput type="text" color="warn" [(ngModel)]="userName" name="userName" placeholder="Username">
               </mat-form-field><br>

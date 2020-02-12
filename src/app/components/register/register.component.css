@@ -38,6 +38,7 @@ small {
 
   ::ng-deep .mat-form-field-label{
     color: rgb(150, 150, 150) !important; 
+    font: futura;
     font-size: 110%;  
   }
   

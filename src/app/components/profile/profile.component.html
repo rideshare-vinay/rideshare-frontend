@@ -5,6 +5,7 @@
             <img  mat-card-image src="../assets/profile.jpeg" class="responsive">
         </div>
         <div fxFlex="45%">
+            
         <mat-card class="card-detail">
             <mat-card-header class="card-title" > 
                 <mat-card-title><h3>Profile</h3></mat-card-title>
@@ -37,11 +38,17 @@
                 <div fxLayout="row">
                     <div fxFlex="10%"></div>
                     <div fxFlex="40%">
-                        <div *ngIf="user.driver">
+                        <div *ngIf="user.driver ">
                            <button class="oBut" routerLink="/car">View Vehicle</button>
                         </div>
                         <div *ngIf="!user.driver">
-                            <button class="oBut" routerLink="/new/car">Add Vehicle</button>
+                            <div *ngIf="ownCar">
+                                <button class="oBut" routerLink="/car">View Vehicle</button>
+                            </div>
+                            <div *ngIf="!ownCar">
+                                <button class="oBut" routerLink="/new/car">Add Vehicle</button>
+                            </div>
+                            
                         </div>
                         <br>
                         <div *ngIf= "user.driver" >

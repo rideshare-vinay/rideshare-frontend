@@ -59,7 +59,6 @@ export class ProfileComponent implements OnInit {
     } else {
       this.getUserInfo();
       this.getDriverCar(this.user.userId);
-      console.log("end")
     }
   }
 

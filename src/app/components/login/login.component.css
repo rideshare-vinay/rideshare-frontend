@@ -17,8 +17,8 @@
     transition-duration: 0.4s
 }
 .oBut:hover{
-    background-color:#ffffff;
-    color: black;
+    background-color:#717F92;
+    color: white;
 }
 .oBut:disabled{
     background-color: #F26926 ; 
@@ -90,6 +90,7 @@ p {
     z-index: 1;
 }  
 .responsive {
+    margin-top: 5%;
     max-width: 90%;
     height: auto;
 }
@@ -104,6 +105,7 @@ p {
     border-radius: 1.5em;
     padding-top: 3vw;
     margin-top: 3vw;
+    text-align: center;
 }
 
 input{
@@ -124,16 +126,6 @@ a{
 }
 mat-label{
     font: futura;
-    font-size: 1.25em;
-    color: black; 
+    font-size: 110%;
 }
 
-::ng-deep .mat-form-field-underline {
-    display: none;
-  }
-
-
-.roundInput{
-    margin-top: 5%;
-    width: 30vw;
-}
