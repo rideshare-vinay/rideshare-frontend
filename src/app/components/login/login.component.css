@@ -33,10 +33,16 @@
     border: none;
 }
 
+::ng-deep .mat-form-field-label{
+    color: rgb(150, 150, 150) !important; 
+    font: futura;
+    font-size: 110%;  
+  }
+
 ::ng-deep .mat-form-field{
   color: rgb(150, 150, 150) !important; 
-  font-size: 110%;  
-  border: #F26926;
+  font: futura;
+  font-size: 110%;
 }
 
 ::ng-deep .mat-form-field-ripple{

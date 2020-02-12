@@ -61,6 +61,7 @@
 </div> -->
 
 <section class="main">
+<mat-card class="register-form">
 <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
@@ -68,7 +69,7 @@
     </mat-card-header>
 </div>
 <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-    <div fxFlex="15%" style="text-align: center;">        
+    <div fxFlex="45%" style="text-align: center;">        
         <mat-form-field class="example-form-field">
             <input matInput type="text" placeholder="Username" [(ngModel)]="user.userName" name="userName">
             <small *ngIf="user.userName && !validationService.validateUserName(user.userName)">User Name Should Be 3 to 8 Characters</small>
@@ -77,7 +78,7 @@
             <input matInput type="text" placeholder="Email" [(ngModel)]="user.email" name="email">
             <small *ngIf="user.email && !validationService.validateEmail(user.email)">Invalid Email</small>
           </mat-form-field><br>
-          <mat-form-field>
+          <mat-form-field class="example-form-field">
             <mat-label>Location</mat-label>
             <mat-select id="location" [(value)]="location" (change)='changeLocation($event)' class="form-control">
                 <mat-option value=""></mat-option>             
@@ -87,7 +88,7 @@
             </mat-select>
           </mat-form-field><br>      
     </div> 
-    <div fxFlex="15%" style="text-align: center;">
+    <div fxFlex="45%" style="text-align: center;">
         <mat-form-field class="example-form-field">
             <input matInput type="text" placeholder="First Name" [(ngModel)]="user.firstName" name="firstName">
             <small *ngIf="user.firstName && !validationService.validateName(user.firstName)">Invalid Name</small>
@@ -109,7 +110,7 @@
             </mat-select>
           </mat-form-field><br>
     </div>  
-    <div fxFlex="15%" style="text-align: center;">
+    <div fxFlex="45%" style="text-align: center;">
         <mat-form-field class="example-form-field">
             <input matInput type="text" placeholder="Last Name" [(ngModel)]="user.lastName" name="lastName">
             <small *ngIf="user.lastName && !validationService.validateName(user.lastName)">Invalid Name</small>
@@ -133,4 +134,5 @@
         <button mat-raised-button type="submit" (click)="signUp()" [disabled]="!(user.userName && user.firstName && user.lastName && user.email && user.phoneNumber)" class="button oBut">SUBMIT</button>
     </mat-card-actions>
 </div>
+</mat-card>
 </section>
