@@ -1,110 +1,74 @@
 import { TestBed } from '@angular/core/testing';
 
+import { Car } from 'src/app/models/car';
 import { CarService } from './car.service';
-import { AdminComponent } from 'src/app/components/admin/admin.component';
-import { CarRegisterComponent } from 'src/app/components/car-register/car-register.component';
-import { RegisterComponent } from 'src/app/components/register/register.component';
-import { LoginComponent } from 'src/app/components/login/login.component';
-import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from 'src/app/app-routing.module';
-import { FormsModule } from '@angular/forms';
-import { APP_BASE_HREF } from '@angular/common';
-import { of } from 'rxjs';
-import { MyCarComponent } from 'src/app/components/my-car/my-car.component';
-import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
-import { PreferenceComponent } from 'src/app/components/preference/preference.component';
-import { ProfileComponent } from 'src/app/components/profile/profile.component';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { User } from 'src/app/models/user';
+import { UserService } from '../user-service/user.service';
+
 
 describe('CarService', () => {
-  beforeEach(() => 
+  let carService: CarService;
+  let httpMock: HttpTestingController;
+  let mockUser: User = { userId: 1, acceptingRides: false, active: true, batch: null, driver: false, email: "dsjcsd", firstName: "dsjncskdnc", lastName: "jksdncksn", phoneNumber: "cknsdcnsdl", userName: "sjcnskd" };
+  let mockCar: Car = { carId: 1, color: "red", make: "Jenkin", model: "Simprola", seats: 7, user: mockUser, year: 2000 };
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
-     declarations: [AdminComponent, CarRegisterComponent, RegisterComponent, LoginComponent, MyCarComponent, NavbarComponent, PreferenceComponent, ProfileComponent],
-     imports: [HttpClientModule, AppRoutingModule, FormsModule],
-     providers: [{provide: APP_BASE_HREF, useValue: '/my/app'}]
-  }));
+      imports: [HttpClientTestingModule, RouterTestingModule],
+    });
+    carService = TestBed.get(CarService);
+    httpMock = TestBed.get(HttpTestingController);
+  });
 
   it('should be created', () => {
-    const service: CarService = TestBed.get(CarService);
-    expect(service).toBeTruthy();
-  });
-});
-
-  describe('CarService', () => {
-    let carService: CarService;
-    
-    beforeEach(() => {
-      TestBed.configureTestingModule({
-      declarations: [AdminComponent, CarRegisterComponent, RegisterComponent, LoginComponent, MyCarComponent, NavbarComponent, PreferenceComponent, ProfileComponent],
-      imports: [HttpClientModule, AppRoutingModule, FormsModule],
-      providers: [{provide: APP_BASE_HREF, useValue: '/my/app'}]
-    })
-
-    carService = TestBed.get(CarService);
-  })
-
-  it('should register a car', () => {
     expect(carService).toBeTruthy();
   });
 
-    //Adding test for getAllCars() method
-    describe('getAllCars', () => {
-      it('should return a collection of cars', () => {
-        const carsResponse = [
-          {
-            carId: 1,
-            color: 'black',
-            seats: 6,
-            make: 'Tesla',
-            model: 'Model X',
-            year: 2019,
-            user: {
-              userId: 1,
-              userName: 'carsryan',
-            batch: {
-              batchNumber: 1,
-              batchLocation: '123'
-            },
-            firstName: 'Ryan',
-            lastName: 'Carstons',
-            email: 'ryan@gmail.com',
-            phoneNumber: '1231231231',
-            driver: true,
-            active: true,
-            acceptingRides: true
-            }
-          },    
-          {
-            carId: 2,
-            color: 'white',
-            seats: 4,
-            make: 'Toyota',
-            model: 'Supra',
-            year: 2019,
-            user: {
-              userId: 2,
-              userName: 'pwin',
-            batch: {
-              batchNumber: 2,
-              batchLocation: '456'
-            },
-            firstName: 'Peter',
-            lastName: 'Nguyen',
-            email: 'pete@gmail.com',
-            phoneNumber: '3213213213',
-            driver: true,
-            active: true,
-            acceptingRides: true
-                  }
-            }  
-        ];
-        let response;
-        spyOn(carService, 'getAllCars').and.returnValue(of(carsResponse));
-  
-        carService.getAllCars().subscribe(res => {
-          response = res;
-        });
-  
-        expect(response).toEqual(carsResponse);
-      });
+  afterEach(() => {
+    httpMock.verify();
+  });
+
+  it('should return list of cars from the API via a GET', () => {
+    let mockCars: Car[] = [
+      { carId: 1, color: "red", make: "Toyota", model: "Carola", seats: 4, year: 2010, user: null },
+      { carId: 2, color: "green", make: "Honda", model: "Accord", seats: 4, year: 2016, user: null },
+      { carId: 3, color: "blue", make: "BMW", model: "B350", seats: 2, year: 2013, user: null },
+    ];
+
+    carService.getAllCars().subscribe(cars => {
+      expect(cars.length).toBe(3);
+      expect(cars).toEqual(mockCars);
     });
+
+    const request = httpMock.expectOne(carService.url);
+
+    expect(request.request.method).toBe("GET");
+    request.flush(mockCars);
+  });
+
+  it("should return a car based on user id from an API via a GET", () => {
+
+    carService.getCarByUserId(mockUser.userId).then(car => {
+      expect(car).toEqual(mockCar);
+    });
+
+    const request = httpMock.expectOne(`${carService.url}users/${mockUser.userId}`);
+
+    expect(request.request.method).toBe("GET");
+
+    request.flush(mockCar);
+  });
+
+  it("should remove car based on car id from an API via a DELETE", () => {
+    carService.removeCar(mockCar.carId).subscribe( car => {
+      expect(car).toEqual(mockCar);
+    });
+    
+    let request = httpMock.expectOne(carService.url+mockCar.carId);
+
+    expect(request.request.method).toBe("DELETE");
+    request.flush(mockCar);
+  });
 });
