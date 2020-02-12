@@ -68,8 +68,8 @@
       <mat-card-title>REGISTER</mat-card-title>
     </mat-card-header>
 </div>
-<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-    <div fxFlex="45%" style="text-align: center;">        
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" >
+    <div fxFlex="45%" >        
         <mat-form-field class="example-form-field">
             <input matInput type="text" placeholder="Username" [(ngModel)]="user.userName" name="userName">
             <small *ngIf="user.userName && !validationService.validateUserName(user.userName)">User Name Should Be 3 to 8 Characters</small>
@@ -88,7 +88,7 @@
             </mat-select>
           </mat-form-field><br>      
     </div> 
-    <div fxFlex="45%" style="text-align: center;">
+    <div fxFlex="45%" >
         <mat-form-field class="example-form-field">
             <input matInput type="text" placeholder="First Name" [(ngModel)]="user.firstName" name="firstName">
             <small *ngIf="user.firstName && !validationService.validateName(user.firstName)">Invalid Name</small>
@@ -110,7 +110,7 @@
             </mat-select>
           </mat-form-field><br>
     </div>  
-    <div fxFlex="45%" style="text-align: center;">
+    <div fxFlex="45%">
         <mat-form-field class="example-form-field">
             <input matInput type="text" placeholder="Last Name" [(ngModel)]="user.lastName" name="lastName">
             <small *ngIf="user.lastName && !validationService.validateName(user.lastName)">Invalid Name</small>

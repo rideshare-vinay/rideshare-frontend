@@ -28,10 +28,9 @@ small {
     border: 1px solid #dddddd;
     border-radius: 7px;
     padding: 3%;
-    margin-top: 8%;
-    margin-left: 30%;
-    margin-right: 30%;
-    width: 75%;
+    margin:0px auto;
+    width: 80%;
+    text-align: center;
 }
 
   .mat-card-header{
