@@ -82,11 +82,8 @@
           </mat-form-field><br>
           <mat-form-field class="example-form-field">
             <mat-label>Location</mat-label>
-            <mat-select id="location" [(value)]="location" (change)='changeLocation($event)' class="form-control">
-                <mat-option value=""></mat-option>             
-                <div *ngFor="let batch of batches">
-                    <mat-option value="{{batch.batchLocation}}">{{batch.batchLocation}}</mat-option>
-                </div>
+            <mat-select  id="location" [(value)]="location" class="form-control">
+                <mat-option *ngFor="let batch of batches" value="{{batch.batchLocation}}">{{batch.batchLocation}}</mat-option>
             </mat-select>
           </mat-form-field><br>      
     </div> 
@@ -104,13 +101,7 @@
           <mat-form-field class="example-form-field">
             <mat-label>Batch Number</mat-label>
             <mat-select id="batchNumber" [(value)]="batchNumber" class="form-control">
-                <mat-option value=""></mat-option>
-                <mat-option value="1">1</mat-option>
-                <mat-option value="2">2</mat-option>
-                <mat-option value="3">3</mat-option>
-                <mat-option value="4">4</mat-option>
-                <mat-option value="5">5</mat-option>
-                <mat-option value="6">6</mat-option>
+                <mat-option *ngFor="let batch of batches" value="{{batch.batchNumber}}">{{batch.batchNumber}}</mat-option>
             </mat-select>
           </mat-form-field><br>
     </div>  
