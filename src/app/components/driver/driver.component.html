@@ -10,8 +10,6 @@
         </mat-card-header>
         <mat-card-content>
             <div fxLayout="row">
-                <!-- <div fxFlex="10%">
-                </div> -->
                 <div fxFlex="100%">
                   <table id="detail"> 
                     <tr class="tHeader">
@@ -31,11 +29,11 @@
                       <td>{{userDriver?.batch.batchLocation}}</td>
                     </tr>
                     <tr>
-                      <th>Car: </th>
+                      <th id="Car">Car: </th>
                       <td>{{myCar.year}} {{myCar.make}} {{myCar.model}}</td>
                     </tr>
                     <tr>
-                      <th>Seats:  </th>
+                      <th id="Seats">Seats:  </th>
                       <td>{{myCar.seats}}</td>
                     </tr>
                   </table>

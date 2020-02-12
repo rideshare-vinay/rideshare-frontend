@@ -57,7 +57,7 @@ font: futura;
   .mat-card-title{
     font: futura;
     font-weight: bold;
-    font-size: 200%;
+    font-size: 2em;
   }
 
   .mat-select{
@@ -67,13 +67,13 @@ font: futura;
   ::ng-deep .mat-form-field-label{
     color: rgb(150, 150, 150) !important; 
     font: futura;
-    font-size: 110%;  
+    font-size: 1.1em;  
   }
 
 ::ng-deep .mat-form-field{
   color: rgb(150, 150, 150) !important; 
   font: futura;
-  font-size: 110%; 
+  font-size: 1.1em; 
 }
 
 ::ng-deep .mat-form-field-ripple{
@@ -96,10 +96,10 @@ input{
   color: black;
 }
 mat-label{
-  font-size: 1.1vw;
+  font-size: 1.1em;
   font-weight: bold;
   color: black;
 }
-#location, #batchNumber {
+#location, #batchNumber, #address {
   background-color: rgba(1,1,1,0.0);
 }

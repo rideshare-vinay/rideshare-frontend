@@ -52,17 +52,9 @@
           </mat-form-field><br>
           <mat-form-field class="example-form-field">
             <mat-label>Address</mat-label>
-            <input matInput type="text" placeholder="Address">
+            <input id="address" matInput type="text" placeholder="Address">
             <small *ngIf="user.email && !validationService.validateEmail(user.email)">Invalid Email</small>
           </mat-form-field><br>
-          <!-- <mat-form-field class="example-form-field">
-            <mat-label>Driver/Rider</mat-label>
-            <mat-select id="batch number" [(value)]="role" class="form-control">
-                <mat-option value=""></mat-option>
-                <mat-option value="driver">Driver</mat-option>
-                <mat-option value="rider">Rider</mat-option>
-            </mat-select>
-          </mat-form-field><br> -->
     </div>     
 </div>
 <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
