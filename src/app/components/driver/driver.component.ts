@@ -37,8 +37,8 @@ export class DriverComponent implements OnInit {
   constructor(private carService: CarService, private userService: UserService, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
-    let userId=1;
-    //let userId = this.authService.user.userId;
+    // let userId=1;
+    let userId = this.authService.user.userId;
     if (userId) {
       this.userService.getDriverById(userId).
         subscribe(

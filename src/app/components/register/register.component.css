@@ -24,11 +24,21 @@ small {
     margin: 15% 2%;
   }
 
+  .register-form {
+    border: 1px solid #dddddd;
+    border-radius: 7px;
+    padding: 3%;
+    margin:0px auto;
+    width: 80%;
+    text-align: center;
+}
+
   .mat-card-header{
       margin-bottom: 3%;  
   }
 
   .mat-card-title{
+    font: futura;
     font-size: 200%;
   }
 
@@ -41,8 +51,25 @@ small {
     font: futura;
     font-size: 110%;  
   }
+
+::ng-deep .mat-form-field{
+  color: rgb(150, 150, 150) !important; 
+  font: futura;
+  font-size: 110%; 
+}
+
+::ng-deep .mat-form-field-ripple{
+  background-color: #F26926 !important;   
+}
   
-  ::ng-deep .mat-form-field-ripple{
-    background-color: #F26926 !important;   
-  }
-  
+.table-mobile {
+	display: table !important;
+}
+
+.table-mobile .row {
+	display: table-row !important;
+}
+
+.table-mobile .cell {
+	display: table-cell;
+}

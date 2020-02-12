@@ -25,8 +25,8 @@ export class RegisterComponent implements OnInit {
 	batch: Batch = new Batch()
 	user: User = new User();
 	batchNumber: number;
-	location: string;
-	role: string;
+	location: string ="";
+	role: string ="";
 
   /**
    * This is a constructor
