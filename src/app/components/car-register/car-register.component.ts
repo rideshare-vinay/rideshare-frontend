@@ -52,8 +52,8 @@ export class CarRegisterComponent implements OnInit {
   ngOnInit() {
     this.userId = this.authService.user.userId;
     if (!this.userId) {
-      this.router.navigate(['']);
-    } else {
+      //this.router.navigate(['']);
+    }
       this.carLookupService.getYears().subscribe(data =>{
         this.allYears=this.xmlParser(data);
         console.log(this.allYears)
@@ -61,7 +61,6 @@ export class CarRegisterComponent implements OnInit {
         this.totalPage = Math.ceil(this.allYears.length / 5);
       })
       
-    }
   }
 
  /**

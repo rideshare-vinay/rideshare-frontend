@@ -1,44 +1,62 @@
 <div class="container">
     <form>
-        <h3>Add Car To Become A Driver</h3>
-        <div class="form-group">
-            <label for="color">Color <small>*</small></label><br>
-            <input id="color" type="text" placeholder="Color of the Car" [(ngModel)]="car.color" name="color" required><br>
-        </div>
-        <div class="form-group">
-            <label for="seats">Seats <small>*</small></label><br>
-            <input id="seats" type="number" placeholder="Seats" [(ngModel)]="car.seats" name="seats" min="1" max="6" step="1" required><br>
-            <small *ngIf="(car.seats || car.seats===0) && !validationService.validateSeats(car.seats)">The Passenger Capacity Must Between 1 To 6</small>
-        </div>
-        
-        <label for="years">Year:</label><br>
-        <input type="text" placeholder="Year" name="year" [(ngModel)]="car.year" (click)="toggleDropDown()" (ngModelChange)="searchMake()" autocomplete="off"/>
-        <button type="button" class="dropbtn" (click)="toggleDropDown()"><small>▼</small></button>
-        <div class="dropdown-content" [ngStyle]="showDropDown? {'display': 'block'} : {'display': 'none'}">
-            <button type="button" id="prev-btn" *ngIf="curPage>1" (click)="prevPage()">^</button>
-            <div *ngFor="let year of years">
-                <p (click)="newChangeYear(year)">{{year}}</p>
+        <h3>Add a Vehicle To Become A Driver</h3>
+        <p><small>*</small> indicates required fields </p>
+
+        <div class="grid">
+            <div class="row">
+                <div class="form-group col-sm">
+                    <label for="color">Vehicle Color <small>*</small></label><br>
+                    <input id="color" type="text" placeholder="Color of the Car" [(ngModel)]="car.color" name="color"
+                        required><br>
+                </div>
+                <div class="form-group col-sm">
+                    <label for="seats">Passenger Seats <small>*</small></label><br>
+                    <input id="seats" type="number" placeholder="Seats" [(ngModel)]="car.seats" name="seats" min="1"
+                        max="6" step="1" required><br>
+                    <small *ngIf="(car.seats || car.seats===0) && !validationService.validateSeats(car.seats)">The
+                        Passenger
+                        Capacity Must Between 1 to 7</small>
+                </div>
             </div>
-            <button type="button" id="next-btn" *ngIf="curPage<totalPage" (click)="nextPage()">v</button>
         </div>
-        
-        <div class="form-group">
-            <label for="year">Make <small>*</small></label><br>
-            <select id="year" (change)='changeMake($event)'>
-                <option *ngFor="let make of makes" [value]="make">{{make}}</option>
-            </select>
+
+        <div class="grid">
+            <div class="row">
+                <div class="col-sm">
+                    <label for="years">Year: <small>*</small></label><br>
+                    <input type="text" placeholder="Year" name="year" [(ngModel)]="car.year" (click)="toggleDropDown()"
+                        (ngModelChange)="searchMake()" autocomplete="off" />
+                    <button type="button" class="dropbtn" (click)="toggleDropDown()"><small>▼</small></button>
+                    <div class="dropdown-content" [ngStyle]="showDropDown? {'display': 'block'} : {'display': 'none'}">
+                        <button type="button" id="prev-btn" *ngIf="curPage>1" (click)="prevPage()">^</button>
+                        <div *ngFor="let year of years">
+                            <p (click)="newChangeYear(year)">{{year}}</p>
+                        </div>
+                        <button type="button" id="next-btn" *ngIf="curPage<totalPage" (click)="nextPage()">v</button>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm">
+                    <label for="year">Vehicle Make <small>*</small></label><br>
+                    <select id="year" (change)='changeMake($event)'>
+                        <option *ngFor="let make of makes" [value]="make">{{make}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-sm">
+                    <label for="model">Vehicle Model <small>*</small></label><br>
+                    <select id="model" (change)='changeModel($event)'>
+                        <option *ngFor="let model of models" [value]="model">{{model}}</option>
+                    </select>
+                </div>
+            </div>
         </div>
 
         <div class="form-group">
-            <label for="model">Model <small>*</small></label><br>
-            <select id="model" (change)='changeModel($event)'>
-                <option *ngFor="let model of models" [value]="model">{{model}}</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <button id="add-car-btn" class="btn btn-primary" type="submit" (click)="addCar()" (keyup.enter)="addCar()" [disabled]="!(car.color && car.seats && car.make && car.model)">Add New Car</button>
-            <a routerLink="/home">Cancel</a>
+            <button id="add-car-btn" class="btn btn-primary" type="submit" (click)="addCar()" (keyup.enter)="addCar()"
+                [disabled]="!(car.color && car.seats && car.make && car.model)">Add New Car</button>
+            <button id="cancel-btn" class="btn btn-primary" routerLink="/home">Cancel</button>
         </div>
     </form>
 </div>
