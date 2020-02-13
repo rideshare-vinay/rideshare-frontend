@@ -9,7 +9,7 @@ import { CarService } from 'src/app/services/car-service/car.service';
 import { Car } from 'src/app/models/car';
 import { Observable, of } from 'rxjs';
 import { LogService } from 'src/app/services/log.service';
-import { log } from 'util';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 describe("MyCarComponent", () => {
   let myCarComponent:MyCarComponent;
@@ -38,6 +38,7 @@ describe("MyCarComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       declarations: [MyCarComponent],
       imports: [HttpClientTestingModule, RouterTestingModule],
       providers: [
