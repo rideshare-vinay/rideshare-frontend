@@ -50,7 +50,7 @@ describe("Login Component", () => {
         FormsModule, 
         HttpClientTestingModule, 
         RouterTestingModule]
-
+  });
   class MockUserService{
     getAllUsers():Observable<User[]>{
       return of(mockUsers);
