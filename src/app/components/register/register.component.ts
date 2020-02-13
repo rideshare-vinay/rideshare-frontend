@@ -4,7 +4,6 @@ import { BatchService } from 'src/app/services/batch-service/batch.service';
 import { Batch } from 'src/app/models/batch';
 import { ValidationService } from 'src/app/services/validation-service/validation.service';
 import { User } from 'src/app/models/user';
-import PlaceResult = google.maps.places.PlaceResult;
 
 @Component({
 	selector: 'app-register',

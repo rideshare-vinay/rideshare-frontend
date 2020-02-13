@@ -10,22 +10,15 @@
     [longitude]="longitude"
     [zoom]="zoom"
     [streetViewControl]="false"
+    [fitBounds]="true"
     (mapClick)="moveMarker($event.coords.lat, $event.coords.lng)"
   >
-    <div *ngIf="marker === true">
-      <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-    </div>
-    <div *ngIf="marker === false">
-      <agm-circle
-        [latitude]="latitude"
-        [longitude]="longitude"
-        [clickable]="false"
-        [draggable]="true"
-        [editable]="false"
-        [fillColor]="color"
-        [fillOpacity]="0.5"
-        [radius]="500"
-      ></agm-circle>
+    <div *ngFor="let marker of markerList">
+      <agm-marker
+        [agmFitBounds]="true"
+        [latitude]="marker.lat"
+        [longitude]="marker.lng"
+      ></agm-marker>
     </div>
     <agm-direction
       [origin]="origin"

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleMapsService } from '../../services/google-maps-service/google-maps.service';
-import PlaceResult = google.maps.places.PlaceResult;
+import { Coordinates } from 'src/app/models/coordinates';
 
 @Component({
   selector: 'app-google-maps',
@@ -8,19 +8,14 @@ import PlaceResult = google.maps.places.PlaceResult;
   styleUrls: ['./google-maps.component.css']
 })
 export class GoogleMapsComponent implements OnInit {
-  private readonly latKey = 'latitude';
-  private readonly longKey = 'longitude';
-  public polyline: google.maps.Polyline;
-  public selectedAddress: PlaceResult;
+  // private readonly latKey = 'latitude';
+  // private readonly longKey = 'longitude';
+  public markerList: Coordinates[] = [];
   public color: string = '#EA4335';
   public inputVisibility: boolean;
   public longitude: number;
   public latitude: number;
-  public destination: any;
-  public marker: boolean;
   public zoom: number;
-  public origin: any;
-  public lines: any;
 
   /**
    * Injects the necessary services for the GoogleMapsComponent.
@@ -35,17 +30,24 @@ export class GoogleMapsComponent implements OnInit {
    * Sets the map location using setCurrentLocation.
    */
   ngOnInit() {
+    let c1: Coordinates = new Coordinates();
+    let c2: Coordinates = new Coordinates();
+    c1.lat = 32;
+    c1.lng = -97;
+    c2.lat = 35;
+    c2.lng = -97;
+    this.markerList.push(c1);
+    this.markerList.push(c2);
+
     this.googleMapsService.googleMapsInputVisibilityEvent.subscribe(
       visibility => {
         this.inputVisibility = visibility;
       }
     );
 
-    this.googleMapsService.showMarkerOrCircleEvent.subscribe(marker => {
-      this.marker = marker;
-    });
-
-    this.setCurrentLocation();
+    if (this.markerList == []) {
+      this.setCurrentLocation();
+    }
   }
 
   /**
@@ -61,22 +63,22 @@ export class GoogleMapsComponent implements OnInit {
     }
   }
 
-  /**
-   * Move the marker to the location the user clicked on.
-   * @param lat the value to set the marker's latitude too.
-   * @param long the value to set the marker's longitude too.
-   */
-  moveMarker(lat: number, long: number) {
-    this.latitude = lat;
-    this.longitude = long;
-  }
+  // /**
+  //  * Move the marker to the location the user clicked on.
+  //  * @param lat the value to set the marker's latitude too.
+  //  * @param long the value to set the marker's longitude too.
+  //  */
+  // moveMarker(lat: number, long: number) {
+  //   this.latitude = lat;
+  //   this.longitude = long;
+  // }
 
-  /**
-   * Moves the marker to the location set in the input bar.
-   * @param location contains the latitude and longitude of the selected location.
-   */
-  onLocationSelected(location: Location) {
-    this.latitude = location[this.latKey];
-    this.longitude = location[this.longKey];
-  }
+  // /**
+  //  * Moves the marker to the location set in the input bar.
+  //  * @param location contains the latitude and longitude of the selected location.
+  //  */
+  // onLocationSelected(location: Location) {
+  //   this.latitude = location[this.latKey];
+  //   this.longitude = location[this.longKey];
+  // }
 }
