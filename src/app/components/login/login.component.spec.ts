@@ -6,11 +6,50 @@ import { HttpTestingController, HttpClientTestingModule } from '@angular/common/
 import { RouterTestingModule } from '@angular/router/testing';
 import { User } from 'src/app/models/user';
 import { of, Observable } from 'rxjs';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { request } from 'http';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { log } from 'util';
-
 describe("Login Component", () => {
   let userService:UserService;
   let loginComponent:LoginComponent;
+  let httpMock:HttpTestingController;
+  let authService:AuthService;
+
+  let mockUsers:User[] = [
+    {userId: 1, 
+      userName: "johns", 
+      firstName: "John", 
+      lastName: "Smith",
+      phoneNumber: "5555555555",
+      email: "email@email.com",
+      driver: false, 
+      batch: {batchLocation: "123abc", batchNumber: 123},
+      acceptingRides: false,
+      active: true},
+    {userId: 2, 
+      userName: "kimj", 
+      firstName: "Kim", 
+      lastName: "Jhonson",
+      phoneNumber: "5555555555",
+      email: "email@email.com",
+      driver: false, 
+      batch: {batchLocation: "123abc", batchNumber: 123},
+      acceptingRides: false,
+      active: true},
+  ];
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      declarations: [LoginComponent],
+      providers: [UserService, AuthService],
+      imports: [
+        FormsModule, 
+        HttpClientTestingModule, 
+        RouterTestingModule]
 
   class MockUserService{
     getAllUsers():Observable<User[]>{
@@ -50,6 +89,12 @@ describe("Login Component", () => {
     let fixture = TestBed.createComponent(LoginComponent);
     loginComponent = fixture.componentInstance;
     userService = TestBed.get(UserService);
+    httpMock = TestBed.get(HttpTestingController);
+    authService = TestBed.get(AuthService);
+  });
+
+  afterEach(() => {
+    httpMock.verify();
   });
 
   it("should create LoginComponent", () => {
@@ -142,6 +187,100 @@ describe("Login Component", () => {
     expect(loginComponent.showDropDown).toBeTruthy();
     loginComponent.toggleDropDown();
     expect(loginComponent.showDropDown).toBeFalsy();
+  });
+
+  describe("nextPage function", () => {
+    it("should increase the curPage variable it nextPage() is called", () => {
+      loginComponent.curPage = 1;
+      loginComponent.nextPage();
+      expect(loginComponent.curPage).toBe(2);
+      loginComponent.nextPage();
+      expect(loginComponent.curPage).toBe(3);
+    });
+
+    // I don't know why this is not working try again later
+    it("should update users variable when nextPage() is called", () => {
+      loginComponent.curPage = 1; 
+      loginComponent.allUsers = [...mockUsers];
+      let expectedUsers = mockUsers.slice(1 * 5 - 5, 1 * 5);
+      loginComponent.nextPage();
+
+      expect(loginComponent.users).toEqual(expectedUsers);
+    });
+  })
+
+  describe("loginFailed() and loginBanned() functions", () => {
+    it("should reset userName if loginFailed is called", () => {
+      loginComponent.userName = "P_Parker";
+      loginComponent.loginBanned();
+      expect(loginComponent.userName).toBeFalsy();
+    });
+  
+    it('should set failed flag variable to true', () => {
+      loginComponent.failed = false;
+      loginComponent.loginFailed();
+      expect(loginComponent.failed).toBeTruthy();
+    });
+    
+    it("should reset user name if loginBanned is called", () => {
+      loginComponent.userName = "B_Banner";
+      loginComponent.loginBanned();
+      expect(loginComponent.userName).toBeFalsy();
+    });
+    
+    it("should set banned flag to true if loginBanned is called", () => {
+      loginComponent.banned = false;
+      loginComponent.loginBanned();
+      expect(loginComponent.banned).toBeTruthy();
+    })
+  });
+
+  describe("login function", () => {
+    it("should make a GET request to get a list of Users", (done) => {
+      loginComponent.userName = "B_Wayne";
+
+      loginComponent.login();
+      done();
+
+      let request = httpMock.expectOne(`${environment.userUri}?username=${loginComponent.userName}`);
+      expect(request.request.method).toBe("GET");
+    })
+
+    it("should call loginFailed if there are no users", (done) => {
+      spyOn(loginComponent, "loginFailed").and.callThrough();
+      loginComponent.userName = "P_Parker";
+      loginComponent.login();
+      done();
+
+      httpMock.expectOne(`${environment.userUri}?username=${loginComponent.userName}`).flush([]);
+      expect(loginComponent.loginFailed).toHaveBeenCalled();
+    });
+    
+    it("should call loginBanned if the chosenUser active state is set to false", (done) => {
+      spyOn(loginComponent, "loginBanned").and.callThrough();
+      loginComponent.chosenUser = mockUsers[0];
+      loginComponent.chosenUser.active = false;
+      loginComponent.login();
+      done();
+      httpMock.expectOne(`${environment.userUri}?username=${loginComponent.userName}`).flush(mockUsers);
+      expect(loginComponent.loginBanned).toHaveBeenCalled();
+    });
+
+    it("should call loginFailed is the authService login returns false", (done) => {
+      spyOn(authService, "login").and.returnValue(false);
+      spyOn(loginComponent, "loginFailed").and.callThrough();
+      loginComponent.chosenUser = mockUsers[0];
+      loginComponent.chosenUser.active = true;
+      loginComponent.userName = mockUsers[0].userName;
+
+      loginComponent.login();
+      done();
+
+      httpMock.expectOne(`${environment.userUri}?username=${loginComponent.userName}`).flush(mockUsers);
+      expect(loginComponent.loginFailed).toHaveBeenCalled();
+    });
+  }); 
+
   });
 
   describe("nextPage function", () => {
