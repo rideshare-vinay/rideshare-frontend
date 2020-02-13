@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { request } from 'http';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { log } from 'util';
+
 describe("Login Component", () => {
   let userService:UserService;
   let loginComponent:LoginComponent;
@@ -29,10 +30,10 @@ describe("Login Component", () => {
       batch: {batchLocation: "123abc", batchNumber: 123},
       acceptingRides: false,
       active: true},
-    {userId: 2, 
-      userName: "kimj", 
-      firstName: "Kim", 
-      lastName: "Jhonson",
+      {userId: 2, 
+        userName: "kimj", 
+        firstName: "Kim", 
+        lastName: "Jhonson",
       phoneNumber: "5555555555",
       email: "email@email.com",
       driver: false, 
@@ -44,44 +45,6 @@ describe("Login Component", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      declarations: [LoginComponent],
-      providers: [UserService, AuthService],
-      imports: [
-        FormsModule, 
-        HttpClientTestingModule, 
-        RouterTestingModule]
-  });
-  class MockUserService{
-    getAllUsers():Observable<User[]>{
-      return of(mockUsers);
-    }
-  }
-
-  let mockUsers:User[] = [
-    {userId: 1, 
-      userName: "johns", 
-      firstName: "John", 
-      lastName: "Smith",
-      phoneNumber: "5555555555",
-      email: "email@email.com",
-      driver: false, 
-      batch: {batchLocation: "123abc", batchNumber: 123},
-      acceptingRides: false,
-      active: true},
-    {userId: 2, 
-      userName: "kimj", 
-      firstName: "Kim", 
-      lastName: "Jhonson",
-      phoneNumber: "5555555555",
-      email: "email@email.com",
-      driver: false, 
-      batch: {batchLocation: "123abc", batchNumber: 123},
-      acceptingRides: false,
-      active: true},
-  ];
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
       declarations: [LoginComponent],
       providers: [UserService],
       imports: [FormsModule, HttpClientTestingModule, RouterTestingModule]
@@ -279,8 +242,6 @@ describe("Login Component", () => {
       httpMock.expectOne(`${environment.userUri}?username=${loginComponent.userName}`).flush(mockUsers);
       expect(loginComponent.loginFailed).toHaveBeenCalled();
     });
-  }); 
-
   });
 
   describe("nextPage function", () => {
@@ -301,7 +262,6 @@ describe("Login Component", () => {
 
       expect(loginComponent.users).toEqual(expectedUsers);
     });
-  })
-})
+  });
 
-
+});
