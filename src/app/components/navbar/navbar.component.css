@@ -1,19 +1,85 @@
-img {
-    width: 13%;
-    height: 13%;
+a{
+    font: futura;
+    font-weight: bold;
+    font-size: 1.5 em;
+    color: #717f92;
+    outline: none;
+    background: none;
+    appearance: none;
     cursor: pointer;
+    border: none;
+}
+
+a:hover { 
+    border-bottom: solid 3px #F26926;
+    text-decoration: none;
+    color: #717f92;
+    
+ }
+a.active { 
+    font-weight:bold;
+    border-bottom: solid 3px #F26926;
+    text-decoration: none;
+    color: #717f92
+ }
+a:after{
+    display:block;
+    content:attr(title);
+    font-weight:bold;
+    height:1px;
+    color:transparent;
+    overflow:hidden;
+    visibility:hidden;
+}
+.tList{
+    margin-top: 1.1em;
+    margin-bottom: 1.1em;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    display: inline-block;
+    text-align: center;
+}
+.headList{
+    outline: none;
+    background: none;
+    appearance: none;
+    cursor: pointer;
+    border: none;
+}
+
+
+img {
+    width: 10%;
+    height: 10%;
 }
 
 nav {
-    background-color: #FCB414;
+    border-bottom: 1px solid rgba(113,127,156,0.3);
+    background-color: white;
 }
 
+p{
+    font: futura;
+    font-weight: bold;
+    color: #717f92;
+}
 
-
-#logout-btn {
+.oBut{
+    background-color: #F26926; 
+    border: none;
+    color: white;
+    padding: 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
     cursor: pointer;
+    width: 7em;     /* Static width buttons */
+    outline:none;   /* Removing outline */
+    border-radius: 10em;
+    font: futura;
+    font-weight: bold;
+    color: #ffffff;
 }
 
-a {
-    cursor: pointer;
-}
+
