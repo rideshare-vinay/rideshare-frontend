@@ -1,4 +1,96 @@
-<div class="container">
+<section>
+    <div fxLayout="row" fxLayout.xs="column-reverse" fxLayoutWrap fxLayoutGap="3%" fxLayoutAlign="center">
+        <div fxFlex="45%" class="image">
+            <img  mat-card-image src="../assets/profile.jpeg" class="responsive">
+        </div>
+        <div fxFlex="45%">
+            
+        <mat-card class="card-detail">
+            <mat-card-header class="card-title" > 
+                <mat-card-title><h3>Profile</h3></mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div fxLayout="row">
+                    <div fxFlex="100%">
+                    <table id="detail" aria-describedby="Profile">
+                        <tr class="tHeader">
+                            <th id="Name">Name: </th>
+                            <td>{{user.firstName}} {{user.lastName}}</td>
+                        </tr>
+                        <tr>
+                            <th id="Email">Email: </th>
+                            <td>{{user.email}}</td>
+                        </tr>
+                        <tr>
+                            <th id="Phone">Phone: </th>
+                            <td>{{user.phoneNumber}}</td>
+                        </tr>
+                        <tr>
+                            <th id="Batch">Batch: </th>
+                            <td>{{user.batch.batchLocation}}</td>
+                        </tr>
+                    </table>
+                    </div>
+                </div>
+                <br>
+                <div fxLayout="row">
+                    <div fxFlex="10%"></div>
+                    <div fxFlex="40%">
+                        <div *ngIf="user.driver ">
+                           <button class="oBut" routerLink="/car">View Vehicle</button>
+                        </div>
+                        <div *ngIf="!user.driver">
+                            <div *ngIf="ownCar">
+                                <button class="oBut" routerLink="/car">View Vehicle</button>
+                            </div>
+                            <div *ngIf="!ownCar">
+                                <button class="oBut" routerLink="/new/car">Add Vehicle</button>
+                            </div>
+                            
+                        </div>
+                        <br>
+                        <div *ngIf= "user.driver" >
+                            <label>Seat: </label>
+                            <mat-form-field class="seat">
+                                <input matInput type="text" name="seats" [(ngModel)]="myCar.seats"/> 
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div fxFlex="40%">
+                        <div>
+                           
+                            <mat-slide-toggle
+                            class="toggle-example"
+                            [color]="color"
+                            [checked]="user.driver"
+                            (change) ="toggleDriver()" 
+                            [disabled]="!(user.active && ownCar)">
+                            <div *ngIf="user.driver">Driver</div>
+                            <div *ngIf="!user.driver">Rider</div>
+                            </mat-slide-toggle>
+                           
+                        </div><br>
+                        <div *ngIf="user.driver">
+                            <mat-slide-toggle
+                                class="toggle-example"
+                                [color]="color"
+                                [checked]="user.acceptingRides"
+                                (change) ="toggleAcceptRider()" 
+                                [disabled]="!(user.driver && user.active)">
+                                <div *ngIf="user.acceptingRides">Accepting</div>
+                                <div *ngIf="!user.acceptingRides">Decline</div>
+                            </mat-slide-toggle>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        </div>
+    </div>
+</section>
+
+
+<!-- <div class="container">
     <div id="profile" *ngIf="newUser.userId">
         <h2>Profile</h2>
         <table class="table table-hover">
@@ -61,4 +153,4 @@
         <div class="alert alert-success" *ngIf="updateSuccess">Update Success!</div>
         <div class="alert alert-danger" *ngIf="updateFailed">Update Failed! Please Try Again Later</div>
     </div>
-</div>
+</div> -->

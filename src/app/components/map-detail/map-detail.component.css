@@ -1,0 +1,65 @@
+#mapHold{
+    font: futura;
+    margin-top: 15em;
+}
+.lHead{
+    font: futura;
+    font-size: 1.5vw;
+    padding: 1.5em 3em;
+    background-color: #F36928;
+    border-top-left-radius: 1.5em;
+    font-weight: bold;
+    border-bottom: 4px solid white;
+
+}
+.rHead{
+    font: futura;
+    font-size: 1.5vw;
+    padding: 1.25em 3em;
+    background-color: #F36928;
+    border-top-right-radius: 1.5em;
+    border-bottom: 4px solid white;
+}
+td{
+    font: futura;
+    font-size: 1.2vw;
+    border-bottom: 2px solid white;
+    padding: 1em 1.5em;
+    color: white;
+    font-weight: bold;
+    background-color: #F68C5A;
+    
+}
+.driverBut{
+    background-color: #C4D8E3; 
+    border: none;
+    color: black;
+    padding: 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 7em;     /* Static width buttons */
+    outline:none;   /* Removing outline */
+    border-radius: 10em;
+    font: futura;
+    font-weight: bold;
+}
+.lBot{
+    border-bottom-left-radius: 1.5em;
+}
+.rBot{
+    border-bottom-right-radius: 1.5em;
+}
+table{
+    display:inline;  
+}
+.responsive {
+    max-width: 90%;
+    height: auto;
+}
+
+section{
+    margin: 7% 2%;
+}
