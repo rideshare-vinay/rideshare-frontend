@@ -144,7 +144,7 @@ describe("Login Component", () => {
     expect(loginComponent.showDropDown).toBeFalsy();
   });
 
-  fdescribe("nextPage function", () => {
+  describe("nextPage function", () => {
     it("should increase the curPage variable it nextPage() is called", () => {
       loginComponent.curPage = 1;
       loginComponent.nextPage();
