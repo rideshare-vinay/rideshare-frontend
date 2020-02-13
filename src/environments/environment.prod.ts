@@ -1,11 +1,12 @@
 /**
  * This is the base URI
  */
-const baseUri = `http://localhost`;
+const baseUri = `http://AWS-IP-ADDRESS`;
 
 /**
- * Set the port var
+ * These are the dev environment variables
  */
+
 const port = '9000';
 
   /**
@@ -13,11 +14,11 @@ const port = '9000';
  */
 
 export const environment = {
-
   production: true,
   environmentName: 'Production Environment',
-  userUri: `${baseUri}:${port}/users/`,
-  batchesUri: `${baseUri}:${port}/batches/`,
-  carUri: `${baseUri}:${port}/cars/`,
-  adminUri: `${baseUri}:${port}/admins/`
+  rootUri: `${baseUri}/`,
+  userUri: `${baseUri}/users/`,
+  batchesUri: `${baseUri}/batches`,
+  carUri: `${baseUri}/cars/`,
+  adminUri: `${baseUri}/admins/`
 };
