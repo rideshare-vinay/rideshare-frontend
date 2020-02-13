@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { request } from 'http';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
-
+import { log } from 'util';
 describe("Login Component", () => {
   let userService:UserService;
   let loginComponent:LoginComponent;
@@ -50,6 +50,41 @@ describe("Login Component", () => {
         FormsModule, 
         HttpClientTestingModule, 
         RouterTestingModule]
+
+  class MockUserService{
+    getAllUsers():Observable<User[]>{
+      return of(mockUsers);
+    }
+  }
+
+  let mockUsers:User[] = [
+    {userId: 1, 
+      userName: "johns", 
+      firstName: "John", 
+      lastName: "Smith",
+      phoneNumber: "5555555555",
+      email: "email@email.com",
+      driver: false, 
+      batch: {batchLocation: "123abc", batchNumber: 123},
+      acceptingRides: false,
+      active: true},
+    {userId: 2, 
+      userName: "kimj", 
+      firstName: "Kim", 
+      lastName: "Jhonson",
+      phoneNumber: "5555555555",
+      email: "email@email.com",
+      driver: false, 
+      batch: {batchLocation: "123abc", batchNumber: 123},
+      acceptingRides: false,
+      active: true},
+  ];
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [LoginComponent],
+      providers: [UserService],
+      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule]
     });
     let fixture = TestBed.createComponent(LoginComponent);
     loginComponent = fixture.componentInstance;
@@ -246,6 +281,27 @@ describe("Login Component", () => {
     });
   }); 
 
+  });
+
+  fdescribe("nextPage function", () => {
+    it("should increase the curPage variable it nextPage() is called", () => {
+      loginComponent.curPage = 1;
+      loginComponent.nextPage();
+      expect(loginComponent.curPage).toBe(2);
+      loginComponent.nextPage();
+      expect(loginComponent.curPage).toBe(3);
+    });
+
+    it("should update users variable when nextPage() is called", () => {
+      loginComponent.curPage = 1;
+      loginComponent.allUsers = mockUsers;
+      let expectedUsers = mockUsers.slice(loginComponent.curPage * 5 - 5, loginComponent.curPage * 5);
+
+      loginComponent.nextPage();
+
+      expect(loginComponent.users).toEqual(expectedUsers);
+    });
+  })
 })
 
 
