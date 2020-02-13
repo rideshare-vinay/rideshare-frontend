@@ -11,11 +11,11 @@ export class GoogleMapsService {
   /**
    * A boolean determining the visibility of the google maps input bar.
    */
-  private googleMapsInputVisibility: boolean = true;
+  private googleMapsInputVisibility: boolean = false;
   /**
    * A boolean determining whether to show a marker or a circle.
    */
-  private showMarkerOrCircle: boolean = true;
+  private showMarkerOrCircle: boolean = false;
   /**
    * A string url for HttpClient requests.
    */

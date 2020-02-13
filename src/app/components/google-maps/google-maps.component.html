@@ -1,4 +1,4 @@
-<main>
+<main id="mapContainer" class="container-fluid">
   <div *ngIf="inputVisibility">
     <input
       matGoogleMapsAutocomplete
@@ -24,7 +24,7 @@
         [editable]="false"
         [fillColor]="color"
         [fillOpacity]="0.5"
-        [radius]="150"
+        [radius]="500"
       ></agm-circle>
     </div>
     <agm-direction
