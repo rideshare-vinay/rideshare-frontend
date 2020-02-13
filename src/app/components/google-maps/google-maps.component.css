@@ -1,21 +1,29 @@
 @media only screen and (max-width: 768px) {
-  agm-map {
+  #mapContainer {
     height: 70vw;
     width: 70vw;
   }
+  agm-map {
+    height: 100%;
+    width: 100%;
+  }
   input {
-    height: 7vw;
-    width: 70vw;
+    height: 15%;
+    width: 100%;
   }
 }
 
 @media only screen and (min-width: 769px) {
-  agm-map {
+  #mapContainer {
     height: 70vh;
     width: 70vh;
   }
+  agm-map {
+    height: 100%;
+    width: 100%;
+  }
   input {
-    height: 7vh;
-    width: 70vh;
+    height: 15%;
+    width: 100%;
   }
 }
