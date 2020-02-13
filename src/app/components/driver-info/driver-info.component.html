@@ -11,15 +11,16 @@
             </select>
         </div>
         <div *ngIf="noUserFound" class="alert alert-danger">No Matched Driver Found<strong (click)="hideMessage()">X</strong></div>
-        <table class="table table-hover">
+        <table class="table table-hover" >
+            <caption>Driver Table</caption>
             <tr>
                 <th id="fullName" (click)="orderByFullName()"> Driver ⇳</th>
-                <th> Email </th>
-                <th> Phone Number </th>
-                <th> Location </th>
-                <th> Car Make </th>
-                <th> Car Model </th>
-                <th> Car Color </th>
+                <th id="Email"> Email </th>
+                <th id="Phone Number"> Phone Number </th>
+                <th id="Location"> Location </th>
+                <th id="Car Make"> Car Make </th>
+                <th id="Car Model"> Car Model </th>
+                <th id="Car Color"> Car Color </th>
                 <th id="year" (click)="orderByYear()"> Car Year ⇳</th>
             </tr>
             <tr *ngFor = "let car of availableCars" class="car-info">
