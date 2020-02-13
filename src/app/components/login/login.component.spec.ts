@@ -6,7 +6,7 @@ import { HttpTestingController, HttpClientTestingModule } from '@angular/common/
 import { RouterTestingModule } from '@angular/router/testing';
 import { User } from 'src/app/models/user';
 import { of, Observable } from 'rxjs';
-import { log } from 'util';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 describe("Login Component", () => {
   let userService:UserService;
@@ -43,6 +43,7 @@ describe("Login Component", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       declarations: [LoginComponent],
       providers: [UserService],
       imports: [FormsModule, HttpClientTestingModule, RouterTestingModule]
@@ -153,16 +154,48 @@ describe("Login Component", () => {
       expect(loginComponent.curPage).toBe(3);
     });
 
+    // I don't know why this is not working try again later
     it("should update users variable when nextPage() is called", () => {
-      loginComponent.curPage = 1;
-      loginComponent.allUsers = mockUsers;
-      let expectedUsers = mockUsers.slice(loginComponent.curPage * 5 - 5, loginComponent.curPage * 5);
-
+      loginComponent.curPage = 1; 
+      loginComponent.allUsers = [...mockUsers];
+      let expectedUsers = mockUsers.slice(1 * 5 - 5, 1 * 5);
       loginComponent.nextPage();
 
       expect(loginComponent.users).toEqual(expectedUsers);
     });
   })
+
+  describe("loginFailed() and loginBanned() functions", () => {
+    it("should reset userName if loginFailed is called", () => {
+      loginComponent.userName = "P_Parker";
+      loginComponent.loginBanned();
+      expect(loginComponent.userName).toBeFalsy();
+    });
+  
+    it('should set failed flag variable to true', () => {
+      loginComponent.failed = false;
+      loginComponent.loginFailed();
+      expect(loginComponent.failed).toBeTruthy();
+    });
+    
+    it("should reset user name if loginBanned is called", () => {
+      loginComponent.userName = "B_Banner";
+      loginComponent.loginBanned();
+      expect(loginComponent.userName).toBeFalsy();
+    });
+    
+    it("should set banned flag to true if loginBanned is called", () => {
+      loginComponent.banned = false;
+      loginComponent.loginBanned();
+      expect(loginComponent.banned).toBeTruthy();
+    })
+  });
+
+
+  fdescribe("login function", () => {
+
+  }); 
+
 })
 
 
