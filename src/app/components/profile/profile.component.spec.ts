@@ -22,6 +22,8 @@ import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { ValidationService } from 'src/app/services/validation-service/validation.service';
 import { MapDetailComponent } from '../map-detail/map-detail.component';
 import { UserService } from 'src/app/services/user-service/user.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router, RouterModule } from '@angular/router';
 
 describe('ProfileComponent', () => {
   let myProfileComponent: ProfileComponent;
@@ -30,13 +32,24 @@ describe('ProfileComponent', () => {
   let mockValidationService: ValidationService;
   let mockUserService: UserService;
   let routerSpy = jasmine.createSpyObj("Router", ['navigate']);
-  let mockUser: User;
+  let mockUser: User = {
+    userId: 1,
+    userName: "testing",
+    batch: { batchLocation: "abc123", batchNumber: 123 },
+    firstName: "jon",
+    lastName: "smith",
+    email: "test",
+    phoneNumber: "also a test",
+    active: true,
+    driver: true,
+    acceptingRides: true
+  };
 
-  class MockAuthServic {
+  class MockAuthService {
     user: User
   }
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [AdminComponent, DriverInfoComponent,
@@ -45,8 +58,12 @@ describe('ProfileComponent', () => {
         CarRegisterComponent, MyCarComponent,
         ProfileComponent, PreferenceComponent,
         MapDetailComponent],
-      imports: [HttpClientModule, AppRoutingModule, FormsModule],
-      providers: [{ provide: APP_BASE_HREF, useValue: '/my/app' }]
+      imports: [HttpClientModule, AppRoutingModule,
+        FormsModule, RouterTestingModule,
+        RouterModule],
+      providers: [{
+        provide: Router ,useValue: routerSpy
+      }]
     })
     // .compileComponents();
     myProfileFixture = TestBed.createComponent(ProfileComponent);
@@ -54,19 +71,7 @@ describe('ProfileComponent', () => {
     mockUserService = TestBed.get(UserService);
     mockAuthService = TestBed.get(AuthService);
     mockValidationService = TestBed.get(ValidationService);
-    mockUser = {
-      userId: 1,
-      userName: "testing",
-      batch: { batchLocation: "abc123", batchNumber: 123 },
-      firstName: "jon",
-      lastName: "smith",
-      email: "test",
-      phoneNumber: "also a test",
-      active: true,
-      driver: true,
-      acceptingRides: true
-    }
-  }));
+  });
 
   it('should create myProfileComponent', () => {
     expect(myProfileComponent).toBeTruthy();
@@ -76,26 +81,35 @@ describe('ProfileComponent', () => {
     expect(myProfileComponent.user.userId).toBeUndefined();
   })
 
-  it("should set user id within myProfileComponent after ngOnInit", () => {
+  it("should set user id within myProfileComponent after ngOnInit", (done) => {
     mockAuthService.user = mockUser;
     myProfileComponent.ngOnInit();
     expect(myProfileComponent.user.userId).toEqual(mockUser.userId);
+    done();
   })
 
-  it("should redirect if userid is set to zero", () => {
-    mockUser.userId = 0;
+  it("should redirect if userid is not true", (done) => {
+    mockUser.userId = null;
     mockAuthService.user = mockUser;
     myProfileComponent.ngOnInit();
-    // const spy = routerSpy.navigate as jasmine.Spy;
-    // const navArgs = spy.calls.first().args[0];
+    done();
 
-    // expect(navArgs).toEqual(['']);
+    const spy = routerSpy.navigate as jasmine.Spy;
+    const navArgs = spy.calls.first().args[0];
+
+    expect(navArgs).toEqual(['']);
   })
 
-  it("should call user info when running ngOnInit", () => {
+  it("should call user info when running ngOnInit", (done) => { 
+    mockUser.userId = 1;
+    spyOn(mockUserService, 'getUserById').and.returnValue(Promise.resolve(mockUser))
     myProfileComponent.user.userId = mockUser.userId;
     myProfileComponent.ngOnInit();
-    expect
+    done();
+    // mockUserService.getUserById(mockUser.userId).then(user => {
+    //   expect(myProfileComponent.user).toEqual(mockUser);
+    //   done();
+    // })
   })
 
   // it('should return user info', () => {

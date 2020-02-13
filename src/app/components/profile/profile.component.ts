@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
    */
 
   user: User = new User();
-  myCar : Car = new Car();
+  myCar: Car = new Car();
   newUser: User = new User();
   batch: Batch = new Batch();
   batches: Batch[] = [];
@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit {
    * @param validationService A validation service is instantiated
    * @param authService An authorization service is instantiated
    */
-  constructor(private log: LogService, private router: Router, private userService: UserService, private batchService: BatchService, public validationService: ValidationService, private authService: AuthService,private carService: CarService) { }
+  constructor(private log: LogService, private router: Router, private userService: UserService, private batchService: BatchService, public validationService: ValidationService, private authService: AuthService, private carService: CarService) { }
 
   ngOnInit() {
     this.user.userId = this.authService.user.userId;;
@@ -68,36 +68,36 @@ export class ProfileComponent implements OnInit {
 
   getUserInfo() {
     this.user.batch = this.batch;
-      this.userService.getUserById(this.user.userId).then(response => {
-        if (response) {
-          this.user = response;
-          this.oldBatchNumber = this.user.batch.batchNumber;
-          this.oldBatchLocation = this.user.batch.batchLocation;
-          this.newUser = Object.assign({}, this.user);
+    this.userService.getUserById(this.user.userId).then(response => {
+      if (response) {
+        this.user = response;
+        this.oldBatchNumber = this.user.batch.batchNumber;
+        this.oldBatchLocation = this.user.batch.batchLocation;
+        this.newUser = Object.assign({}, this.user);
 
-          this.batchService.getAllBatches().subscribe(batches =>{
-           
-            this.batches = batches.filter(batch => batch.batchNumber === this.user.batch.batchNumber).concat(this.batches.filter(batch => batch.batchNumber !== this.user.batch.batchNumber))
+        this.batchService.getAllBatches().subscribe(batches => {
 
-          });
-        } else {
-          this.authService.user = {};
-          this.router.navigate(['']);
-        }
-      })
+          this.batches = batches.filter(batch => batch.batchNumber === this.user.batch.batchNumber).concat(this.batches.filter(batch => batch.batchNumber !== this.user.batch.batchNumber))
+
+        });
+      } else {
+        this.authService.user = {};
+        this.router.navigate(['']);
+      }
+    })
   }
-  
-   /**
-   * A GET method that get driver car 
-   *
-   */
 
-  getDriverCar(userid){
-    this.carService.getCarByUserId(userid).then((response)=>{
+  /**
+  * A GET method that get driver car 
+  *
+  */
+
+  getDriverCar(userid) {
+    this.carService.getCarByUserId(userid).then((response) => {
       if (response) {
         this.myCar = response;
         this.ownCar = true;
-      }else {
+      } else {
         this.ownCar = false;
       }
     })
@@ -116,15 +116,15 @@ export class ProfileComponent implements OnInit {
    */
 
   changeLocation(event) {
-		let option = event.target.options.selectedIndex;
+    let option = event.target.options.selectedIndex;
     this.newUser.batch.batchNumber = this.batches[option].batchNumber;
     this.newUser.batch.batchLocation = this.batches[option].batchLocation;
-	}
+  }
 
   /**
    * A function that update the profile
    */
-  
+
   updateProfile() {
     if (this.validationService.validateUserName(this.newUser.userName) && this.validationService.validateName(this.newUser.firstName) && this.validationService.validateName(this.newUser.lastName) && this.validationService.validateEmail(this.newUser.email) && this.validationService.validatePhone(this.newUser.phoneNumber)) {
       this.editable = '';
@@ -141,7 +141,7 @@ export class ProfileComponent implements OnInit {
 
         this.userService.updateUserInfo(this.newUser).then(response => {
           this.authService.user = response;
-          this.log.info("updated user info: " + '\n' + JSON.stringify(response));          
+          this.log.info("updated user info: " + '\n' + JSON.stringify(response));
           this.getUserInfo();
           this.updateSuccess = true;
           setTimeout(() => this.updateSuccess = false, 5000);
@@ -191,24 +191,24 @@ export class ProfileComponent implements OnInit {
       this.user.active = !this.user.active;
       this.userService.updatePreference('active', this.user.active, this.user.userId);
     }
-    
+
   }
 
-    /**
-   * @function
-   * this function changes the mode of driver and rider
-   */
+  /**
+ * @function
+ * this function changes the mode of driver and rider
+ */
 
   toggleDriver() {
     this.user.driver = !this.user.driver;
     this.userService.updatePreference('driver', this.user.driver, this.user.userId);
-    
+
   }
 
- /**
-   * @function
-   * this function changes the driver account from accepting rides to not accepting rides.
-   */
+  /**
+    * @function
+    * this function changes the driver account from accepting rides to not accepting rides.
+    */
 
   toggleAcceptRider() {
     this.user.acceptingRides = !this.user.acceptingRides;
