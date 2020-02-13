@@ -6,6 +6,7 @@ import { HttpTestingController, HttpClientTestingModule } from '@angular/common/
 import { RouterTestingModule } from '@angular/router/testing';
 import { User } from 'src/app/models/user';
 import { of, Observable } from 'rxjs';
+import { log } from 'util';
 
 describe("Login Component", () => {
   let userService:UserService;
@@ -112,7 +113,56 @@ describe("Login Component", () => {
       loginComponent.searchAccount();
       expect(loginComponent.showDropDown).toBeTruthy();
     })
+
+    it("should set users and totalPage based off of searchAccount function", () => {
+      loginComponent.chosenUserFullName = `${mockUsers[0].firstName} ${mockUsers[0].lastName}: ${mockUsers[0].driver ? "Driver" : "Rider"}`;
+
+      loginComponent.allUsers = mockUsers;
+
+      loginComponent.searchAccount();
+
+      expect(loginComponent.users.every( user => mockUsers.includes(user) )).toBeTruthy();
+
+      expect(loginComponent.totalPage).toEqual(Math.ceil(loginComponent.users.length / 5));
+    });
+
+    it("should set curPage, totalPage and users based off of allUsers", () => {
+      loginComponent.chosenUserFullName = "";
+      loginComponent.allUsers = mockUsers;
+      loginComponent.searchAccount();
+      expect(loginComponent.curPage).toBe(1);
+      expect(loginComponent.totalPage).toEqual(Math.ceil(loginComponent.allUsers.length / 5)); 
+      expect(loginComponent.users).toEqual(mockUsers.slice(loginComponent.curPage * 5 - 5, loginComponent.curPage * 5));
+    });
   });
+
+  it("should toggle showDropDown", () => {
+    loginComponent.showDropDown = false;
+    loginComponent.toggleDropDown();
+    expect(loginComponent.showDropDown).toBeTruthy();
+    loginComponent.toggleDropDown();
+    expect(loginComponent.showDropDown).toBeFalsy();
+  });
+
+  fdescribe("nextPage function", () => {
+    it("should increase the curPage variable it nextPage() is called", () => {
+      loginComponent.curPage = 1;
+      loginComponent.nextPage();
+      expect(loginComponent.curPage).toBe(2);
+      loginComponent.nextPage();
+      expect(loginComponent.curPage).toBe(3);
+    });
+
+    it("should update users variable when nextPage() is called", () => {
+      loginComponent.curPage = 1;
+      loginComponent.allUsers = mockUsers;
+      let expectedUsers = mockUsers.slice(loginComponent.curPage * 5 - 5, loginComponent.curPage * 5);
+
+      loginComponent.nextPage();
+
+      expect(loginComponent.users).toEqual(expectedUsers);
+    });
+  })
 })
 
 

@@ -28,7 +28,7 @@ export class BatchService {
 	 * This function fetches all the batches.
 	 */
 	getAllBatches() {
-		return of(this.batches);
+		return this.http.get<Batch[]>(this.url);
 	}
 
 	getAllBatche(): Observable<Batch[]> {
