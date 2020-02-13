@@ -1,32 +1,69 @@
-<div class="container">
-    <form>
-        <h3>Add Car To Become A Driver</h3>
-        <div class="form-group">
-            <label for="color">Color <small>*</small></label><br>
-            <input id="color" type="text" placeholder="Color of the Car" [(ngModel)]="car.color" name="color" required><br>
-        </div>
-        <div class="form-group">
-            <label for="seats">Seats <small>*</small></label><br>
-            <input id="seats" type="number" placeholder="Seats" [(ngModel)]="car.seats" name="seats" min="1" max="6" step="1" required><br>
-            <small *ngIf="(car.seats || car.seats===0) && !validationService.validateSeats(car.seats)">The Passenger Capacity Must Between 1 To 6</small>
-        </div>
-        <div class="form-group">
-            <label for="make">Make <small>*</small></label><br>
-            <input id="make" type="text" placeholder="Brand of the Car" [(ngModel)]="car.make" name="make" required><br>
-        </div>
-        <div class="form-group">
-            <label for="model">Model <small>*</small></label><br>
-            <input id="model" type="text" placeholder="Car Model" [(ngModel)]="car.model" name="model" required><br>
-        </div>
-        <div class="form-group">
-            <label for="year">Year <small>*</small></label><br>
-            <select id="year" (change)='changeYear($event)'>
-                <option *ngFor="let year of years" [value]="year">{{year}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <button id="add-car-btn" class="btn btn-primary" type="submit" (click)="addCar()" (keyup.enter)="addCar()" [disabled]="!(car.color && car.seats && car.make && car.model)">Add New Car</button>
-            <a routerLink="/home">Cancel</a>
-        </div>
-    </form>
-</div>
+<section>
+    <div class="container" id="centered">
+        <form>
+            <h3>Add a Vehicle To Become A Driver</h3>
+
+            <div class="grid">
+                <div class="row">
+                    <div class="form-group col-sm">
+                        <mat-form-field class="example-form-field">
+                            <mat-label> Color</mat-label>
+                            <mat-select id ="color" placeholder="Color of the Car" [(ngModel)]="car.color" name="color">
+                                <mat-option *ngFor="let color of colors" [value]="color">{{color}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group col-sm">
+                        <mat-form-field class="example-form-field">
+                            <mat-label> Seats</mat-label>
+                            <input matInput type="number" placeholder="Seats" [(ngModel)]="car.seats" name="seats"min="1"
+                            max="6" step="1" required>
+                            <small *ngIf="(car.seats || car.seats===0) && !validationService.validateSeats(car.seats)">The
+                                Passenge Capacity Must Between 1 to 7</small>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="grid">
+                <div class="row">
+                    <!--VV YEAR YEAR YEAR VV---------------------------------------------------- YEAR YEAR YEAR-->
+                    <div class="col-sm mx-3">
+                        <mat-form-field class="example-form-field">
+                            <mat-label> Vehicle Year</mat-label>
+                            <mat-select id ="year" [(ngModel)]="car.year" name="year" (selectionChange)="changeYear()">
+                                <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <!--VV MAKE MAKE MAKE  VV---------------------------------------------------- MAKE MAKE MAKE-->
+                    <div class="form-group col-sm mx-3">
+                        <mat-form-field class="example-form-field">
+                            <mat-label> Vehicle Make</mat-label>
+                            <mat-select id ="make" [(ngModel)]="car.make" name="make" (selectionChange)="changeMake()">
+                                <mat-option *ngFor="let make of makes" [value]="make">{{make}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <!--VV MODEL MODEL MODEL VV---------------------------------------------------- MODEL MODEL MODEL-->
+                    <div class="form-group col-sm mx-3">
+                        <mat-form-field class="example-form-field">
+                            <mat-label> Vehicle Model</mat-label>
+                            <mat-select id ="model" [(ngModel)]="car.model" name="model" >
+                                <mat-option *ngFor="let model of models" [value]="model">{{model}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="form-group" >
+                <button mat-raised-button id="add-car-btn" class="oBut" type="submit" (click)="addCar()" (keyup.enter)="addCar()"
+                    [disabled]="!(car.color && car.seats && car.make && car.model)">Add New Car</button>
+            </div>
+        </form>
+    </div>
+</section>

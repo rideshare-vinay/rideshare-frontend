@@ -25,6 +25,20 @@ import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/go
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MapDetailComponent } from './components/map-detail/map-detail.component';
+
 
 @NgModule({
   declarations: [
@@ -41,6 +55,7 @@ import { AgmDirectionModule } from 'agm-direction';
     PreferenceComponent,
     AdminLoginComponent,
     DriverInfoComponent,
+    MapDetailComponent,
     GoogleMapsComponent
   ],
   imports: [
@@ -51,13 +66,24 @@ import { AgmDirectionModule } from 'agm-direction';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatTableModule,
+    MatCardModule,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatSelectModule,
+    FlexLayoutModule,
     AgmDirectionModule,
     AgmCoreModule.forRoot({
       apiKey: '',
       libraries: ['places']
     }),
-    MatGoogleMapsAutocompleteModule,
-    BrowserAnimationsModule
+    MatGoogleMapsAutocompleteModule
   ],
   providers: [
     UserService,
