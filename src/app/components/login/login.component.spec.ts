@@ -10,11 +10,13 @@ import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { request } from 'http';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
 
 describe("Login Component", () => {
   let userService:UserService;
   let loginComponent:LoginComponent;
   let httpMock:HttpTestingController;
+  let authService:AuthService;
 
   let mockUsers:User[] = [
     {userId: 1, 
@@ -43,7 +45,7 @@ describe("Login Component", () => {
     TestBed.configureTestingModule({
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       declarations: [LoginComponent],
-      providers: [UserService],
+      providers: [UserService, AuthService],
       imports: [
         FormsModule, 
         HttpClientTestingModule, 
@@ -53,6 +55,11 @@ describe("Login Component", () => {
     loginComponent = fixture.componentInstance;
     userService = TestBed.get(UserService);
     httpMock = TestBed.get(HttpTestingController);
+    authService = TestBed.get(AuthService);
+  });
+
+  afterEach(() => {
+    httpMock.verify();
   });
 
   it("should create LoginComponent", () => {
@@ -193,7 +200,7 @@ describe("Login Component", () => {
     })
   });
 
-  fdescribe("login function", () => {
+  describe("login function", () => {
     it("should make a GET request to get a list of Users", (done) => {
       loginComponent.userName = "B_Wayne";
 
@@ -212,7 +219,31 @@ describe("Login Component", () => {
 
       httpMock.expectOne(`${environment.userUri}?username=${loginComponent.userName}`).flush([]);
       expect(loginComponent.loginFailed).toHaveBeenCalled();
-    }); 
+    });
+    
+    it("should call loginBanned if the chosenUser active state is set to false", (done) => {
+      spyOn(loginComponent, "loginBanned").and.callThrough();
+      loginComponent.chosenUser = mockUsers[0];
+      loginComponent.chosenUser.active = false;
+      loginComponent.login();
+      done();
+      httpMock.expectOne(`${environment.userUri}?username=${loginComponent.userName}`).flush(mockUsers);
+      expect(loginComponent.loginBanned).toHaveBeenCalled();
+    });
+
+    it("should call loginFailed is the authService login returns false", (done) => {
+      spyOn(authService, "login").and.returnValue(false);
+      spyOn(loginComponent, "loginFailed").and.callThrough();
+      loginComponent.chosenUser = mockUsers[0];
+      loginComponent.chosenUser.active = true;
+      loginComponent.userName = mockUsers[0].userName;
+
+      loginComponent.login();
+      done();
+
+      httpMock.expectOne(`${environment.userUri}?username=${loginComponent.userName}`).flush(mockUsers);
+      expect(loginComponent.loginFailed).toHaveBeenCalled();
+    });
   }); 
 
 })
