@@ -4,7 +4,7 @@ import { BatchService } from 'src/app/services/batch-service/batch.service';
 import { Batch } from 'src/app/models/batch';
 import { ValidationService } from 'src/app/services/validation-service/validation.service';
 import { User } from 'src/app/models/user';
-import { Observable } from 'rxjs';
+import PlaceResult = google.maps.places.PlaceResult;
 
 @Component({
 	selector: 'app-register',
@@ -22,11 +22,14 @@ export class RegisterComponent implements OnInit {
  * An array of batches 
  */
 	batches: Batch[] = [];
+	validAddress: boolean = false;
 	batch: Batch = new Batch()
 	user: User = new User();
 	batchNumber: number;
 	location: string ="";
 	role: string ="";
+	private readonly latKey = 'latitude';
+	private readonly longKey = 'longitude';
 
   /**
    * This is a constructor
@@ -60,6 +63,13 @@ export class RegisterComponent implements OnInit {
 
 	changeBatchNumber(event) {
 		this.user.batch.batchNumber = event.target.value;
+	}
+
+	onLocationSelected(location: Location) {
+		this.user.address = (<HTMLInputElement>document.getElementById('address')).value;
+		this.user.latitude = location[this.latKey];
+		this.user.longitude = location[this.longKey];
+		this.validAddress = true;
 	}
 
 	/**
