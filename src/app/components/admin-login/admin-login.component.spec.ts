@@ -13,7 +13,7 @@ describe('AdminLoginComponent', () => {
   let adminService: AdminService;
   let authService: AuthService;
 
-  let mockAdmins: Admin[] = [
+  const mockAdmins: Admin[] = [
     {
       adminId: 1,
       userName: 'admin1'
@@ -30,7 +30,7 @@ describe('AdminLoginComponent', () => {
       providers: [AdminService],
       imports: [FormsModule, HttpClientTestingModule, RouterTestingModule]
     });
-    let fixture = TestBed.createComponent(AdminLoginComponent);
+    const fixture = TestBed.createComponent(AdminLoginComponent);
     component = fixture.componentInstance;
     adminService = TestBed.get(AdminService);
   });
@@ -39,10 +39,9 @@ describe('AdminLoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should get a list of admins from AdminService on init', (done) => {
+  it('should get a list of admins from AdminService on init', () => {
     spyOn(adminService, 'getAllAdmins').and.returnValue(of(mockAdmins));
     component.ngOnInit();
-    done();
     expect(component.admins).toEqual(mockAdmins);
   });
 
@@ -58,14 +57,14 @@ describe('AdminLoginComponent', () => {
 
   describe('login function', () => {
     it('should not login from other adminId', () => {
-      let admin = component.chosenAdmin = mockAdmins[0];
+      const admin = component.chosenAdmin = mockAdmins[0];
       admin.adminId = 2;
       component.login();
       expect(component.failed).toEqual(true);
     });
 
     it('should login from authService loginAsAdmin', () => {
-      let admin = component.chosenAdmin = mockAdmins[0];
+      const admin = component.chosenAdmin = mockAdmins[0];
       component.login();
       expect(authService.loginAsAdmin).toHaveBeenCalledWith({ adminId: admin.adminId, userName: admin.userName });
       expect(component.failed).toEqual(false);
