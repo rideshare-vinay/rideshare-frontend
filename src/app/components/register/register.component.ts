@@ -22,7 +22,11 @@ export class RegisterComponent implements OnInit {
  * An array of batches 
  */
 	batches: Batch[] = [];
+	batch: Batch = new Batch()
 	user: User = new User();
+	batchNumber: number;
+	location: string ="";
+	role: string ="";
 
   /**
    * This is a constructor
@@ -38,16 +42,18 @@ export class RegisterComponent implements OnInit {
    * This is an OnInit function that sets the token to the parsed token string.
    * The system will check if the token is valid; once validated a batch service is called.
    */
-	ngOnInit() { }
+	ngOnInit() { 
+		this.batchService.getAllBatche().subscribe(data=>this.batches=data);
+	}
 
 	/**
 	 * This function allows the user to select the batch location.
 	 * @param event
 	 */
 	changeLocation(event) {
-		let location = event.target.value;
-		this.user.batch.batchLocation = location;
-		this.batchService.getAllBatchesByLocation(location).subscribe(data => {
+		// let location = event.target.value;
+		this.user.batch.batchLocation = this.location;
+		this.batchService.getAllBatchesByLocation(this.location).subscribe(data => {
 			this.batches = data;
 		});
 	}
@@ -60,12 +66,15 @@ export class RegisterComponent implements OnInit {
 	 * This function creates a driver if all the validations are true.
 	 * @param role
 	 */
-	signUp(role) {
+	signUp() {
 		if (this.validationService.validateUserName(this.user.userName) && this.validationService.validateName(this.user.firstName) && this.validationService.validateName(this.user.lastName) && this.validationService.validateEmail(this.user.email) && this.validationService.validatePhone(this.user.phoneNumber)) {
 			this.user.firstName = this.validationService.nameFormat(this.user.firstName);
 			this.user.lastName = this.validationService.nameFormat(this.user.lastName);
 			this.user.phoneNumber = this.validationService.phoneFormat(this.user.phoneNumber);
-			this.userService.createDriver(this.user, role);
+			this.batch.batchNumber= this.batchNumber;
+			this.batch.batchLocation= this.location;
+			this.user.batch = this.batch;
+			this.userService.createDriver(this.user, this.role);
 		}
 	}
 

@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
+import { CarService } from 'src/app/services/car-service/car.service';
+import { Car } from 'src/app/models/car';
 
 
 
@@ -19,21 +21,23 @@ export class DriverComponent implements OnInit {
    */
 
   userDriver : User ;
-
-  riders: User[];
+  myCar : Car = new Car();
+  //riders: User[];
   location = '';   
    
   /**
    * Constructor 
+   * @param carService A car service is injected.
    * @param userService An user service is instantiated.
    * @param router Provides an instance of a router.
    * @param authService An auth service is injected.
    */
 
   
-  constructor(private userService: UserService, private router: Router, private authService: AuthService) { }
+  constructor(private carService: CarService, private userService: UserService, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
+    // let userId=1;
     let userId = this.authService.user.userId;
     if (userId) {
       this.userService.getDriverById(userId).
@@ -41,18 +45,30 @@ export class DriverComponent implements OnInit {
           data => {
             this.userDriver = data;
             this.location = data.batch.batchLocation;
-            this.userService.getRidersForLocation(this.location)
-            .subscribe(
-              data=> {
-                this.riders = data;
-              });
+            this.getDriverCar(userId);
+            // this.userService.getRidersForLocation(this.location)
+            // .subscribe(
+            //   data=> {
+            //     this.riders = data;
+            //   });
           })
         }
       else {
         this.router.navigate(['']);
       }
     }
+    /**
+   * A GET method that get driver car
+   *
+   */
 
+    getDriverCar(userid){
+      this.carService.getCarByUserId(userid).then((response)=>{
+        if (response) {
+          this.myCar = response;
+        }
+      })
+    }
   /**
    * A PUT method that changes accepting ride status
    * @param userdriver 
