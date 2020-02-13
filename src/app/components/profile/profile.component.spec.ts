@@ -17,52 +17,97 @@ import { Batch } from 'src/app/models/batch';
 import { DriverInfoComponent } from '../driver-info/driver-info.component';
 import { DriverComponent } from '../driver/driver.component';
 import { AdminLoginComponent } from '../admin-login/admin-login.component';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
+import { ValidationService } from 'src/app/services/validation-service/validation.service';
 
 describe('ProfileComponent', () => {
-  let component: ProfileComponent;
-  let fixture: ComponentFixture<ProfileComponent>;
+  let myProfileComponent: ProfileComponent;
+  let myProfileFixture: ComponentFixture<ProfileComponent>;
+  let mockAuthService: AuthService;
+  let mockValidationService: ValidationService;
+  let routerSpy = jasmine.createSpyObj("Router", ['navigate']);
+  let mockUser: User;
+
+  class MockAuthServic {
+    user: User
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AdminComponent, DriverInfoComponent, DriverComponent, LoginComponent, 
-        AdminLoginComponent, RegisterComponent, CarRegisterComponent, MyCarComponent,
-        ProfileComponent, PreferenceComponent ],
+      declarations: [AdminComponent, DriverInfoComponent,
+        DriverComponent, LoginComponent,
+        AdminLoginComponent, RegisterComponent,
+        CarRegisterComponent, MyCarComponent,
+        ProfileComponent, PreferenceComponent],
       imports: [HttpClientModule, AppRoutingModule, FormsModule],
-      providers: [{provide: APP_BASE_HREF, useValue: '/my/app'}]
+      providers: [{ provide: APP_BASE_HREF, useValue: '/my/app' }]
     })
-    .compileComponents();
+    // .compileComponents();
+    myProfileFixture = TestBed.createComponent(ProfileComponent);
+    myProfileComponent = myProfileFixture.componentInstance;
+    // myProfileFixture.detectChanges();
+    mockAuthService = TestBed.get(AuthService);
+    mockValidationService = TestBed.get(ValidationService);
+    mockUser = {
+      userId: 1,
+      userName: "testing",
+      batch: { batchLocation: "abc123", batchNumber: 123 },
+      firstName: "jon",
+      lastName: "smith",
+      email: "test",
+      phoneNumber: "also a test",
+      active: true,
+      driver: true,
+      acceptingRides: true
+    }
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProfileComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('should create myProfileComponent', () => {
+    expect(myProfileComponent).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it("it should have no user set after construction", () => {
+    expect(myProfileComponent.user.userId).toBeUndefined();
+  })
 
-  it('should return user info', () => {
-    let mockUser: User = {userId:1, userName: "testing", batch: new Batch(), 
-    firstName:"jon", lastName:"smith", email:"test", phoneNumber:"also a test",
-    active: true, driver: true, acceptingRides: true}
-    let spy: any;
-    spy = spyOn(component,'getUserInfo');
+  it("should set user id within myProfileComponent after ngOnInit", () => {
+    mockAuthService.user = mockUser;
+    myProfileComponent.ngOnInit();
+    expect(myProfileComponent.user.userId).toEqual(mockUser.userId);
+  })
 
-    component.getUserInfo();
-    expect(spy).toHaveBeenCalled();
-   })
+  it("should redirect if userid is set to zero", () => {
+    mockUser.userId = 0;
+    mockAuthService.user = mockUser;
+    myProfileComponent.ngOnInit();
+    // const spy = routerSpy.navigate as jasmine.Spy;
+    // const navArgs = spy.calls.first().args[0];
 
-   it('should compare user info', () => {
-    let mockUser: User = {userId:1, userName: "testing", batch: new Batch(), 
-    firstName:"jon", lastName:"smith", email:"test", phoneNumber:"also a test",
-    active: true, driver: true, acceptingRides: true}
-    let spy: any;
-    spy = spyOn(component, 'compareUser');
+    // expect(navArgs).toEqual(['']);
+  })
 
-    component.compareUser();
-    expect(spy).toHaveBeenCalled();
-   })
-   
+  
+
+  // it('should return user info', () => {
+
+  //   let spy: any;
+  //   spy = spyOn(component, 'getUserInfo');
+
+  //   component.getUserInfo();
+  //   expect(spy).toHaveBeenCalled();
+  // })
+
+  // it('should compare user info', () => {
+  //   let mockUser: User = {
+  //     userId: 1, userName: "testing", batch: new Batch(),
+  //     firstName: "jon", lastName: "smith", email: "test", phoneNumber: "also a test",
+  //     active: true, driver: true, acceptingRides: true
+  //   }
+  //   let spy: any;
+  //   spy = spyOn(component, 'compareUser');
+
+  //   component.compareUser();
+  //   expect(spy).toHaveBeenCalled();
+  // })
+
 });
