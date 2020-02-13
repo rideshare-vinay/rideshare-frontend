@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user-service/user.service';
+import { Coordinates } from 'src/app/models/coordinates';
 
 @Component({
   selector: 'app-map-detail',
@@ -39,6 +40,14 @@ export class MapDetailComponent implements OnInit {
           .getDriverRecommendations(5, user)
           .subscribe(recommendations => {
             this.recommendations = recommendations;
+
+            const markerList: Coordinates[] = [];
+            for (const recommendation of recommendations) {
+                const marker: Coordinates = new Coordinates(recommendation.latitude, recommendation.longitude);
+                markerList.push(marker);
+              }
+
+            this.googleMapsService.setCoordinatesList(markerList);
           });
       } else {
         this.authService.user = {};

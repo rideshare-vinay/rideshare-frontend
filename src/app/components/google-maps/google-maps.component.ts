@@ -8,10 +8,13 @@ import { Coordinates } from 'src/app/models/coordinates';
   styleUrls: ['./google-maps.component.css']
 })
 export class GoogleMapsComponent implements OnInit {
-  // private readonly latKey = 'latitude';
-  // private readonly longKey = 'longitude';
-  public markerList: Coordinates[] = [];
-  public color: string = '#EA4335';
+  /**
+   * A list of markers that will be displayed on the map.
+   */
+  public markerList: Coordinates[];
+  /**
+   * A boolean to show or hide an input bar
+   */
   public inputVisibility: boolean;
   public longitude: number;
   public latitude: number;
@@ -30,14 +33,9 @@ export class GoogleMapsComponent implements OnInit {
    * Sets the map location using setCurrentLocation.
    */
   ngOnInit() {
-    let c1: Coordinates = new Coordinates();
-    let c2: Coordinates = new Coordinates();
-    c1.lat = 32;
-    c1.lng = -97;
-    c2.lat = 35;
-    c2.lng = -97;
-    this.markerList.push(c1);
-    this.markerList.push(c2);
+    this.googleMapsService.googleMapsMarkerListEvent.subscribe(markerList => {
+      this.markerList = markerList;
+    });
 
     this.googleMapsService.googleMapsInputVisibilityEvent.subscribe(
       visibility => {
@@ -45,7 +43,7 @@ export class GoogleMapsComponent implements OnInit {
       }
     );
 
-    if (this.markerList == []) {
+    if (this.markerList === []) {
       this.setCurrentLocation();
     }
   }
@@ -63,22 +61,10 @@ export class GoogleMapsComponent implements OnInit {
     }
   }
 
-  // /**
-  //  * Move the marker to the location the user clicked on.
-  //  * @param lat the value to set the marker's latitude too.
-  //  * @param long the value to set the marker's longitude too.
-  //  */
-  // moveMarker(lat: number, long: number) {
-  //   this.latitude = lat;
-  //   this.longitude = long;
-  // }
-
-  // /**
-  //  * Moves the marker to the location set in the input bar.
-  //  * @param location contains the latitude and longitude of the selected location.
-  //  */
-  // onLocationSelected(location: Location) {
-  //   this.latitude = location[this.latKey];
-  //   this.longitude = location[this.longKey];
-  // }
+  /**
+   * Moves the marker to the location set in the input bar.
+   * @param location contains the latitude and longitude of the selected location.
+   */
+  onLocationSelected(location: Location) {
+  }
 }

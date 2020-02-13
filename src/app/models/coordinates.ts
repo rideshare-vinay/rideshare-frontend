@@ -7,4 +7,9 @@ export class Coordinates {
    * A longitude number for passing coordinates.
    */
   lng: number;
+
+  constructor(lat: number, lng: number) {
+    this.lat = lat;
+    this.lng = lng;
+  }
 }

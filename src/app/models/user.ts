@@ -46,11 +46,11 @@ export class User {
      */
     address: string;
     /**
-     * The latitude of the user's home address.
+     * The latitude of the user's current location.
      */
     latitude: number;
     /**
-     * The longitude of the user's home address.
+     * The longitude of the user's current location.
      */
     longitude: number;
 }
