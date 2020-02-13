@@ -9,9 +9,9 @@ const baseUri = `http://AWS-IP-ADDRESS`;
 
 const port = '9000';
 
-  /**
- * These are the constants for the production config
- */
+/**
+* These are the constants for the production config
+*/
 
 export const environment = {
   production: true,
