@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 import { ProfileComponent } from './profile.component';
 import { AdminComponent } from '../admin/admin.component';
@@ -19,12 +20,15 @@ import { DriverComponent } from '../driver/driver.component';
 import { AdminLoginComponent } from '../admin-login/admin-login.component';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { ValidationService } from 'src/app/services/validation-service/validation.service';
+import { MapDetailComponent } from '../map-detail/map-detail.component';
+import { UserService } from 'src/app/services/user-service/user.service';
 
 describe('ProfileComponent', () => {
   let myProfileComponent: ProfileComponent;
   let myProfileFixture: ComponentFixture<ProfileComponent>;
   let mockAuthService: AuthService;
   let mockValidationService: ValidationService;
+  let mockUserService: UserService;
   let routerSpy = jasmine.createSpyObj("Router", ['navigate']);
   let mockUser: User;
 
@@ -34,18 +38,20 @@ describe('ProfileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [AdminComponent, DriverInfoComponent,
         DriverComponent, LoginComponent,
         AdminLoginComponent, RegisterComponent,
         CarRegisterComponent, MyCarComponent,
-        ProfileComponent, PreferenceComponent],
+        ProfileComponent, PreferenceComponent,
+        MapDetailComponent],
       imports: [HttpClientModule, AppRoutingModule, FormsModule],
       providers: [{ provide: APP_BASE_HREF, useValue: '/my/app' }]
     })
     // .compileComponents();
     myProfileFixture = TestBed.createComponent(ProfileComponent);
     myProfileComponent = myProfileFixture.componentInstance;
-    // myProfileFixture.detectChanges();
+    mockUserService = TestBed.get(UserService);
     mockAuthService = TestBed.get(AuthService);
     mockValidationService = TestBed.get(ValidationService);
     mockUser = {
@@ -86,7 +92,11 @@ describe('ProfileComponent', () => {
     // expect(navArgs).toEqual(['']);
   })
 
-  
+  it("should call user info when running ngOnInit", () => {
+    myProfileComponent.user.userId = mockUser.userId;
+    myProfileComponent.ngOnInit();
+    expect
+  })
 
   // it('should return user info', () => {
 
