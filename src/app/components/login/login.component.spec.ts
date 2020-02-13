@@ -7,16 +7,14 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { User } from 'src/app/models/user';
 import { of, Observable } from 'rxjs';
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { request } from 'http';
 
 describe("Login Component", () => {
   let userService:UserService;
   let loginComponent:LoginComponent;
-
-  class MockUserService{
-    getAllUsers():Observable<User[]>{
-      return of(mockUsers);
-    }
-  }
+  let httpMock:HttpTestingController;
 
   let mockUsers:User[] = [
     {userId: 1, 
@@ -46,11 +44,15 @@ describe("Login Component", () => {
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       declarations: [LoginComponent],
       providers: [UserService],
-      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule]
+      imports: [
+        FormsModule, 
+        HttpClientTestingModule, 
+        RouterTestingModule]
     });
     let fixture = TestBed.createComponent(LoginComponent);
     loginComponent = fixture.componentInstance;
     userService = TestBed.get(UserService);
+    httpMock = TestBed.get(HttpTestingController);
   });
 
   it("should create LoginComponent", () => {
@@ -191,9 +193,26 @@ describe("Login Component", () => {
     })
   });
 
-
   fdescribe("login function", () => {
+    it("should make a GET request to get a list of Users", (done) => {
+      loginComponent.userName = "B_Wayne";
 
+      loginComponent.login();
+      done();
+
+      let request = httpMock.expectOne(`${environment.userUri}?username=${loginComponent.userName}`);
+      expect(request.request.method).toBe("GET");
+    })
+
+    it("should call loginFailed if there are no users", (done) => {
+      spyOn(loginComponent, "loginFailed").and.callThrough();
+      loginComponent.userName = "P_Parker";
+      loginComponent.login();
+      done();
+
+      httpMock.expectOne(`${environment.userUri}?username=${loginComponent.userName}`).flush([]);
+      expect(loginComponent.loginFailed).toHaveBeenCalled();
+    }); 
   }); 
 
 })
