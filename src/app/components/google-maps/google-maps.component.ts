@@ -8,6 +8,8 @@ import { Coordinates } from 'src/app/models/coordinates';
   styleUrls: ['./google-maps.component.css']
 })
 export class GoogleMapsComponent implements OnInit {
+  public driverMarkerPath = 'assets/driverIcon.png';
+  public riderMarkerPath = 'assets/riderIcon.png';
   /**
    * A list of markers that will be displayed on the map.
    */
@@ -18,7 +20,6 @@ export class GoogleMapsComponent implements OnInit {
   public inputVisibility: boolean;
   public longitude: number;
   public latitude: number;
-  public zoom: number;
 
   /**
    * Injects the necessary services for the GoogleMapsComponent.
@@ -43,9 +44,7 @@ export class GoogleMapsComponent implements OnInit {
       }
     );
 
-    if (this.markerList === []) {
-      this.setCurrentLocation();
-    }
+    this.setCurrentLocation();
   }
 
   /**
@@ -56,7 +55,6 @@ export class GoogleMapsComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(position => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        this.zoom = 15;
       });
     }
   }
@@ -65,6 +63,5 @@ export class GoogleMapsComponent implements OnInit {
    * Moves the marker to the location set in the input bar.
    * @param location contains the latitude and longitude of the selected location.
    */
-  onLocationSelected(location: Location) {
-  }
+  onLocationSelected(location: Location) {}
 }

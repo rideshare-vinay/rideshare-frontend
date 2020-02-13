@@ -6,17 +6,21 @@
     />
   </div>
   <agm-map
-    [latitude]="latitude"
-    [longitude]="longitude"
-    [zoom]="zoom"
     [streetViewControl]="false"
     [fitBounds]="true"
   >
+    <agm-marker
+      [agmFitBounds]="true"
+      [latitude]="latitude"
+      [longitude]="longitude"
+      [iconUrl]="riderMarkerPath"
+    ></agm-marker>
     <div *ngFor="let marker of markerList">
       <agm-marker
         [agmFitBounds]="true"
         [latitude]="marker.lat"
         [longitude]="marker.lng"
+        [iconUrl]="driverMarkerPath"
       ></agm-marker>
     </div>
   </agm-map>
