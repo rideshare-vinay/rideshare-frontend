@@ -30,7 +30,7 @@
             </mat-form-field>
         </div>
     </div>
-        
+
     <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center" class="relocate">
         <div fxFlex="30%" class="one">
             <mat-form-field >
@@ -49,20 +49,20 @@
         <div fxFlex="30%" class="address fillInput">
             <mat-form-field>
                 <mat-label>Address</mat-label>
-                <input id="address" matInput type="text" placeholder="Address">
-                <small *ngIf="user.email && !validationService.validateEmail(user.email)">Invalid Email</small>
+                <input id="address" matInput type="text" [disabled]="validAddress" placeholder="Address" name="address" matGoogleMapsAutocomplete
+                (onLocationSelected)="onLocationSelected($event)">
             </mat-form-field>
-        </div> 
-      
+        </div>
+
     </div>
     <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" class="relocate2" >
-        <div fxFlex="30%" class="fillInput">        
+        <div fxFlex="30%" class="fillInput">
             <mat-form-field>
                 <mat-label>Location</mat-label>
                 <mat-select  id="location" [(value)]="location" class="form-control">
                     <mat-option *ngFor="let batch of batches" value="{{batch.batchLocation}}">{{batch.batchLocation}}</mat-option>
                 </mat-select>
-            </mat-form-field>     
+            </mat-form-field>
         </div>
         <div fxFlex="30%" class="fillInput">
             <mat-form-field>
@@ -71,13 +71,13 @@
                     <mat-option *ngFor="let batch of batches" value="{{batch.batchNumber}}">{{batch.batchNumber}}</mat-option>
                 </mat-select>
             </mat-form-field>
-        </div>  
+        </div>
         <div fxFlex="30%"></div>
 
-    </div>   
+    </div>
     <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" class="relocate2">
         <mat-card-actions>
-            <button mat-raised-button type="submit" (click)="signUp()" [disabled]="!(user.userName && user.firstName && user.lastName && user.email && user.phoneNumber)" class="button oBut">SUBMIT</button>
+            <button mat-raised-button type="submit" (click)="signUp()" [disabled]="!(user.userName && user.firstName && user.lastName && user.email && user.phoneNumber && validAddress)" class="button oBut">SUBMIT</button>
         </mat-card-actions>
     </div>
     </mat-card>
