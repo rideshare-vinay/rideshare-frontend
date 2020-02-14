@@ -45,6 +45,20 @@ export class ValidationService {
 		return /^\w+\.?\w+@\w+\.\w{2,4}$/.test(email);
 	}
 
+	validateBatchNumber(batchNumber: number): boolean{
+		return (batchNumber >= 0) ? ((batchNumber <= 9999) ? true : false) :false;
+	}
+
+	//Look into more
+	/**
+	 * Revature HQ - Reston, VA
+	 * @param batchLocation 
+	 */
+	validateBatchLocation(batchLocation: string):boolean{
+		return /^[\w ]+-\ \w+,\ \w{2,3}$/.test(batchLocation);
+		//return false;
+	}
+
   /**
 	 * This function validates the phone number.
 	 * @function
