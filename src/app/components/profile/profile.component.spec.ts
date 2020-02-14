@@ -46,7 +46,10 @@ fdescribe('ProfileComponent', () => {
     phoneNumber: "also a test",
     active: true,
     driver: true,
-    acceptingRides: true
+    acceptingRides: true,
+    address: "123 liv+",
+    latitude: 45,
+    longitude: 45
   };
   let mockCar: Car =  {
     carId: 1,

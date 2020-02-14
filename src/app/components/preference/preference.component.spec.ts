@@ -18,11 +18,18 @@ import { MapDetailComponent } from '../map-detail/map-detail.component';
 import { DriverInfoComponent } from '../driver-info/driver-info.component';
 import { AdminLoginComponent } from '../admin-login/admin-login.component';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
+import { User } from 'src/app/models/user';
 
-describe('PreferenceComponent', () => {
+fdescribe('PreferenceComponent', () => {
   let preferenceComponent: PreferenceComponent;
   let preferenceFixture: ComponentFixture<PreferenceComponent>;
+  let mockAuthService:AuthService;
   let routerSpy = jasmine.createSpyObj("Router", ['navigate'])
+
+  class MockAuthService{
+    user:User;
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -49,5 +56,6 @@ describe('PreferenceComponent', () => {
     expect(preferenceComponent).toBeTruthy();
   });
 
+  // it('should get the users preference when running ngOnInit')
 
 });
