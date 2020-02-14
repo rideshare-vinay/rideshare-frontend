@@ -11,10 +11,6 @@ const baseUri = `http://localhost`;
 const port = '9000';
 
 /**
-  * This is the environment config.
-  */
-
-/**
  * This is the environment config.
  */
 export const environment = {
@@ -24,7 +20,9 @@ export const environment = {
   userUri: `${baseUri}:${port}/users/`,
   batchesUri: `${baseUri}:${port}/batches/`,
   carUri: `${baseUri}:${port}/cars/`,
-  adminUri: `${baseUri}:${port}/admins/`
+  adminUri: `${baseUri}:${port}/admins/`,
+  recommendationUri: `${baseUri}:${port}/recommendations/`,
+  googleMapsApiKey: ``
 };
 
 /*
