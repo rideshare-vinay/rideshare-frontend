@@ -1,6 +1,13 @@
 p {
     font-size: smaller;
     color: gray;
+    font-weight: normal;
+    font-family: "futura-pt",sans-serif;
+}
+
+p a{
+    font-weight: bold;
+
 }
 
 select {

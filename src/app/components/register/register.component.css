@@ -20,8 +20,7 @@ section{
     width: 150px;     /* Static width buttons */
     outline:none;   /* Removing outline */
     border-radius: 10em;
-    font-family: "futura-pt",sans-serif;
-    font-weight: bold;
+    font-family: "futura-pt-bold",sans-serif;
     color: #ffffff;
 }
 .oBut:hover{
@@ -52,8 +51,7 @@ section{
   }
 
   .mat-card-title{
-    font-family: "futura-pt",sans-serif;
-    font-weight: bold;
+    font-family: "futura-pt-bold",sans-serif;
     font-size: 2em;
   }
 
@@ -139,6 +137,5 @@ mat-label{
     position: relative;
     bottom:75px;
   }
-
 
 }
