@@ -11,7 +11,7 @@ import { PreferenceComponent } from '../preference/preference.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { APP_BASE_HREF } from '@angular/common';
+
 import { CarRegisterComponent } from '../car-register/car-register.component';
 import { User } from 'src/app/models/user';
 import { Batch } from 'src/app/models/batch';
@@ -28,7 +28,7 @@ import { CarService } from 'src/app/services/car-service/car.service';
 import { Car } from 'src/app/models/car';
 import { Observable, of } from 'rxjs';
 
-describe('ProfileComponent', () => {
+fdescribe('ProfileComponent', () => {
   let myProfileComponent: ProfileComponent;
   let myProfileFixture: ComponentFixture<ProfileComponent>;
   let mockAuthService: AuthService;
@@ -74,6 +74,14 @@ describe('ProfileComponent', () => {
     }
   }
 
+  class MockUserService{
+    getUserById(userId:number){
+      return new Promise((resolve, reject) => {
+        resolve(mockUser);
+      })
+    }
+  }
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -86,9 +94,12 @@ describe('ProfileComponent', () => {
       imports: [HttpClientModule, AppRoutingModule,
         FormsModule, RouterTestingModule,
         RouterModule],
-      providers: [{
-        provide: Router ,useValue: routerSpy
-      }]
+      providers: [
+        { provide: AuthService, useClass: MockAuthService }, 
+        { provide: Router ,useValue: routerSpy },
+        { provide: UserService, useClass: MockUserService },
+        { provide: CarService, useClass: MockCarService }
+      ]
     })
     myProfileFixture = TestBed.createComponent(ProfileComponent);
     myProfileComponent = myProfileFixture.componentInstance;
@@ -107,7 +118,7 @@ describe('ProfileComponent', () => {
     expect(myProfileComponent.user.userId).toBeUndefined();
   })
 
-  xit("should set user id within myProfileComponent after ngOnInit", (done) => {
+  it("should set user id within myProfileComponent after ngOnInit", (done) => {
     mockAuthService.user = mockUser;
     myProfileComponent.ngOnInit();
     expect(myProfileComponent.user.userId).toEqual(mockUser.userId);
@@ -143,13 +154,14 @@ describe('ProfileComponent', () => {
     done();
   })
 
-  xit("sould get a user by their ID", (done) => {
-    myProfileComponent.user.userId = 1;
+  it("should get a user by their ID", (done) => {
+    myProfileComponent.user.userId = mockUser.userId;
     myProfileComponent.batch = { batchLocation: "abc123", batchNumber: 123 };
-    spyOn(myProfileComponent,'getUserInfo')
     myProfileComponent.getUserInfo();
-    expect(myProfileComponent.user.userId).toEqual(mockUser.userId);
-    done();
+    mockUserService.getUserById(myProfileComponent.user.userId).then( user => {
+      expect(myProfileComponent.user).toEqual(mockUser);
+      done();
+    })
   })
 
 });

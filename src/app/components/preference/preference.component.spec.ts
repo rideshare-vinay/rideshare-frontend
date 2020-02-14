@@ -19,7 +19,7 @@ import { DriverInfoComponent } from '../driver-info/driver-info.component';
 import { AdminLoginComponent } from '../admin-login/admin-login.component';
 import { Router } from '@angular/router';
 
-fdescribe('PreferenceComponent', () => {
+describe('PreferenceComponent', () => {
   let preferenceComponent: PreferenceComponent;
   let preferenceFixture: ComponentFixture<PreferenceComponent>;
   let routerSpy = jasmine.createSpyObj("Router", ['navigate'])
@@ -48,4 +48,6 @@ fdescribe('PreferenceComponent', () => {
   it('should create', () => {
     expect(preferenceComponent).toBeTruthy();
   });
+
+
 });
