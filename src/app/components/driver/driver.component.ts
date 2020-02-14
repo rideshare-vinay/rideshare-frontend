@@ -7,8 +7,6 @@ import { CarService } from 'src/app/services/car-service/car.service';
 import { Car } from 'src/app/models/car';
 
 
-
-
 @Component({
   selector: 'app-driver',
   templateUrl: './driver.component.html',
@@ -20,6 +18,7 @@ export class DriverComponent implements OnInit {
    * Initializing userDriver as an User object and set riders array
    */
 
+  userId: number;
   userDriver : User ;
   myCar : Car = new Car();
   //riders: User[];
@@ -38,14 +37,14 @@ export class DriverComponent implements OnInit {
 
   ngOnInit() {
     // let userId=1;
-    let userId = this.authService.user.userId;
-    if (userId) {
-      this.userService.getDriverById(userId).
+    this.userId = this.authService.user.userId;
+    if (this.userId) {
+      this.userService.getDriverById(this.userId).
         subscribe(
           data => {
             this.userDriver = data;
             this.location = data.batch.batchLocation;
-            this.getDriverCar(userId);
+            this.getDriverCar(this.userId);
             // this.userService.getRidersForLocation(this.location)
             // .subscribe(
             //   data=> {

@@ -69,11 +69,11 @@ describe('AdminComponent', () => {
   });
 
   describe('ngOnInit function', () => {
-    it('should get a list of users from AdminService', () => {
+    it('should get a list of users from userService', () => {
       spyOn(userService, 'showAllUser').and.returnValue(of(mockUsers));
       authService.admin = mockAdmin;
       component.ngOnInit();
-      expect(component.adminId).toEqual(mockAdmin.adminId);
+      expect(component.listofUsers).toEqual(mockUsers);
     });
 
     it('should redirect if not auth Admin', () => {
