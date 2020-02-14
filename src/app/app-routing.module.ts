@@ -11,6 +11,7 @@ import { PreferenceComponent } from './components/preference/preference.componen
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { DriverInfoComponent } from './components/driver-info/driver-info.component';
 import { MapDetailComponent } from './components/map-detail/map-detail.component';
+import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 
 
 
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'car',component: MyCarComponent}, 
   {path: 'profile',component: ProfileComponent},  
   {path: 'preference',component: PreferenceComponent},
+  {path: 'map', component: GoogleMapsComponent},
   {path: '**',pathMatch: 'full',redirectTo: 'login'}
 ];
 
