@@ -20,7 +20,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { User } from 'src/app/models/user';
 import { Admin } from 'src/app/models/admin';
 
-fdescribe('NavbarComponent', () => {
+describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let authService: AuthService;
   let userService: UserService;
@@ -42,13 +42,13 @@ fdescribe('NavbarComponent', () => {
     userService = TestBed.get(UserService);
     mockUser = {
       userId: 1,
-      userName: 'user2',
+      userName: 'kimuser',
       firstName: 'kim',
       lastName: 'jhonson',
       phoneNumber: '0123456789',
       email: 'email@email.com',
       driver: false,
-      batch: { batchLocation: '123abc', batchNumber: 123 },
+      batch: { batchLocation: 'loc', batchNumber: 123 },
       acceptingRides: false,
       active: true
     };
@@ -58,11 +58,27 @@ fdescribe('NavbarComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  describe('ngOnInit function', () => {
+    it('should get user by Id and properly resolve the promise', () => {
+      spyOn(userService, 'getUserById').and.returnValue(Promise.resolve(mockUser));
+      authService.user = mockUser;
+      userService.getUserById(mockUser.userId).then(user => {
+        expect(user).toEqual(mockUser);
+      });
+    });
+    it('should properly assign name value when duringngOnInit function', () => {
+      spyOn(userService, 'getUserById').and.returnValue(Promise.resolve(mockUser));
+      authService.user = mockUser;
+      component.ngOnInit();
+      // console.log("############" + component.name);
+      expect(component.name).toMatch(mockUser.firstName);
+    })
+  });
 
-  it('should properly assign name value when duringngOnInit function', () => {
-    spyOn(userService, 'getUserById').and.returnValue(Promise.resolve(mockUser));
-    authService.user = mockUser;
-    component.ngOnInit();
-    expect(component.name).toMatch(mockUser.firstName);
+  it('should should redirect at logout', () => {
+    component.logout();
+    const spy = routerSpy.navigate as jasmine.Spy;
+    const navArgs = spy.calls.first().args[0];
+    expect(navArgs).toEqual(['']);
   });
 });
