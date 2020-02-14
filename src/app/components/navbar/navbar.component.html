@@ -7,13 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarRideshare">
       <ul class="ml-auto headList navbar-nav" *ngIf="!name && !admin">
         <li class="nav-item tList" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a [routerLink]="['/login']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" >SIGN IN</a>
+          <a [routerLink]="['/login']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="isOpen = !isOpen">SIGN IN</a>
         </li>
         <li class="nav-item tList" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a [routerLink]="['/register']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">SIGN UP</a>
+          <a [routerLink]="['/register']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"(click)="isOpen = !isOpen">SIGN UP</a>
         </li>
         <li class="nav-item tList" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a [routerLink]="['/login/admin']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">ADMIN</a>
+          <a [routerLink]="['/login/admin']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"(click)="isOpen = !isOpen">ADMIN</a>
         </li>
       </ul>
       <ul class="ml-auto headList navbar-nav" *ngIf="name">
@@ -40,5 +40,3 @@
 
   </div>
 </nav>
-
-<!-- data-toggle="collapse" data-target=".navbar-collapse.show" -->
