@@ -1,5 +1,5 @@
 section {
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     margin: 3% 2%;
 }
 
@@ -20,7 +20,7 @@ p {
     width: 150px;       
     outline:none;     
     border-radius: 10vw;
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-weight: bold;
     color: #ffffff ;
     transition-duration: 0.4s;
@@ -59,13 +59,13 @@ p {
 
 h1{
     text-align: center;
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-size: 2em;
     font-weight: bold;
 }
 
 th, td{
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     background-color: rgba(255, 255, 255, 0.144);
     font-size: 1.25em;
     border-bottom: 2px solid white;

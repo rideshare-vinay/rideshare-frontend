@@ -1,9 +1,9 @@
 #mapHold{
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     margin-top: 15em;
 }
 .lHead{
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-size: 1.5vw;
     padding: 1.5em 3em;
     background-color: #F36928;
@@ -13,7 +13,7 @@
 
 }
 .rHead{
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-size: 1.5vw;
     padding: 1.25em 3em;
     background-color: #F36928;
@@ -21,7 +21,7 @@
     border-bottom: 4px solid white;
 }
 td{
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-size: 1.2vw;
     border-bottom: 2px solid white;
     padding: 1em 1.5em;
@@ -43,7 +43,7 @@ td{
     width: 7em;     /* Static width buttons */
     outline:none;   /* Removing outline */
     border-radius: 10em;
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-weight: bold;
 }
 .lBot{

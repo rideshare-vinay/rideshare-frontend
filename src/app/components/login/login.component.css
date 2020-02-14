@@ -11,7 +11,7 @@
     width: 150px;       /* Static width buttons */
     outline:none;       /* Removing outline */
     border-radius: 10vw;
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-weight: bold;
     color: #ffffff ;
     transition-duration: 0.4s
@@ -35,13 +35,13 @@ section{
 
 ::ng-deep .mat-form-field-label{
     color: rgb(150, 150, 150) !important; 
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-size: 110%;  
 }
 
 ::ng-deep .mat-form-field{
   color: rgb(150, 150, 150) !important; 
-  font: futura;
+  font-family: "futura-pt",sans-serif;
   font-size: 110%;
 }
 
@@ -119,23 +119,23 @@ p {
 }
 
 input{
-    font: futura;
+    font-family: "futura-pt",sans-serif;
 
     color: black;
 }
 p{
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-weight: bold;
     color: black;   
     padding: 1.5vw;
 
 }
 a{
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-weight: bold; 
 }
 mat-label{
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-size: 110%;
 }
 
