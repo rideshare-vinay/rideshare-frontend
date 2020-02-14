@@ -5,7 +5,6 @@ import { environment } from 'src/environments/environment';
 import { Coordinates } from 'src/app/models/coordinates';
 import { User } from 'src/app/models/user';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -41,7 +40,7 @@ export class GoogleMapsService {
    * @param http Injection of HttpClient for calls to the GoogleMapsController.
    */
   constructor(private http: HttpClient) {
-    this.url = environment.rootUri;
+    this.url = environment.recommendationUri;
   }
 
   /**
@@ -85,9 +84,6 @@ export class GoogleMapsService {
     numberOfDrivers: number,
     riderInformation: User
   ): Observable<User[]> {
-    return this.http.post<User[]>(
-      'http://localhost:9000/recommendations/' + numberOfDrivers,
-      riderInformation
-    );
+    return this.http.post<User[]>(this.url + numberOfDrivers, riderInformation);
   }
 }

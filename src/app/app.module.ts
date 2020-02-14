@@ -37,6 +37,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MapDetailComponent } from './components/map-detail/map-detail.component';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -79,7 +80,7 @@ import { MapDetailComponent } from './components/map-detail/map-detail.component
     FlexLayoutModule,
     AgmDirectionModule,
     AgmCoreModule.forRoot({
-      apiKey: '',
+      apiKey: environment.googleMapsApiKey,
       libraries: ['places']
     }),
     MatGoogleMapsAutocompleteModule

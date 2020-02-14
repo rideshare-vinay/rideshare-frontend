@@ -1,25 +1,33 @@
 <section>
-    <div>
+  <div></div>
+  <div
+    fxLayout="row"
+    fxLayout.xs="column-reverse"
+    fxLayoutWrap
+    fxLayoutGap="5%"
+    fxLayoutAlign="center"
+    id="MapPH"
+  >
+    <div fxFlex="40%">
+      <app-google-maps></app-google-maps>
     </div>
-    <div fxLayout="row" fxLayout.xs="column-reverse" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center" id="MapPH">
-        <div fxFlex="40%">
-            <app-google-maps></app-google-maps>
-        </div>
-        <div fxFlex="40%">
-            <!--WILL ADD RESPONSE DATA FOR DRIVERS IN PROXIMITY-->
-            <table class="table table-responsive">
-                <tr>
-                    <th scope="col" class="lHead">Available Drivers</th>
-                    <th scope="col" class="rHead"></th>
-                </tr>
-                <div *ngFor="let recommendedUser of recommendations">
-                    <tr>
-                        <td>{{recommendedUser.firstName}} {{recommendedUser.lastName}}</td>
-                        <td><button class="driverBut">Details</button></td>
-                    </tr>
-                </div>
-            </table>
-
-        </div>
+    <div fxFlex="40%">
+      <!--WILL ADD RESPONSE DATA FOR DRIVERS IN PROXIMITY-->
+      <table
+        class="table table-responsive"
+        aria-describedby="A table to display recommended drivers"
+      >
+        <tr>
+          <th scope="col" class="lHead">Available Drivers</th>
+          <th scope="col" class="rHead"></th>
+        </tr>
+        <tr *ngFor="let recommendedUser of recommendations">
+          <td>
+            {{ recommendedUser.firstName }} {{ recommendedUser.lastName }}
+          </td>
+          <td><button class="driverBut">Details</button></td>
+        </tr>
+      </table>
     </div>
+  </div>
 </section>

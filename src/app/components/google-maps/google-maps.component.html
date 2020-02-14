@@ -1,14 +1,8 @@
 <main id="mapContainer" class="container-fluid">
   <div *ngIf="inputVisibility">
-    <input
-      matGoogleMapsAutocomplete
-      (onLocationSelected)="onLocationSelected($event)"
-    />
+    <input matGoogleMapsAutocomplete />
   </div>
-  <agm-map
-    [streetViewControl]="false"
-    [fitBounds]="true"
-  >
+  <agm-map [streetViewControl]="false" [fitBounds]="true">
     <agm-marker
       [agmFitBounds]="true"
       [latitude]="latitude"
