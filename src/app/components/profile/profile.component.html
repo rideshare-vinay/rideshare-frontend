@@ -1,7 +1,7 @@
 <section>
     <div fxLayout="row" fxLayout.xs="column-reverse" fxLayoutWrap fxLayoutGap="3%" fxLayoutAlign="center">
         <div fxFlex="45%" class="image">
-            <img  mat-card-image src="../assets/profile.jpeg" class="responsive">
+            <img  mat-card-image src="../assets/profile.jpeg" alt="profile" class="responsive">
         </div>
         <div fxFlex="45%">
             
@@ -16,60 +16,83 @@
                         <tr class="tHeader">
                             <th id="Name">Name: </th>
                             <td>{{user.firstName}} {{user.lastName}}</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th id="Email">Email: </th>
-                            <td>{{user.email}}</td>
+                            <td>
+                                <mat-form-field>
+                                <input matInput type="text" name="email" [(ngModel)]="user.email" [readonly]="editable!=='email'" [ngClass]="editable==='email' ? 'editField' : ''"/> 
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <img class="edit" alt="edit" (click)="edit('email')" src="assets/pencil.png"/>
+                            </td>
+                            
                         </tr>
                         <tr>
                             <th id="Phone">Phone: </th>
-                            <td>{{user.phoneNumber}}</td>
+                            <td>
+                                <mat-form-field>
+                                    <input matInput type="text" name="phoneNumber" [(ngModel)]="user.phoneNumber" [readonly]="editable!=='phoneNumber'" [ngClass]="editable==='phoneNumber' ? 'editField' : ''"/> 
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <img class="edit" alt="edit" (click)="edit('phoneNumber')" src="assets/pencil.png"/>
+                            </td>
                         </tr>
                         <tr>
                             <th id="Batch">Batch: </th>
                             <td>{{user.batch.batchLocation}}</td>
+                            <td></td>
                         </tr>
                     </table>
                     </div>
                 </div>
                 <br>
-                <div fxLayout="row">
-                    <div fxFlex="10%"></div>
-                    <div fxFlex="40%">
+                <div fxLayout="row" fxLayoutGap="1%">
+                    <div fxFlex="50" class="leftSide">
                         <div *ngIf="user.driver ">
-                           <button class="oBut" routerLink="/car">View Vehicle</button>
-                        </div>
-                        <div *ngIf="!user.driver">
-                            <div *ngIf="ownCar">
-                                <button class="oBut" routerLink="/car">View Vehicle</button>
-                            </div>
-                            <div *ngIf="!ownCar">
-                                <button class="oBut" routerLink="/new/car">Add Vehicle</button>
-                            </div>
-                            
-                        </div>
-                        <br>
-                        <div *ngIf= "user.driver" >
-                            <label>Seat: </label>
-                            <mat-form-field class="seat">
-                                <input matInput type="text" name="seats" [(ngModel)]="myCar.seats"/> 
-                            </mat-form-field>
-                        </div>
+                            <button class="oBut" routerLink="/car">View Vehicle</button>
+                         </div>
+                         <div *ngIf="!user.driver">
+                             <div *ngIf="ownCar">
+                                 <button class="oBut" routerLink="/car">View Vehicle</button>
+                             </div>
+                             <div *ngIf="!ownCar">
+                                 <button class="oBut" routerLink="/new/car">Add Vehicle</button>
+                             </div>
+                             
+                         </div>
                     </div>
-                    <div fxFlex="40%">
+                    <div fxFlex="30" class="rightSide">
                         <div>
-                           
                             <mat-slide-toggle
                             class="toggle-example"
                             [color]="color"
                             [checked]="user.driver"
                             (change) ="toggleDriver()" 
                             [disabled]="!(user.active && ownCar)">
-                            <div *ngIf="user.driver">Driver</div>
-                            <div *ngIf="!user.driver">Rider</div>
                             </mat-slide-toggle>
+                            <div class="toggleText">
+                                <div *ngIf="user.driver">Driver</div>
+                                <div *ngIf="!user.driver">Rider</div>
+                            </div>
                            
-                        </div><br>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutGap="1%">
+                    <div fxFlex="50" class="leftSide">
+                        <div *ngIf= "user.driver" >
+                            <img src="../assets/seat.svg" class="seats" alt="seat" >
+                            <mat-form-field class="seat">
+                                <input matInput type="text" name="seats" [(ngModel)]="myCar.seats" [readonly]="editable!=='seats'" [ngClass]="editable==='seats' ? 'editField' : ''"/> 
+                            </mat-form-field>
+                            <img class="seatsEdit" alt="edit" (click)="edit('seats')" src="assets/pencil.png"/>
+                        </div>
+                    </div>
+                    <div fxFlex="30">  
                         <div *ngIf="user.driver">
                             <mat-slide-toggle
                                 class="toggle-example"
@@ -77,9 +100,11 @@
                                 [checked]="user.acceptingRides"
                                 (change) ="toggleAcceptRider()" 
                                 [disabled]="!(user.driver && user.active)">
+                            </mat-slide-toggle>
+                            <div class="toggleText">
                                 <div *ngIf="user.acceptingRides">Accepting</div>
                                 <div *ngIf="!user.acceptingRides">Decline</div>
-                            </mat-slide-toggle>
+                            </div>
                         </div>
                     </div>
                 </div>

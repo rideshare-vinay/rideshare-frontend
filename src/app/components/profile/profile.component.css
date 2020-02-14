@@ -22,7 +22,10 @@ small {
 
 input {
     color: #000;
-    font-weight: bold;
+}
+
+.editField{
+    border-bottom: 1px solid #F26926 !important;
 }
 
 .oBut{
@@ -52,7 +55,9 @@ input {
     background-color: #F26926 ; 
     color: #ffffff ;
 }
-
+::ng-deep .mat-input-wrapper{
+    width:15px !important;
+  }
 
 ::ng-deep .mat-slide-toggle-bar {
     width: 58px !important;
@@ -68,9 +73,16 @@ input {
     border-radius: 16px !important;
 }
 
-::ng-deep .mat-form-field-infix {
+::ng-deep .mat-form-field-infix  {
     border-top: 0px !important;
+    min-width: 15px !important;
+    width: 30% !important;
 }
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+
 
 .toggle-example{
     margin-top: 10px;
@@ -86,14 +98,6 @@ input {
 
 ::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
     background-color: #F26926;  /*replace with your color*/
-}
-
-
-.editField {
-    border: 0;
-    outline: 0;
-    background: transparent;
-    border-bottom: 1px solid black;
 }
 
 .card-detail {
@@ -112,17 +116,18 @@ input {
     justify-content: center;
 }
 #detail th {
-    padding-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
     padding-left: 25px;
 }
+
 
 section{
     margin: 5% 2%;
 }
 
 .seat{
-    width:2vw;
-    padding-left: 5px;
+    width:2vh;
 }
 
 .field-input{
@@ -146,6 +151,7 @@ h3{
     font: futura;
     font-size: 1.5em;
     font-weight: bold;
+    margin-top: 1em;
 }
 
 table{
@@ -153,12 +159,14 @@ table{
     padding:0px;
     margin: 0px;
 }
+
 .tHeader{
     border-top: 6px solid white;
 }
 
 section{
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif;
+    font-family: "futura-pt",sans-serif;
 }
 
 .image{
@@ -170,6 +178,28 @@ section{
     margin-top: 16px !important; 
 }
 
-@media (max-width: 800px){
-  
+.seats{
+    width:30%;
+}
+
+.toggleText{
+    position: relative;
+    left:70px;
+    bottom:30px;
+}
+
+.seatsEdit{
+    position: relative;
+    left:12px;
+}
+
+@media (min-width: 800px){
+  .leftSide{
+      position: relative;
+      padding-left:30px;
+  }
+  .rightSide{
+    position: relative;
+  }
+
 }
