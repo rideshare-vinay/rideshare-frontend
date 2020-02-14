@@ -21,11 +21,14 @@ export class RegisterComponent implements OnInit {
  * An array of batches 
  */
 	batches: Batch[] = [];
+	validAddress: boolean = false;
 	batch: Batch = new Batch()
 	user: User = new User();
 	batchNumber: number;
 	location: string ="";
 	role: string ="";
+	private readonly latKey = 'latitude';
+	private readonly longKey = 'longitude';
 
   /**
    * This is a constructor
@@ -44,6 +47,35 @@ export class RegisterComponent implements OnInit {
 	ngOnInit() { 
 		this.batchService.getAllBatches().subscribe(data=>this.batches=data);
 	}
+
+
+	/**
+	 * This function allows the user to select the batch location.
+	 * @param event
+	 */
+	changeLocation(event) {
+		// let location = event.target.value;
+		this.user.batch.batchLocation = this.location;
+		this.batchService.getAllBatchesByLocation(this.location).subscribe(data => {
+			this.batches = data;
+		});
+	}
+
+	changeBatchNumber(event) {
+		this.user.batch.batchNumber = event.target.value;
+	}
+
+	onLocationSelected(location: Location) {
+		this.user.address = (<HTMLInputElement>document.getElementById('address')).value;
+		this.user.latitude = location[this.latKey];
+		this.user.longitude = location[this.longKey];
+		this.validAddress = true;
+	}
+
+	/**
+	 * This function creates a driver if all the validations are true.
+	 * @param role
+	 */
 
 	signUp() {
 		if (this.validationService.validateUserName(this.user.userName) && this.validationService.validateName(this.user.firstName) && this.validationService.validateName(this.user.lastName) && this.validationService.validateEmail(this.user.email) && this.validationService.validatePhone(this.user.phoneNumber)) {
