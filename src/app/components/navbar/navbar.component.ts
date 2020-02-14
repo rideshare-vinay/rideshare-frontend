@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { User } from 'src/app/models/user';
 import { Admin } from 'src/app/models/admin';
 
+
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -16,7 +18,8 @@ import { Admin } from 'src/app/models/admin';
    */
 
 export class NavbarComponent implements OnInit {
-  public isNavbarCollapsed = false;
+  public navBarOpen = false;
+  
   /**
    * This is a name string.
    */
@@ -25,6 +28,7 @@ export class NavbarComponent implements OnInit {
   admin: string = '';
   isDriver : boolean;
 
+  
   /**
    * This is a constructor
    * @param router Provides an instance of a router.
@@ -79,5 +83,11 @@ export class NavbarComponent implements OnInit {
     sessionStorage.clear();
     this.router.navigate(['']);
   }
-  
+
+  toggleNavBar(){
+    this.navBarOpen = !this.navBarOpen;
+    console.log(this.navBarOpen);
+  }
+
+
 }
