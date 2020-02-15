@@ -96,9 +96,10 @@ p {
 }  
 .responsive {
     margin-top: 5%;
-    max-width: 100%;
-    height: auto;
+    max-width: auto;
+    max-height: auto;
 }
+
 .topBorder{
     max-width: 100%;
     height: auto;
@@ -111,11 +112,6 @@ p {
     padding-top: 3vw;
     margin-top: 3vw;
     text-align: center;
-}
-
-.image{
-    margin-top: 1%;
-    text-align: center; 
 }
 
 input{
