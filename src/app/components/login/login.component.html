@@ -1,6 +1,6 @@
 <section class="main" >
 <div fxLayout="row" fxLayout.sm="column-reverse" fxLayout.xs="column-reverse" fxLayoutGap="3%" fxLayoutAlign="center">
-    <div fxFlex="45%">
+    <div fxFlex="45%" class="image">
         <img mat-card-image src="../assets/login.jpeg" alt="RideShare" class="responsive"/>
     </div>
     <div fxFlex="45%">
@@ -8,7 +8,7 @@
         <mat-card-content>
             <mat-form-field>
                 <mat-label>Account</mat-label>
-                <input matInput type="text" color="warn" placeholder="Select An Account" name="chosenUserFullName" [(ngModel)]="chosenUserFullName" (click)="toggleDropDown()" (ngModelChange)="searchAccount()">
+                <input id="userNameDropdown" matInput type="text" color="warn" placeholder="Select An Account" name="chosenUserFullName" [(ngModel)]="chosenUserFullName" (click)="toggleDropDown()" (ngModelChange)="searchAccount()">
                 <mat-select>                    
                     <mat-option *ngFor="let user of users" (click)="changeUser(user)">{{user.firstName}} {{user.lastName}}: {{user.driver? "Driver" : "Rider"}}</mat-option>                  
                 </mat-select>
@@ -16,7 +16,7 @@
               <br>
             <mat-form-field>
                 <mat-label>Username</mat-label>
-                <input matInput type="text" color="warn" [(ngModel)]="userName" name="userName" placeholder="Username">
+                <input id="userName" matInput type="text" color="warn" [(ngModel)]="userName" name="userName" placeholder="Username">
               </mat-form-field><br>
               <p class="alert alert-danger" *ngIf="failed"><strong>Login Failed!</strong></p>
               <p class="alert alert-danger" *ngIf="banned"><strong>You are banned</strong></p>
