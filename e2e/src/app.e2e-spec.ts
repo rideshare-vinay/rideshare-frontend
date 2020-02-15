@@ -21,17 +21,19 @@ describe('App /login E2E tests', () => {
     it('should display loginCard', () => {
       expect(page.getLoginCard().isDisplayed()).toBeTruthy();
     });
-    it('login button should be invalid', () => {
+    it('login button should be disabled', () => {
       page.getAccount().sendKeys('');
       page.getUsername().sendKeys('');
       expect(page.getLoginButton().isEnabled()).toBeFalsy();
     });
-    it('login button should be valid', () => {
+    it('login button should be enabled', () => {
+      // TODO: check mock values after validation
       page.getAccount().sendKeys('abc');
       page.getUsername().sendKeys('abc');
       expect(page.getLoginButton().isEnabled()).toBeTruthy();
     });
     it('login with valid inputs', () => {
+      // TODO: check mock values after validation
       page.getAccount().sendKeys('Adney Jones1: Driver');
       page.getUsername().sendKeys('driver1');
       expect(page.getAccount().getAttribute('value')).toEqual('Adney Jones1: Driver');
