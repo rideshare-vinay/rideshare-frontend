@@ -33,7 +33,8 @@ describe('App /register E2E tests', () => {
         page.getLastName().sendKeys('abc');
         page.getPhone().sendKeys('abc');
         page.getEmail().sendKeys('abc');
-        page.getAddress().sendKeys('abc');
+        // TODO: must be validAddress
+        // page.getAddress().sendKeys('abc');
         page.getLocation().sendKeys('abc');
         page.getBatchNumber().sendKeys('abc');
         expect(page.getSubmitButton().isEnabled()).toBeTruthy();
