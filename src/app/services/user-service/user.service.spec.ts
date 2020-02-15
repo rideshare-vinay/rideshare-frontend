@@ -21,7 +21,10 @@ describe('UserService', () => {
               phoneNumber: '1231231231',
               driver: true,
               active: true,
-              acceptingRides: true
+              acceptingRides: true,
+              address: "address",
+              longitude: 123,
+              latitude: 456
             },
             {
               userId: 2,
@@ -36,7 +39,10 @@ describe('UserService', () => {
               phoneNumber: '3213213213',
               driver: true,
               active: true,
-              acceptingRides: true
+              acceptingRides: true,
+              address: "address",
+              longitude: 123,
+              latitude: 456
             }
           ];
 
@@ -123,7 +129,11 @@ describe('UserService', () => {
       driver: true, 
       acceptingRides: false, 
       active: true, 
-      batch: {batchLocation: "somewhere", batchNumber: 123}}; 
+      batch: {batchLocation: "somewhere", batchNumber: 123},
+      address: "address",
+      latitude: 123,
+      longitude: 456
+    }; 
 
     userService.changeDriverIsAccepting(user).subscribe( updatedUser =>{
       expect(updatedUser).toEqual(user);
