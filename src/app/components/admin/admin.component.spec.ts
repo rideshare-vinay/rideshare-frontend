@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
+import { EPERM } from 'constants';
 
 describe('AdminComponent', () => {
   let component: AdminComponent;
@@ -18,38 +19,7 @@ describe('AdminComponent', () => {
 
   let mockAdmin: Admin;
 
-  const mockUsers: User[] = [
-    {
-      userId: 1,
-      userName: 'user1',
-      firstName: 'john',
-      lastName: 'smith',
-      phoneNumber: '1234567890',
-      email: 'email@email.com',
-      driver: false,
-      batch: { batchLocation: '123abc', batchNumber: 123 },
-      acceptingRides: false,
-      active: true,
-      address: "address",
-      latitude: 123,
-      longitude: 456
-    },
-    {
-      userId: 2,
-      userName: 'user2',
-      firstName: 'kim',
-      lastName: 'jhonson',
-      phoneNumber: '0123456789',
-      email: 'email@email.com',
-      driver: false,
-      batch: { batchLocation: '123abc', batchNumber: 123 },
-      acceptingRides: false,
-      active: true,
-      address: "address",
-      latitude: 123,
-      longitude: 456
-    },
-  ];
+  let mockUsers: User[];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -68,6 +38,39 @@ describe('AdminComponent', () => {
       adminId: 1,
       userName: 'admin'
     };
+
+    mockUsers =  [
+      {
+        userId: 1,
+        userName: 'user1',
+        firstName: 'john',
+        lastName: 'smith',
+        phoneNumber: '1234567890',
+        email: 'email@email.com',
+        driver: false,
+        batch: { batchLocation: '123abc', batchNumber: 123 },
+        acceptingRides: false,
+        active: true,
+        address: "address",
+        latitude: 123,
+        longitude: 456
+      },
+      {
+        userId: 2,
+        userName: 'user2',
+        firstName: 'kim',
+        lastName: 'jhonson',
+        phoneNumber: '0123456789',
+        email: 'email@email.com',
+        driver: false,
+        batch: { batchLocation: '123abc', batchNumber: 123 },
+        acceptingRides: false,
+        active: true,
+        address: "address",
+        latitude: 123,
+        longitude: 456
+      },
+    ];
   });
 
   it('should create', () => {
@@ -88,7 +91,7 @@ describe('AdminComponent', () => {
       component.ngOnInit();
       const spy = routerSpy.navigate as jasmine.Spy;
       const navArgs = spy.calls.first().args[0];
-      expect(navArgs).toEqual(['/']);
+      expect(navArgs).toEqual(['']);
     });
   });
 
@@ -100,14 +103,17 @@ describe('AdminComponent', () => {
   });
 
   it('should get a list of users from searchUser function', () => {
-    spyOn(userService, 'showAllUser').and.returnValue(of(mockUsers));
+    let searchText = mockUsers[1].userName;
+    component.listofUsers = mockUsers;
+    component.searchText = searchText;
     component.searchUser();
-    expect(component.listofUsers).toEqual(mockUsers);
+    expect(component.users).toEqual(mockUsers.filter( user => user.userName.toLowerCase().includes(searchText.toLowerCase())));
   });
 
   it('should ban inactive user from banning function', () => {
     mockUsers[0].active = false;
     component.banning(mockUsers[0]);
+    expect(mockUsers[0].active).toBe(true);
   });
 
 });
