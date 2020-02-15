@@ -26,9 +26,9 @@
             </mat-card-content>
             <mat-card-actions>
                 <p class="alert alert-danger" *ngIf="failed"><strong>Login Failed!</strong></p>
-        <button class="button oBut" type="submit" (click)="login()" (keyup.enter)="login()" [disabled]="!(userName && chosenAdmin)">LOGIN</button>
+        <button id="loginAdminButton" class="button oBut" type="submit" (click)="login()" (keyup.enter)="login()" [disabled]="!(userName && chosenAdmin)">LOGIN</button>
         <br><br>
-        <p><a routerLink="/login">Sign In</a> As User</p>
+        <p><a id="signInLink" routerLink="/login">Sign In</a> As User</p>
             </mat-card-actions>
           </mat-card>
         </div>

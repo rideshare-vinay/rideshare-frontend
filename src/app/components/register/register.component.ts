@@ -85,7 +85,7 @@ export class RegisterComponent implements OnInit {
 			this.batch.batchNumber= this.batchNumber;
 			this.batch.batchLocation= this.location;
 			this.user.batch = this.batch;
-			this.userService.createDriver(this.user, this.role);
+			this.userService.createUser(this.user, this.role);
 		}
 	}
 

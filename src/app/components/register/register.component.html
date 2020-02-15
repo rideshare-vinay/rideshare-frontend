@@ -76,7 +76,7 @@
     </div>
     <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" class="relocate2">
         <mat-card-actions>
-            <button mat-raised-button type="submit" (click)="signUp()" [disabled]="!(user.userName && user.firstName && user.lastName && user.email && user.phoneNumber && validAddress)" class="button oBut">SUBMIT</button>
+            <button id="registerButton" mat-raised-button type="submit" (click)="signUp()" [disabled]="!(user.userName && user.firstName && user.lastName && user.email && user.phoneNumber && validAddress)" class="button oBut">SUBMIT</button>
         </mat-card-actions>
     </div>
     </mat-card>
