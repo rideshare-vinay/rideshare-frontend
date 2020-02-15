@@ -67,15 +67,13 @@ export class RegisterComponent implements OnInit {
 	 * @param role
 	 */
 	signUp() {
-		if (this.validationService.validateUserName(this.user.userName) && this.validationService.validateName(this.user.firstName) && this.validationService.validateName(this.user.lastName) && this.validationService.validateEmail(this.user.email) && this.validationService.validatePhone(this.user.phoneNumber)) {
-			this.user.firstName = this.validationService.nameFormat(this.user.firstName);
-			this.user.lastName = this.validationService.nameFormat(this.user.lastName);
-			this.user.phoneNumber = this.validationService.phoneFormat(this.user.phoneNumber);
-			this.batch.batchNumber= this.batchNumber;
-			this.batch.batchLocation= this.location;
-			this.user.batch = this.batch;
-			this.userService.createDriver(this.user, this.role);
-		}
+		this.user.firstName = this.validationService.nameFormat(this.user.firstName);
+		this.user.lastName = this.validationService.nameFormat(this.user.lastName);
+		this.user.phoneNumber = this.validationService.phoneFormat(this.user.phoneNumber);
+		this.batch.batchNumber= this.batchNumber;
+		this.batch.batchLocation= this.location;
+		this.user.batch = this.batch;
+		this.userService.createDriver(this.user, this.role);
 	}
 
 }
