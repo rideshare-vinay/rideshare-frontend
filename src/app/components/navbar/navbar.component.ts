@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
@@ -18,7 +18,8 @@ import { Admin } from 'src/app/models/admin';
    */
 
 export class NavbarComponent implements OnInit {
-  public navBarOpen = false;
+  public navBarOpen = true;
+  isOpen = false ; 
   
   /**
    * This is a name string.
@@ -36,7 +37,7 @@ export class NavbarComponent implements OnInit {
    * @param authService A dependency of an auth service is injected.
    */
 
-  constructor(private router: Router, private userService: UserService, public authService: AuthService) { }
+  constructor(private router: Router, private userService: UserService, public authService: AuthService, private eRef: ElementRef) { }
 
   /**
    * This is an OnInit function that sets the token to the parsed token string.
@@ -84,10 +85,14 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  toggleNavBar(){
-    this.navBarOpen = !this.navBarOpen;
-    console.log(this.navBarOpen);
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if(!this.eRef.nativeElement.contains(event.target)&&this.isOpen == true) {
+      console.log(this.isOpen);
+      this.isOpen = false;
+      //this.navBarOpen = false;
+     
+      //navbar.classList.remove('show');
+    } 
   }
-
-
 }
