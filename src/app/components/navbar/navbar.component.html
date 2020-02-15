@@ -7,25 +7,25 @@
     <div class="collapse navbar-collapse" id="navbarRideshare">
       <ul class="ml-auto headList navbar-nav" *ngIf="!name && !admin">
         <li class="nav-item tList" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a [routerLink]="['/login']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" >SIGN IN</a>
+          <a id="signInLink" [routerLink]="['/login']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" (click)="isOpen = !isOpen">SIGN IN</a>
         </li>
         <li class="nav-item tList" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a [routerLink]="['/register']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">SIGN UP</a>
+          <a id="registerLink" [routerLink]="['/register']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"(click)="isOpen = !isOpen">SIGN UP</a>
         </li>
         <li class="nav-item tList" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a [routerLink]="['/login/admin']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">ADMIN</a>
+          <a id="adminLoginLink" [routerLink]="['/login/admin']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"(click)="isOpen = !isOpen">ADMIN</a>
         </li>
       </ul>
       <ul class="ml-auto headList navbar-nav" *ngIf="name">
         <li class="nav-item tList" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <div *ngIf="isDriver == true; else elseBlock"><a [routerLink]="['home/drivers']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">HOME</a></div>
-          <ng-template #elseBlock><a [routerLink]="['home/riders']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">HOME</a></ng-template>
+          <div *ngIf="isDriver == true; else elseBlock"><a id="homeDriverLink" [routerLink]="['home/drivers']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">HOME</a></div>
+          <ng-template #elseBlock><a id="homeRidererLink" [routerLink]="['home/riders']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">HOME</a></ng-template>
         </li>
         <li class="nav-item tList" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a [routerLink]="['/profile']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">PROFILE</a>
+          <a id="profileLink" [routerLink]="['/profile']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">PROFILE</a>
         </li>
         <li class="nav-item tList" data-toggle="collapse" data-target=".navbar-collapse.show">
-          <a (click)="logout()" >LOGOUT</a> 
+          <a id="logoutLink" (click)="logout()" >LOGOUT</a> 
         </li>
       </ul>
       <ul class="ml-auto headList navbar-nav" *ngIf="admin">
@@ -37,8 +37,5 @@
         </li>
       </ul>
     </div>
-
   </div>
 </nav>
-
-<!-- data-toggle="collapse" data-target=".navbar-collapse.show" -->

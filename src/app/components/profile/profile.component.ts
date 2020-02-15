@@ -214,4 +214,13 @@ export class ProfileComponent implements OnInit {
     this.user.acceptingRides = !this.user.acceptingRides;
     this.userService.updatePreference('acceptingRides', this.user.acceptingRides, this.user.userId);
   }
+
+  /**
+   * @function
+   * this function update seats
+   */
+
+  updateSeat(){
+    this.carService.updateCar(this.myCar, this.user.userId);
+  }
 }

@@ -12,7 +12,6 @@
       <app-google-maps></app-google-maps>
     </div>
     <div fxFlex="40%">
-      <!--WILL ADD RESPONSE DATA FOR DRIVERS IN PROXIMITY-->
       <table
         class="table table-responsive"
         aria-describedby="A table to display recommended drivers"
@@ -25,7 +24,7 @@
           <td>
             {{ recommendedUser.firstName }} {{ recommendedUser.lastName }}
           </td>
-          <td><button class="driverBut">Details</button></td>
+          <td><button id="driverdetButtons" class="driverBut">Details</button></td>
         </tr>
       </table>
     </div>

@@ -51,26 +51,25 @@ export class UserService {
 	}
 
 	/**
-	 * A POST method that switch an Rider to a Driver
+	 * Adding a user to the system with a default status of rider
 	 * @param user 
 	 * @param role 
 	 */
 
-	createDriver(user: User, role) {
+	createUser(user: User, role) {
 
 		user.active = true;
 		user.driver = false;
 		user.acceptingRides = false;
 
 		this.http.post(this.url, user, {observe: 'response'}).subscribe(
-			(response) => this.addDriver(response , role),
+			(response) => this.addUser(response , role),
 			(error) => {
 				this.log.error(error)
 			}
 		);
 	}
-
-	addDriver(response , role): void{
+	addUser(response , role): void{
 		
 			this.authService.user = response.body;
 			this.fireIsLoggedIn.emit(response.body);
