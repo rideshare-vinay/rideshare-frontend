@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { DriverComponent } from './driver.component';
 import { UserService } from 'src/app/services/user-service/user.service';
@@ -85,20 +85,23 @@ describe('DriverComponent', () => {
     });
   });
 
-  it('should get car by userId from getDriverCar', () => {
-    // spyOn(userService, 'getDriverById').and.returnValue(of(mockDriver.userId));
-    // spyOn(carService, 'getCarByUserId').and.returnValue(of(mockDriver.userId));
+  it('should get car by userId from getDriverCar', fakeAsync(() => {
+    spyOn(carService, 'getCarByUserId').and.returnValue(Promise.resolve(mockCar));
     component.getDriverCar(mockDriver.userId);
+    tick();
     expect(component.myCar).toEqual(mockCar);
-  });
+  }));
 
   describe('changeAcceptingRides function', () => {
     it('change acceptingRides to false', () => {
+      component.userDriver = mockDriver;
+      mockDriver.acceptingRides = false;
       component.changeAcceptingRides(mockDriver);
-      expect(mockDriver.acceptingRides).toEqual(false);
+      expect(mockDriver.acceptingRides).toBeTruthy();
     });
 
     it('change acceptingRides to true', () => {
+      component.userDriver = mockDriver;
       mockDriver.acceptingRides = false;
       component.changeAcceptingRides(mockDriver);
       expect(mockDriver.acceptingRides).toEqual(true);

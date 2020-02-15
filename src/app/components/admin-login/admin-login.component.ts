@@ -40,15 +40,15 @@ export class AdminLoginComponent implements OnInit {
 
 	login() {
 		this.http.get<Admin>(`${environment.adminUri}${this.chosenAdmin.adminId}`)
-			.subscribe((admin: Admin) => {
-				if (!admin.adminId) {
+		.subscribe((admin: Admin) => {
+			if (!admin.adminId) {
+				this.loginFailed();
+			} else {
+				if (!this.authService.loginAsAdmin(admin, this.userName)) {
 					this.loginFailed();
-				} else {
-					if (!this.authService.loginAsAdmin(admin, this.userName)) {
-						this.loginFailed();
-					}
 				}
-			});
+			}
+		});
 	}
 
 }
