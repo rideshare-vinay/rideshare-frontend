@@ -46,7 +46,7 @@ describe('ProfileComponent', () => {
   it('should return user info', () => {
     let mockUser: User = {userId:1, userName: "testing", batch: new Batch(), 
     firstName:"jon", lastName:"smith", email:"test", phoneNumber:"also a test",
-    active: true, driver: true, acceptingRides: true}
+    active: true, driver: true, acceptingRides: true, address: "address", latitude: 123, longitude: 456}
     let spy: any;
     spy = spyOn(component,'getUserInfo');
 
@@ -57,7 +57,7 @@ describe('ProfileComponent', () => {
    it('should compare user info', () => {
     let mockUser: User = {userId:1, userName: "testing", batch: new Batch(), 
     firstName:"jon", lastName:"smith", email:"test", phoneNumber:"also a test",
-    active: true, driver: true, acceptingRides: true}
+    active: true, driver: true, acceptingRides: true, address: "address", latitude: 123, longitude: 456}
     let spy: any;
     spy = spyOn(component, 'compareUser');
 
