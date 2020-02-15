@@ -94,9 +94,4 @@ describe('NavbarComponent', () => {
     const navArgs = spy.calls.first().args[0];
     expect(navArgs).toEqual(['']);
   });
-
-  it('should should toggle nav bar', () => {
-    component.toggleNavBar();
-    expect(component.navBarOpen).toBe(true);
-  });
 });
