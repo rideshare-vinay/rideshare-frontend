@@ -5,6 +5,7 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('UserService', () => {
+<<<<<<< HEAD
   let userService: UserService;
   let httpMock: HttpTestingController;
   let mockUsers: User[] = [
@@ -47,6 +48,50 @@ describe('UserService', () => {
   ];
 
   beforeEach(() => {
+=======
+  let userService:UserService;
+  let httpMock:HttpTestingController;
+  let mockUsers:User[] = [
+            {
+              userId: 1,
+              userName: 'carsryan',
+              batch: {
+                batchNumber: 1,
+                batchLocation: '123'
+              },
+              firstName: 'Ryan',
+              lastName: 'Carstons',
+              email: 'ryan@gmail.com',
+              phoneNumber: '1231231231',
+              driver: true,
+              active: true,
+              acceptingRides: true,
+              address: "address",
+              longitude: 123,
+              latitude: 456,
+            },
+            {
+              userId: 2,
+              userName: 'pwin',
+              batch: {
+                batchNumber: 2,
+                batchLocation: '456'
+              },
+              firstName: 'Peter',
+              lastName: 'Nguyen',
+              email: 'pete@gmail.com',
+              phoneNumber: '3213213213',
+              driver: true,
+              active: true,
+              acceptingRides: true,
+              address: "address",
+              longitude: 123,
+              latitude: 456
+            }
+          ];
+
+  beforeEach( () => {
+>>>>>>> testing
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
       providers: [UserService]
@@ -127,16 +172,16 @@ describe('UserService', () => {
       lastName: "Cumberbatch",
       email: "email@email.com",
       phoneNumber: "5555555555",
-      driver: true,
-      acceptingRides: false,
-      active: true,
-      batch: { batchLocation: "somewhere", batchNumber: 123 },
-      address: "123 liv+",
-      latitude: 45,
-      longitude: 45
-    };
+      driver: true, 
+      acceptingRides: false, 
+      active: true, 
+      batch: {batchLocation: "somewhere", batchNumber: 123},
+      address: "address",
+      latitude: 123,
+      longitude: 456
+    }; 
 
-    userService.changeDriverIsAccepting(user).subscribe(updatedUser => {
+    userService.changeDriverIsAccepting(user).subscribe( updatedUser =>{
       expect(updatedUser).toEqual(user);
     });
 

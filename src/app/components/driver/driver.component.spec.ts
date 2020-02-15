@@ -57,9 +57,9 @@ describe('DriverComponent', () => {
       batch: { batchLocation: '123abc', batchNumber: 123 },
       acceptingRides: true,
       active: true,
-      address: "123 liv+",
-      latitude: 45,
-      longitude: 45
+      address: "address",
+      latitude: 123,
+      longitude: 456
     };
   });
 

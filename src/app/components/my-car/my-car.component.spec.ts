@@ -9,7 +9,7 @@ import { CarService } from 'src/app/services/car-service/car.service';
 import { Car } from 'src/app/models/car';
 import { Observable, of } from 'rxjs';
 import { LogService } from 'src/app/services/log.service';
-import { log } from 'util';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 describe("MyCarComponent", () => {
   let myCarComponent:MyCarComponent;
@@ -38,6 +38,7 @@ describe("MyCarComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       declarations: [MyCarComponent],
       imports: [HttpClientTestingModule, RouterTestingModule],
       providers: [
@@ -63,9 +64,10 @@ describe("MyCarComponent", () => {
       batch: {batchLocation: "abc123", batchNumber: 123},
       driver: false, 
       email: "email@email.com",
-      address: "123 liv+",
-      latitude: 45,
-      longitude: 45};
+      address: "address",
+      latitude: 123,
+      longitude: 456
+    };
     mockCar = {
       carId: 1,
       color: "red",

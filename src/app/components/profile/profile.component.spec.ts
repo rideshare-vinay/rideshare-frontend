@@ -30,7 +30,7 @@ import { Observable, of } from 'rxjs';
 import { GoogleMapsComponent } from '../google-maps/google-maps.component';
 import { BatchService } from 'src/app/services/batch-service/batch.service';
 
-fdescribe('ProfileComponent', () => {
+describe('ProfileComponent', () => {
   let myProfileComponent: ProfileComponent;
   let myProfileFixture: ComponentFixture<ProfileComponent>;
   let mockAuthService: AuthService;

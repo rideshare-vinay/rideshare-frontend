@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { request } from 'http';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { log } from 'util';
+
 describe("Login Component", () => {
   let userService:UserService;
   let loginComponent:LoginComponent;
@@ -29,9 +30,10 @@ describe("Login Component", () => {
       batch: {batchLocation: "123abc", batchNumber: 123},
       acceptingRides: false,
       active: true,
-      address: "123 liv+",
-      latitude: 45,
-      longitude: 45},
+      address: "adress",
+      latitude: 123,
+      longitude: 456
+    },
     {userId: 2, 
       userName: "kimj", 
       firstName: "Kim", 
@@ -42,58 +44,15 @@ describe("Login Component", () => {
       batch: {batchLocation: "123abc", batchNumber: 123},
       acceptingRides: false,
       active: true,
-      address: "123 liv+",
-      latitude: 45,
-      longitude: 45},
+      address: "address",
+      longitude: 123,
+      latitude: 456
+    }
   ];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      declarations: [LoginComponent],
-      providers: [UserService, AuthService],
-      imports: [
-        FormsModule, 
-        HttpClientTestingModule, 
-        RouterTestingModule]
-  });
-  class MockUserService{
-    getAllUsers():Observable<User[]>{
-      return of(mockUsers);
-    }
-  }
-
-  let mockUsers:User[] = [
-    {userId: 1, 
-      userName: "johns", 
-      firstName: "John", 
-      lastName: "Smith",
-      phoneNumber: "5555555555",
-      email: "email@email.com",
-      driver: false, 
-      batch: {batchLocation: "123abc", batchNumber: 123},
-      acceptingRides: false,
-      active: true,
-      address: "123 liv+",
-      latitude: 45,
-      longitude: 45},
-    {userId: 2, 
-      userName: "kimj", 
-      firstName: "Kim", 
-      lastName: "Jhonson",
-      phoneNumber: "5555555555",
-      email: "email@email.com",
-      driver: false, 
-      batch: {batchLocation: "123abc", batchNumber: 123},
-      acceptingRides: false,
-      active: true,
-      address: "123 liv+",
-      latitude: 45,
-      longitude: 45},
-  ];
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
       declarations: [LoginComponent],
       providers: [UserService],
       imports: [FormsModule, HttpClientTestingModule, RouterTestingModule]
@@ -291,8 +250,6 @@ describe("Login Component", () => {
       httpMock.expectOne(`${environment.userUri}?username=${loginComponent.userName}`).flush(mockUsers);
       expect(loginComponent.loginFailed).toHaveBeenCalled();
     });
-  }); 
-
   });
 
   describe("nextPage function", () => {
@@ -313,7 +270,6 @@ describe("Login Component", () => {
 
       expect(loginComponent.users).toEqual(expectedUsers);
     });
-  })
-})
+  });
 
-
+});

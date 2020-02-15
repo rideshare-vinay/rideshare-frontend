@@ -12,27 +12,35 @@ import { MyCarComponent } from '../my-car/my-car.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { PreferenceComponent } from '../preference/preference.component';
 import { ProfileComponent } from '../profile/profile.component';
+import { UserService } from 'src/app/services/user-service/user.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-describe('DriverRegisterComponent', () => {
+describe('RegisterComponent', () => {
   let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [AdminComponent, CarRegisterComponent, RegisterComponent, LoginComponent, MyCarComponent, NavbarComponent, PreferenceComponent, ProfileComponent],
-      imports: [HttpClientModule, AppRoutingModule, FormsModule],
-      providers: [{provide: APP_BASE_HREF, useValue: '/my/app'}]
-    })
-    .compileComponents();
-  }));
+  let userService: UserService;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegisterComponent);
+    TestBed.configureTestingModule({
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      declarations: [RegisterComponent],
+      providers: [],
+      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule]
+    });
+    const fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    userService = TestBed.get(UserService);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  
+  // it('should sign up a user', () => {
+  //   spyOn(userService, 'showAllUser').and.returnValue(of(mockUsers));
+  //   component.searchUser();
+  //   expect(component.listofUsers).toEqual(mockUsers);
+  // });
 });
