@@ -13,6 +13,8 @@ small {
 
 .edit {
     cursor: pointer;
+    position: relative;
+    left: 15px;
 }
 
 #profile {
@@ -70,6 +72,7 @@ input {
 
 ::ng-deep .mat-form-field-infix {
     border-top: 0px !important;
+    min-width: 15px !important;
 }
 
 .toggle-example{
@@ -120,10 +123,6 @@ section{
     margin: 5% 2%;
 }
 
-.seat{
-    width:2vw;
-    padding-left: 5px;
-}
 
 .field-input{
     font: bold !important;
@@ -168,6 +167,22 @@ section{
 
 .mat-card-image:first-child{
     margin-top: 16px !important; 
+}
+
+.seats{
+    width: 30%;
+}
+.seatInput{
+    width:2vh;
+}
+.toggleText{
+    position: relative;
+    left:70px;
+    bottom:30px;
+}
+.right{
+    position: relative;
+    bottom:25px;
 }
 
 @media (max-width: 800px){

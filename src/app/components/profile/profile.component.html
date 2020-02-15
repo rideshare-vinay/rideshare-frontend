@@ -9,7 +9,7 @@
             <mat-card-header class="card-title" > 
                 <mat-card-title><h3>Profile</h3></mat-card-title>
             </mat-card-header>
-            <mat-card-content>
+            <mat-card-content *ngIf="newUser.userId" > 
                 <div fxLayout="row">
                     <div fxFlex="100%">
                     <table id="detail" aria-describedby="Profile">
@@ -49,11 +49,13 @@
                             
                         </div>
                         <br>
-                        <div *ngIf= "user.driver" >
-                            <label>Seat: </label>
-                            <mat-form-field class="seat">
+                        <div *ngIf= "user.driver"  >
+                            <img src="../assets/seat.svg" alt="seat" class="seats">
+                            <mat-form-field class="seatInput">
                                 <input matInput type="text" name="seats" [(ngModel)]="myCar.seats"/> 
                             </mat-form-field>
+                            <img class="edit" (click)="updateSeat()" src="assets/pencil.png"/>
+                            
                         </div>
                     </div>
                     <div fxFlex="40%">
@@ -66,12 +68,14 @@
                             [checked]="user.driver"
                             (change) ="toggleDriver()" 
                             [disabled]="!(user.active && ownCar)">
-                            <div *ngIf="user.driver">Driver</div>
-                            <div *ngIf="!user.driver">Rider</div>
                             </mat-slide-toggle>
+                            <div class="toggleText">
+                                <div *ngIf="user.driver">Driver</div>
+                                <div *ngIf="!user.driver">Rider</div>
+                            </div>
                            
                         </div><br>
-                        <div *ngIf="user.driver">
+                        <div *ngIf="user.driver" class="right">
                             <mat-slide-toggle
                                 id="ridesTog"
                                 class="toggle-example"
@@ -79,9 +83,11 @@
                                 [checked]="user.acceptingRides"
                                 (change) ="toggleAcceptRider()" 
                                 [disabled]="!(user.driver && user.active)">
+                            </mat-slide-toggle>
+                            <div class="toggleText">
                                 <div *ngIf="user.acceptingRides">Accepting</div>
                                 <div *ngIf="!user.acceptingRides">Decline</div>
-                            </mat-slide-toggle>
+                            </div>
                         </div>
                     </div>
                 </div>
