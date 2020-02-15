@@ -36,7 +36,7 @@ select {
     width: 7em;     /* Static width buttons */
     outline:none;   /* Removing outline */
     border-radius: 10em;
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif;
     font-weight: bold;
     color: #ffffff;
 }
@@ -51,4 +51,11 @@ section{
 }
 .divSpace{
     margin-top: 5vw;
+}
+input{
+    font-family: "futura-pt-bold",sans-serif;
+}
+p, a{
+    font-size: 1em;
+    font-family: "futura-pt-bold",sans-serif;
 }

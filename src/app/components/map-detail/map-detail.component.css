@@ -1,9 +1,9 @@
 #mapHold{
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif;
     margin-top: 15em;
 }
 .lHead{
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif;
     font-size: 1.5vw;
     padding: 1.5em 3em;
     background-color: #F36928;
@@ -13,7 +13,7 @@
 
 }
 .rHead{
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif;
     font-size: 1.5vw;
     padding: 1.25em 3em;
     background-color: #F36928;
@@ -21,7 +21,7 @@
     border-bottom: 4px solid white;
 }
 td{
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-size: 1.2vw;
     border-bottom: 2px solid white;
     padding: 1em 1.5em;
@@ -31,7 +31,7 @@ td{
     
 }
 .driverBut{
-    background-color: #C4D8E3; 
+    background-color: #717F92; 
     border: none;
     color: black;
     padding: 7px;
@@ -40,11 +40,19 @@ td{
     display: inline-block;
     margin: 4px 2px;
     cursor: pointer;
-    width: 7em;     /* Static width buttons */
-    outline:none;   /* Removing outline */
+    width: 7em;    
+    outline:none;  
     border-radius: 10em;
     font: futura;
     font-weight: bold;
+}
+.driverBut:hover{
+    background-color:#F26926;
+    color: white;
+}
+.driverBut:disabled{
+    background-color: #717F92 ; 
+    color: #ffffff ;
 }
 .lBot{
     border-bottom-left-radius: 1.5em;

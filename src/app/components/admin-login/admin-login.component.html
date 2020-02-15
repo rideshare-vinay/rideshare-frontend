@@ -1,23 +1,5 @@
-<!-- <div class="container">
-    <form class="text-center" id="login-form">
-        <div class="form-group">
-            <label for="admins">Admin Account: </label>
-            <select (change)="changeAdmin($event)" id="admins">
-                <option *ngFor="let admin of admins" value="admin.adminId">{{admin.adminId}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="userName">User Name:</label><br>
-            <input type="text" id="userName" [(ngModel)]="userName" name="userName" placeholder="Admin User Name" autocomplete="off"/><br>
-        </div>
-        <p class="alert alert-danger" *ngIf="failed"><strong>Login Failed!</strong></p>
-        <button class="btn btn-primary" type="submit" id="sign-in-btn" (click)="login()" (keyup.enter)="login()" [disabled]="!(userName && chosenAdmin)">Login As Admin</button>
-        <br><br>
-        <p><a routerLink="/login">Sign In</a> As User</p>
-    </form>
-</div> -->
 <section >
-<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" fxLayoutAlign="center">
+<div fxLayout="row" fxLayout.sm="column-reverse" fxLayout.xs="column-reverse" fxLayoutWrap fxLayoutGap="3%" fxLayoutAlign="center">
   <div fxFlex="45%" style="text-align: center;">
       <img src="../assets/admin.jpeg" alt="Admin" class="responsive"/>
   </div>
@@ -29,7 +11,7 @@
             </mat-card-header>
             <mat-card-content>
                 <mat-form-field>
-                    <input matInput type="text" color="warn" placeholder="Select An Account" name="chosenUserFullName" [(ngModel)]="chosenUserFullName" (click)="toggleDropDown()" (ngModelChange)="searchAccount()">
+                    <input id="userNameDropdown" matInput type="text" color="warn" placeholder="Select An Account" name="chosenUserFullName" [(ngModel)]="chosenUserFullName" (click)="toggleDropDown()" (ngModelChange)="searchAccount()">
                     <mat-select (change)="changeAdmin($event)" id="admins">
                       <mat-option></mat-option>
                       <mat-option *ngFor="let admin of admins" value="admin.adminId">{{admin.adminId}}</mat-option>
@@ -37,16 +19,16 @@
                   </mat-form-field>
                   <br>
                 <mat-form-field class="example-form-field">
-                    <input matInput type="text" color="warn" placeholder="Username" id="userName" [(ngModel)]="userName" name="userName" placeholder="Admin User Name">
+                    <input id="userName" matInput type="text" color="warn" placeholder="Username" id="userName" [(ngModel)]="userName" name="userName" placeholder="Admin User Name">
                     <p class="alert alert-danger" *ngIf="failed"><strong>Login Failed!</strong></p>
                     <p class="alert alert-danger" *ngIf="banned"><strong>You are banned</strong></p>
                   </mat-form-field><br>
             </mat-card-content>
             <mat-card-actions>
                 <p class="alert alert-danger" *ngIf="failed"><strong>Login Failed!</strong></p>
-        <button class="button oBut" type="submit" (click)="login()" (keyup.enter)="login()" [disabled]="!(userName && chosenAdmin)">LOGIN</button>
+        <button id="loginAdminButton" class="button oBut" type="submit" (click)="login()" (keyup.enter)="login()" [disabled]="!(userName && chosenAdmin)">LOGIN</button>
         <br><br>
-        <p><a routerLink="/login">Sign In</a> As User</p>
+        <p><a id="signInLink" routerLink="/login">Sign In</a> As User</p>
             </mat-card-actions>
           </mat-card>
         </div>
