@@ -27,16 +27,7 @@ describe('BatchService', () => {
   let httpMock: HttpTestingController;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [AdminComponent,
-        CarRegisterComponent, RegisterComponent, LoginComponent,
-        MyCarComponent, NavbarComponent,
-        PreferenceComponent, ProfileComponent,
-        DriverInfoComponent, DriverComponent,
-        AdminLoginComponent, MapDetailComponent
-      ],
-      imports: [HttpClientModule, AppRoutingModule, FormsModule, HttpClientTestingModule],
-      providers: [{ provide: APP_BASE_HREF, useValue: '/my/app' }]
+      imports: [HttpClientTestingModule]
     })
     batchService = TestBed.get(BatchService);
     httpMock = TestBed.get(HttpTestingController);
@@ -59,7 +50,7 @@ describe('BatchService', () => {
       { batchNumber: 5, batchLocation: 'CUNY SPS - New York, NY' },
       { batchNumber: 6, batchLocation: 'CUNY Queens College - Flushing, NY' }
     ]
-    batchService.getAllBatches().subscribe(batches => {
+    batchService.getAllBatchesMock().subscribe(batches => {
       expect(batches.length).toBe(6);
       expect(batches).toEqual(mockBatches);
     })
@@ -78,7 +69,7 @@ describe('BatchService', () => {
       { batchNumber: 5, batchLocation: 'CUNY SPS - New York, NY' },
       { batchNumber: 6, batchLocation: 'CUNY Queens College - Flushing, NY' }
     ]
-    batchService.getAllBatche().subscribe(batches => {
+    batchService.getAllBatches().subscribe(batches => {
       expect(batches.length).toBe(6);
       expect(batches).toEqual(mockBatches);
     })

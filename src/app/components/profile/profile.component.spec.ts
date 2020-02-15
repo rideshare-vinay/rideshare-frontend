@@ -36,12 +36,19 @@ fdescribe('ProfileComponent', () => {
   let mockAuthService: AuthService;
   let mockUserService: UserService;
   let mockCarService: CarService;
+  let mockValdationService: ValidationService;
   let mockBatchService: BatchService;
-  let mockBatches: Batch[];
+  let mockBatches: Batch[] = [
+    {batchNumber: 1, batchLocation: 'VWU - Morgantown, WV'},
+    {batchNumber: 2, batchLocation: 'UTA - Arlington, TX'},
+    {batchNumber: 3, batchLocation: 'USF - Tampa, FL'},
+    {batchNumber: 4, batchLocation: 'Revature HQ - Reston, VA'},
+    {batchNumber: 5, batchLocation: 'CUNY SPS - New York, NY'},
+    {batchNumber: 6, batchLocation: 'CUNY Queens College - Flushing, NY'}
+  ];;
   let routerSpy = jasmine.createSpyObj("Router", ['navigate']);
   let mockUser: User;
-  let mockCar: Car;
-
+  let mockCar: Car ;
 
   class MockAuthService {
     user: User
@@ -62,13 +69,16 @@ fdescribe('ProfileComponent', () => {
     getUserById(userId:number){
       return new Promise((resolve, reject) => {
         resolve(mockUser);
+        reject();
       })
     }
   }
 
   class MockBatchService{
     getAllBatches(){
-      return mockBatches;
+      return new Promise((resolve, reject) => {
+        resolve(mockBatches)
+      });
     }
 
   }
@@ -76,7 +86,19 @@ fdescribe('ProfileComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [ProfileComponent],
+      declarations: [ProfileComponent, 
+        DriverComponent,
+        MapDetailComponent,
+        DriverInfoComponent,
+        LoginComponent,
+        AdminLoginComponent,
+        AdminComponent,
+        RegisterComponent,
+        CarRegisterComponent,
+        MyCarComponent,
+        PreferenceComponent,
+        GoogleMapsComponent
+      ],
       imports: [HttpClientModule, AppRoutingModule,
         FormsModule, RouterTestingModule,
         RouterModule],
@@ -117,32 +139,26 @@ fdescribe('ProfileComponent', () => {
       user: mockUser,
       year: 2013
     };
-    mockBatches = [
-      {batchNumber: 1, batchLocation: 'VWU - Morgantown, WV'},
-      {batchNumber: 2, batchLocation: 'UTA - Arlington, TX'},
-      {batchNumber: 3, batchLocation: 'USF - Tampa, FL'},
-      {batchNumber: 4, batchLocation: 'Revature HQ - Reston, VA'},
-      {batchNumber: 5, batchLocation: 'CUNY SPS - New York, NY'},
-      {batchNumber: 6, batchLocation: 'CUNY Queens College - Flushing, NY'}
-    ];
+    mockBatches 
   });
 
   it('should create myProfileComponent', () => {
     expect(myProfileComponent).toBeTruthy();
   });
 
-  xit("it should have no user set after construction", () => {
+  it("it should have no user set after construction", () => {
     expect(myProfileComponent.user.userId).toBeUndefined();
   })
 
-  xit("should set user id within myProfileComponent after ngOnInit", (done) => {
+  it("should set user id within myProfileComponent after ngOnInit", (done) => {
     mockAuthService.user = mockUser;
     myProfileComponent.ngOnInit();
-    expect(myProfileComponent.user.userId).toEqual(mockUser.userId);
     done();
+    expect(myProfileComponent.user.userId).toEqual(mockUser.userId);
   })
 
-  xit("should redirect if userid is not true", (done) => {
+  
+  it("should redirect if userid is not true", (done) => {
     mockUser.userId = null;
     mockAuthService.user = mockUser;
     myProfileComponent.ngOnInit();
@@ -154,7 +170,7 @@ fdescribe('ProfileComponent', () => {
     expect(navArgs).toEqual(['']);
   })
 
-  xit("should call user info when running ngOnInit", (done) => { 
+  it("should call user info when running ngOnInit", (done) => { 
     mockAuthService.user = mockUser;
     myProfileComponent.ngOnInit();
     mockUserService.getUserById(mockUser.userId).then( user => {
@@ -168,7 +184,7 @@ fdescribe('ProfileComponent', () => {
     // done();
   })
 
-  xit("should call a user's car info when running ngOnInit", (done) =>{
+  it("should call a user's car info when running ngOnInit", (done) =>{
     mockAuthService.user = mockUser;
     myProfileComponent.ngOnInit();
     mockCarService.getCarByUserId(mockUser.userId).then( car => {
@@ -178,8 +194,8 @@ fdescribe('ProfileComponent', () => {
     done();
   })
 
-  xit("should get a user by their ID", (done) => {
-    myProfileComponent.user.userId = mockUser.userId;
+  it("should get a user by their ID", (done) => {
+    myProfileComponent.user.userId = mockUser.userId
     myProfileComponent.batch = { batchLocation: 'UTA - Arlington, TX', batchNumber: 2 };
     myProfileComponent.getUserInfo();
     mockUserService.getUserById(myProfileComponent.user.userId).then( user => {
@@ -192,6 +208,30 @@ fdescribe('ProfileComponent', () => {
     // })
   })
 
-  //it()
+  it("should compare new user and user", () => {
+    myProfileComponent.newUser = mockUser;
+    myProfileComponent.user = mockUser;
+    myProfileComponent.compareUser();
+    expect(myProfileComponent.compareUser).toBeTruthy();
+  })
+
+  // it("should update the user profile", (done) => {
+  //   myProfileComponent.user = mockUser;
+  //   mockUser = {
+  //     userId: 1,
+  //     userName: "testing",
+  //     batch: { batchLocation: 'UTA - Arlington, TX', batchNumber: 2 },
+  //     firstName: "jon",
+  //     lastName: "smith",
+  //     email: "test",
+  //     phoneNumber: "also a test",
+  //     active: true,
+  //     driver: true,
+  //     acceptingRides: true,
+  //     address: "123 liv+",
+  //     latitude: 45,
+  //     longitude: 45
+  //   };
+  // })
 
 });
