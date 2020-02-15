@@ -1,28 +1,28 @@
 import { TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from './auth.service';
-import { APP_BASE_HREF } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from 'src/app/app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { User } from 'src/app/models/user';
+import { Router, Routes } from '@angular/router';
+import { DriverComponent } from 'src/app/components/driver/driver.component';
+import { MapDetailComponent } from 'src/app/components/map-detail/map-detail.component';
 import { AdminComponent } from 'src/app/components/admin/admin.component';
-import { CarRegisterComponent } from 'src/app/components/car-register/car-register.component';
-import { RegisterComponent } from 'src/app/components/register/register.component';
-import { LoginComponent } from 'src/app/components/login/login.component';
-import { MyCarComponent } from 'src/app/components/my-car/my-car.component';
-import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
-import { PreferenceComponent } from 'src/app/components/preference/preference.component';
-import { ProfileComponent } from 'src/app/components/profile/profile.component';
+import { MatPaginatedTabHeader } from '@angular/material/tabs/typings/paginated-tab-header';
 
 describe('AuthService', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AdminComponent, CarRegisterComponent, RegisterComponent, LoginComponent, MyCarComponent, NavbarComponent, PreferenceComponent, ProfileComponent],
-    imports: [HttpClientModule, AppRoutingModule, FormsModule],
-    providers: [{provide: APP_BASE_HREF, useValue: '/my/app'}]
-  }));
+  let authService:AuthService;
+  let mockUser:User;
 
-  it('should be created', () => {
-    const service: AuthService = TestBed.get(AuthService);
-    expect(service).toBeTruthy();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      providers: [],
+    });
+    authService = TestBed.get(AuthService);
+    mockUser = new User();
   });
+
+  it('should create', () => {
+    expect(authService).toBeTruthy();
+  });
+
 });
