@@ -8,7 +8,7 @@ import { MapDetailComponent } from 'src/app/components/map-detail/map-detail.com
 import { AdminComponent } from 'src/app/components/admin/admin.component';
 import { MatPaginatedTabHeader } from '@angular/material/tabs/typings/paginated-tab-header';
 
-fdescribe('AuthService', () => {
+describe('AuthService', () => {
   let authService:AuthService;
   let mockUser:User;
 
