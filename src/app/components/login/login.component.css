@@ -115,23 +115,23 @@ p {
 }
 
 input{
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif;
 
     color: black;
 }
 p{
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-weight: bold;
     color: black;   
     padding: 1.5vw;
 
 }
 a{
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-weight: bold; 
 }
 mat-label{
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-size: 110%;
 }
 

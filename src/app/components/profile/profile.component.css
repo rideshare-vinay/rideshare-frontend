@@ -38,7 +38,7 @@ input {
     width: 7em;     /* Static width buttons */
     outline:none;   /* Removing outline */
     border-radius: 10em;
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif;
     font-weight: bold;
     color: #ffffff;
 }
@@ -104,7 +104,6 @@ input {
     background-size: cover;
     background-repeat: no-repeat;
     margin-top: 5%;
-    /* background: rgba(150, 185, 102, 0.374); */
 }
 
 .card-title {
@@ -134,16 +133,22 @@ section{
     height: auto;
 }
 
-th, td{
-    font: futura;
+th{
+    font-family: "futura-pt-bold",sans-serif;
     background-color: rgba(255, 255, 255, 0.144);
     font-size: 1.25em;
     border-bottom: 2px solid white;
     padding: 1.4vw;
 }
-
+td{
+    font-family: "futura-pt",sans-serif;
+    background-color: rgba(255, 255, 255, 0.144);
+    font-size: 1.25em;
+    border-bottom: 2px solid white;
+    padding: 1.4vw;
+}
 h3{
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif;
     font-size: 1.5em;
     font-weight: bold;
 }
@@ -158,7 +163,7 @@ table{
 }
 
 section{
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif;
 }
 
 .image{
@@ -172,4 +177,7 @@ section{
 
 @media (max-width: 800px){
   
+}
+mat-slide-toggle{
+    font-family: "futura-pt-bold",sans-serif;
 }
