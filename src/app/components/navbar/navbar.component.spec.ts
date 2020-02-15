@@ -12,27 +12,76 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
+import { UserService } from 'src/app/services/user-service/user.service';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
+import { Router } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { User } from 'src/app/models/user';
+import { Admin } from 'src/app/models/admin';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ NavbarComponent, AdminComponent, CarRegisterComponent, RegisterComponent, LoginComponent, MyCarComponent, PreferenceComponent, ProfileComponent ],
-      imports: [HttpClientModule, AppRoutingModule, FormsModule],
-      providers: [{provide: APP_BASE_HREF, useValue: '/my/app'}]
-    })
-    .compileComponents();
-  }));
+  let authService: AuthService;
+  let userService: UserService;
+  const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+  let mockUser : User;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavbarComponent);
+    TestBed.configureTestingModule({
+      declarations: [NavbarComponent],
+      providers: [
+        AuthService,
+        { provide: Router, useValue: routerSpy }
+      ],
+      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule]
+    });
+    const fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    authService = TestBed.get(AuthService);
+    userService = TestBed.get(UserService);
+    mockUser = {
+      userId: 1,
+      userName: 'kimuser',
+      firstName: 'kim',
+      lastName: 'jhonson',
+      phoneNumber: '0123456789',
+      email: 'email@email.com',
+      driver: false,
+      batch: { batchLocation: 'loc', batchNumber: 123 },
+      acceptingRides: false,
+      active: true,
+      address: "address",
+      latitude: 123,
+      longitude: 456
+    };
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('ngOnInit function', () => {
+    it('should get user by Id and properly resolve the promise', () => {
+      spyOn(userService, 'getUserById').and.returnValue(Promise.resolve(mockUser));
+      authService.user = mockUser;
+      userService.getUserById(mockUser.userId).then(user => {
+        expect(user).toEqual(mockUser);
+      });
+    });
+    it('should properly assign name value when duringngOnInit function', () => {
+      spyOn(userService, 'getUserById').and.returnValue(Promise.resolve(mockUser));
+      authService.user = mockUser;
+      component.ngOnInit();
+      // console.log("############" + component.name);
+      expect(component.name).toMatch(mockUser.firstName);
+    })
+  });
+
+  it('should should redirect at logout', () => {
+    component.logout();
+    const spy = routerSpy.navigate as jasmine.Spy;
+    const navArgs = spy.calls.first().args[0];
+    expect(navArgs).toEqual(['']);
   });
 });
