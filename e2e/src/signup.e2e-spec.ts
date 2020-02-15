@@ -1,7 +1,7 @@
 import { browser, logging } from 'protractor';
 import { SignUpPage } from './signup.po';
 
-fdescribe('App /register E2E tests', () => {
+describe('App /register E2E tests', () => {
     let page: SignUpPage;
 
     beforeEach(() => {

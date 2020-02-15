@@ -51,10 +51,9 @@ export class AppPage {
     return element(by.className('alert'));
   }
 
-  getLoginBannedMessage() {
-    // TODO: get different element when UI done
-    return element(by.className('alert'));
-  }
+  // getLoginBannedMessage() {
+  //   return element(by.className('alert'));
+  // }
 
   getCreateAcctLink() {
     return element(by.partialLinkText('Sign Up'));
