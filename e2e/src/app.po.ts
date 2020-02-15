@@ -33,5 +33,31 @@ export class AppPage {
   getAdminLink() {
     return element(by.partialLinkText('ADMIN'));
   }
-  
+
+  getAccount() {
+    return element(by.name('chosenUserFullName'));
+  }
+
+  getUsername() {
+    return element(by.name('userName'));
+  }
+
+  getLoginButton() {
+    return element(by.className('button'));
+  }
+
+  getLoginFailedMessage() {
+    // TODO: get different element when UI done
+    return element(by.className('alert'));
+  }
+
+  getLoginBannedMessage() {
+    // TODO: get different element when UI done
+    return element(by.className('alert'));
+  }
+
+  getCreateAcctLink() {
+    return element(by.partialLinkText('Sign Up'));
+  }
+
 }

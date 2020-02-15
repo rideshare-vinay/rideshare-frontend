@@ -17,24 +17,77 @@ describe('App /login E2E tests', () => {
     expect(page.getImage().isDisplayed()).toBeTruthy();
   });
 
-  it('should display login Card', () => {
-    expect(page.getLoginCard().isDisplayed()).toBeTruthy();
+  describe('loginCard specific', () => {
+    it('should display loginCard', () => {
+      expect(page.getLoginCard().isDisplayed()).toBeTruthy();
+    });
+    it('login button should be invalid', () => {
+      page.getAccount().sendKeys('');
+      page.getUsername().sendKeys('');
+      expect(page.getLoginButton().isEnabled()).toBeFalsy();
+    });
+    it('login button should be valid', () => {
+      page.getAccount().sendKeys('abc');
+      page.getUsername().sendKeys('abc');
+      expect(page.getLoginButton().isEnabled()).toBeTruthy();
+    });
+    it('login with valid inputs', () => {
+      page.getAccount().sendKeys('Adney Jones1: Driver');
+      page.getUsername().sendKeys('driver1');
+      expect(page.getAccount().getAttribute('value')).toEqual('Adney Jones1: Driver');
+      expect(page.getUsername().getAttribute('value')).toEqual('driver1');
+      // browser.ignoreSynchronization = true;
+      // page.getLoginButton().click().then(() => {
+      //   browser.getCurrentUrl().then((actualUrl) => {
+      //     expect(actualUrl.indexOf('home/drivers') !== -1).toBeTruthy();
+      //   });
+      // });
+    });
+    it('login with invalid inputs', () => {
+      page.getAccount().sendKeys('abc');
+      page.getUsername().sendKeys('abc');
+      browser.ignoreSynchronization = true;
+      page.getLoginButton().click().then(() => {
+        browser.getCurrentUrl().then((actualUrl) => {
+          expect(page.getLoginFailedMessage().isDisplayed()).toBeTruthy();
+        });
+      });
+    });
+    it('login with banned user inputs', () => {
+      // TODO: mock 1 banned user acct
+      page.getAccount().sendKeys('abc');
+      page.getUsername().sendKeys('abc');
+      browser.ignoreSynchronization = true;
+      page.getLoginButton().click().then(() => {
+        browser.getCurrentUrl().then((actualUrl) => {
+          expect(page.getLoginBannedMessage().isDisplayed()).toBeTruthy();
+        });
+      });
+    });
+    it('signup/create a new account must redirect', () => {
+      browser.ignoreSynchronization = true;
+      page.getCreateAcctLink().click().then(() => {
+        browser.getCurrentUrl().then((actualUrl) => {
+          expect(actualUrl.indexOf('register') !== -1).toBeTruthy();
+        });
+      });
+    });
   });
 
   describe('navbarRideshare specific', () => {
     it('should display navbarRideshare', () => {
       expect(page.getNavbarRideshare().isDisplayed()).toBeTruthy();
     });
-    it('signin link must clickable', () => {
+    it('signin link must redirect', () => {
       page.getSignInLink().click().then(() => {
-        browser.sleep(3000).then(() => {
+        browser.sleep(2000).then(() => {
           browser.getCurrentUrl().then((actualUrl) => {
             expect(actualUrl.indexOf('login') !== -1).toBeTruthy();
           });
         });
       });
     });
-    it('signup link must clickable', () => {
+    it('signup link must redirect', () => {
       browser.ignoreSynchronization = true;
       page.getSignUpLink().click().then(() => {
         browser.getCurrentUrl().then((actualUrl) => {
@@ -42,7 +95,7 @@ describe('App /login E2E tests', () => {
         });
       });
     });
-    it('admin link must clickable', () => {
+    it('admin link must redirect', () => {
       browser.ignoreSynchronization = true;
       page.getAdminLink().click().then(() => {
         browser.getCurrentUrl().then((actualUrl) => {
