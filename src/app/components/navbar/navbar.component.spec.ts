@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { NavbarComponent } from './navbar.component';
 import { AdminComponent } from '../admin/admin.component';
@@ -19,6 +19,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { User } from 'src/app/models/user';
 import { Admin } from 'src/app/models/admin';
+import { Observable, of } from 'rxjs';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -69,13 +70,22 @@ describe('NavbarComponent', () => {
         expect(user).toEqual(mockUser);
       });
     });
-    it('should properly assign name value when duringngOnInit function', () => {
+    it('should properly assign name value', fakeAsync(() => {
       spyOn(userService, 'getUserById').and.returnValue(Promise.resolve(mockUser));
       authService.user = mockUser;
       component.ngOnInit();
-      // console.log("############" + component.name);
+      tick();
       expect(component.name).toMatch(mockUser.firstName);
-    })
+    }))
+    it('should properly assign name and isDriver values if user', () => {
+      authService.fireIsLoggedIn.emit(mockUser);
+      authService.getEmitter().subscribe((user: any) => { console.log("###############" +user)});
+      spyOn(authService, 'getEmitter').and.returnValue(authService.fireIsLoggedIn);
+      component.ngOnInit();
+
+      expect(component.name).toMatch(mockUser.firstName);
+      expect(component.isDriver).toBe(mockUser.driver);
+    })    
   });
 
   it('should should redirect at logout', () => {
@@ -83,5 +93,10 @@ describe('NavbarComponent', () => {
     const spy = routerSpy.navigate as jasmine.Spy;
     const navArgs = spy.calls.first().args[0];
     expect(navArgs).toEqual(['']);
+  });
+
+  it('should should toggle nav bar', () => {
+    component.toggleNavBar();
+    expect(component.navBarOpen).toBe(true);
   });
 });

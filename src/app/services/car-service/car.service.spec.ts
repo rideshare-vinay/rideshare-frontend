@@ -6,17 +6,23 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { RouterTestingModule } from '@angular/router/testing';
 import { User } from 'src/app/models/user';
 import { UserService } from '../user-service/user.service';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
-describe('CarService', () => {
+fdescribe('CarService', () => {
   let carService: CarService;
   let httpMock: HttpTestingController;
   let mockUser: User = { userId: 1, acceptingRides: false, active: true, batch: null, driver: false, email: "dsjcsd", firstName: "dsjncskdnc", lastName: "jksdncksn", phoneNumber: "cknsdcnsdl", userName: "sjcnskd", address: "address", latitude: 123, longitude: 456 };
   let mockCar: Car = { carId: 1, color: "red", make: "Jenkin", model: "Simprola", seats: 7, user: mockUser, year: 2000 };
+  const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
+      providers: [
+        { provide: Router, useValue: routerSpy }
+      ],
+      imports: [HttpClientTestingModule, RouterTestingModule, FormsModule],
     });
     carService = TestBed.get(CarService);
     httpMock = TestBed.get(HttpTestingController);
