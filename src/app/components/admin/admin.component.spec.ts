@@ -29,7 +29,10 @@ describe('AdminComponent', () => {
       driver: false,
       batch: { batchLocation: '123abc', batchNumber: 123 },
       acceptingRides: false,
-      active: true
+      active: true,
+      address: "address",
+      latitude: 123,
+      longitude: 456
     },
     {
       userId: 2,
@@ -41,7 +44,10 @@ describe('AdminComponent', () => {
       driver: false,
       batch: { batchLocation: '123abc', batchNumber: 123 },
       acceptingRides: false,
-      active: true
+      active: true,
+      address: "address",
+      latitude: 123,
+      longitude: 456
     },
   ];
 
