@@ -13,6 +13,8 @@ small {
 
 .edit {
     cursor: pointer;
+    position: relative;
+    left: 15px;
 }
 
 #profile {
@@ -38,7 +40,7 @@ input {
     width: 7em;     /* Static width buttons */
     outline:none;   /* Removing outline */
     border-radius: 10em;
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif;
     font-weight: bold;
     color: #ffffff;
 }
@@ -70,6 +72,7 @@ input {
 
 ::ng-deep .mat-form-field-infix {
     border-top: 0px !important;
+    min-width: 15px !important;
 }
 
 .toggle-example{
@@ -104,7 +107,6 @@ input {
     background-size: cover;
     background-repeat: no-repeat;
     margin-top: 5%;
-    /* background: rgba(150, 185, 102, 0.374); */
 }
 
 .card-title {
@@ -120,10 +122,6 @@ section{
     margin: 5% 2%;
 }
 
-.seat{
-    width:2vw;
-    padding-left: 5px;
-}
 
 .field-input{
     font: bold !important;
@@ -134,16 +132,22 @@ section{
     height: auto;
 }
 
-th, td{
-    font: futura;
+th{
+    font-family: "futura-pt-bold",sans-serif;
     background-color: rgba(255, 255, 255, 0.144);
     font-size: 1.25em;
     border-bottom: 2px solid white;
     padding: 1.4vw;
 }
-
+td{
+    font-family: "futura-pt",sans-serif;
+    background-color: rgba(255, 255, 255, 0.144);
+    font-size: 1.25em;
+    border-bottom: 2px solid white;
+    padding: 1.4vw;
+}
 h3{
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif;
     font-size: 1.5em;
     font-weight: bold;
 }
@@ -158,7 +162,7 @@ table{
 }
 
 section{
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif;
 }
 
 .image{
@@ -170,6 +174,25 @@ section{
     margin-top: 16px !important; 
 }
 
+.seats{
+    width: 30%;
+}
+.seatInput{
+    width:2vh;
+}
+.toggleText{
+    position: relative;
+    left:70px;
+    bottom:30px;
+}
+.right{
+    position: relative;
+    bottom:25px;
+}
+
 @media (max-width: 800px){
   
+}
+mat-slide-toggle{
+    font-family: "futura-pt-bold",sans-serif;
 }

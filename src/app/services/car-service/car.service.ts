@@ -69,7 +69,23 @@ export class CarService {
 			this.userService.updateIsDriver(true, userId);
 			this.router.navigate(['car']);
 		}
-}
+	}
+
+	/**
+	 * This function updata a car.
+	 * @param car 
+	 * @param userId 
+	 */
+
+	updateCar(car, userId){
+		this.user.userId = userId;
+		car.user = this.user;
+		this.http.put(`${this.url}/${userId}`, car, {observe: 'response'}).subscribe(
+			data =>{
+				car= data;
+			}
+		)
+	}
 
 	/**
 	 * This function removes a Car.
