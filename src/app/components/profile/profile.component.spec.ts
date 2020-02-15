@@ -72,6 +72,11 @@ fdescribe('ProfileComponent', () => {
         reject();
       })
     }
+    updateUserInfo(user){
+      return new Promise((resolve,reject) => {
+        resolve(mockUser)
+      })
+    }
   }
 
   class MockBatchService{
@@ -216,8 +221,8 @@ fdescribe('ProfileComponent', () => {
   })
 
   it("should update the user profile", (done) => {
-    myProfileComponent.user = mockUser;
-    mockUser = {
+    
+    let newMockUser = {
       userId: 1,
       userName: "testChange",
       batch: { batchLocation: 'UTA - Arlington, TX', batchNumber: 2 },
@@ -232,6 +237,14 @@ fdescribe('ProfileComponent', () => {
       latitude: 45,
       longitude: 45
     };
+    myProfileComponent.user = newMockUser;
+     myProfileComponent.newUser = mockUser;
+     myProfileComponent.updateProfile();
+     mockUserService.updateUserInfo(myProfileComponent.newUser).then( user => {
+      expect(myProfileComponent.newUser).toEqual(myProfileComponent.user);
+      done();
+     });
+
   })
 
 });

@@ -110,6 +110,7 @@ export class LoginComponent implements OnInit {
 	 */
 	nextPage() {
 		this.curPage++;
+		console.log(this.curPage);
 		this.users = this.allUsers.slice(this.curPage * 5 - 5, this.curPage * 5);
 	}
 
