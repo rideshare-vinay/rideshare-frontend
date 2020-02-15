@@ -1,20 +1,18 @@
 a{
-    font: futura;
-    font-weight: bold;
+    font-family: "futura-pt-bold",sans-serif; 
     font-size: 1.5 em;
     color: #717f92;
     outline: none;
     background: none;
     appearance: none;
     cursor: pointer;
-    border: none;
+    border: none; 
 }
 
 a:hover { 
     border-bottom: solid 3px #F26926;
     text-decoration: none;
     color: #717f92;
-    
  }
 a.active { 
     font-weight:bold;
@@ -59,7 +57,7 @@ nav {
 }
 
 p{
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif; 
     font-weight: bold;
     color: #717f92;
 }
@@ -74,12 +72,10 @@ p{
     display: inline-block;
     margin: 4px 2px;
     cursor: pointer;
-    width: 7em;     /* Static width buttons */
-    outline:none;   /* Removing outline */
+    width: 7em;    
+    outline:none;   
     border-radius: 10em;
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif; 
     font-weight: bold;
     color: #ffffff;
 }
-
-

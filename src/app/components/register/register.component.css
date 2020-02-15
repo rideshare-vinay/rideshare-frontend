@@ -3,7 +3,7 @@ small {
 }
 
 section{
-  font: futura;
+  font-family: "futura-pt",sans-serif;
   margin: 3% 2%;
 }
 
@@ -20,7 +20,7 @@ section{
     width: 150px;     /* Static width buttons */
     outline:none;   /* Removing outline */
     border-radius: 10em;
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif;
     font-weight: bold;
     color: #ffffff;
 }
@@ -52,9 +52,9 @@ section{
   }
 
   .mat-card-title{
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-weight: bold;
-    font-size: 2em;
+    font-size: 2.5em;
   }
 
   .mat-select{
@@ -63,13 +63,13 @@ section{
 
   ::ng-deep .mat-form-field-label{
     color: rgb(150, 150, 150) !important; 
-    font: futura;
+    font-family: "futura-pt",sans-serif;
     font-size: 1.1em;  
   }
 
 ::ng-deep .mat-form-field{
   color: rgb(150, 150, 150) !important; 
-  font: futura;
+  font-family: "futura-pt",sans-serif;
   font-size: 1.1em; 
 }
 
