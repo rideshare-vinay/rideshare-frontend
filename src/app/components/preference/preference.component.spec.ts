@@ -21,7 +21,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { User } from 'src/app/models/user';
 
-fdescribe('PreferenceComponent', () => {
+describe('PreferenceComponent', () => {
   let preferenceComponent: PreferenceComponent;
   let preferenceFixture: ComponentFixture<PreferenceComponent>;
   let mockAuthService:AuthService;

@@ -28,7 +28,10 @@ describe("Login Component", () => {
       driver: false, 
       batch: {batchLocation: "123abc", batchNumber: 123},
       acceptingRides: false,
-      active: true},
+      active: true,
+      address: "123 liv+",
+      latitude: 45,
+      longitude: 45},
     {userId: 2, 
       userName: "kimj", 
       firstName: "Kim", 
@@ -38,7 +41,10 @@ describe("Login Component", () => {
       driver: false, 
       batch: {batchLocation: "123abc", batchNumber: 123},
       acceptingRides: false,
-      active: true},
+      active: true,
+      address: "123 liv+",
+      latitude: 45,
+      longitude: 45},
   ];
 
   beforeEach(() => {
@@ -67,7 +73,10 @@ describe("Login Component", () => {
       driver: false, 
       batch: {batchLocation: "123abc", batchNumber: 123},
       acceptingRides: false,
-      active: true},
+      active: true,
+      address: "123 liv+",
+      latitude: 45,
+      longitude: 45},
     {userId: 2, 
       userName: "kimj", 
       firstName: "Kim", 
@@ -77,7 +86,10 @@ describe("Login Component", () => {
       driver: false, 
       batch: {batchLocation: "123abc", batchNumber: 123},
       acceptingRides: false,
-      active: true},
+      active: true,
+      address: "123 liv+",
+      latitude: 45,
+      longitude: 45},
   ];
 
   beforeEach(() => {
