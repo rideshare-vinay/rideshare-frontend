@@ -11,6 +11,9 @@ describe('workspace-project App', () => {
   it('should display welcome message', () => {
     page.navigateTo();
     expect(page.getTitleText()).toEqual('rideshare-frontend app is running!');
+
+
+    browser.sleep(2000);
   });
 
   afterEach(async () => {
