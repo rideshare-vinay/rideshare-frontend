@@ -215,23 +215,23 @@ fdescribe('ProfileComponent', () => {
     expect(myProfileComponent.compareUser).toBeTruthy();
   })
 
-  // it("should update the user profile", (done) => {
-  //   myProfileComponent.user = mockUser;
-  //   mockUser = {
-  //     userId: 1,
-  //     userName: "testing",
-  //     batch: { batchLocation: 'UTA - Arlington, TX', batchNumber: 2 },
-  //     firstName: "jon",
-  //     lastName: "smith",
-  //     email: "test",
-  //     phoneNumber: "also a test",
-  //     active: true,
-  //     driver: true,
-  //     acceptingRides: true,
-  //     address: "123 liv+",
-  //     latitude: 45,
-  //     longitude: 45
-  //   };
-  // })
+  it("should update the user profile", (done) => {
+    myProfileComponent.user = mockUser;
+    mockUser = {
+      userId: 1,
+      userName: "testChange",
+      batch: { batchLocation: 'UTA - Arlington, TX', batchNumber: 2 },
+      firstName: "jon",
+      lastName: "smith",
+      email: "test",
+      phoneNumber: "123-456-7890",
+      active: true,
+      driver: true,
+      acceptingRides: true,
+      address: "123 liv+",
+      latitude: 45,
+      longitude: 45
+    };
+  })
 
 });
