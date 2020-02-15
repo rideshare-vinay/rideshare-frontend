@@ -29,17 +29,25 @@ describe("Login Component", () => {
       driver: false, 
       batch: {batchLocation: "123abc", batchNumber: 123},
       acceptingRides: false,
-      active: true},
-      {userId: 2, 
-        userName: "kimj", 
-        firstName: "Kim", 
-        lastName: "Jhonson",
+      active: true,
+      address: "adress",
+      latitude: 123,
+      longitude: 456
+    },
+    {userId: 2, 
+      userName: "kimj", 
+      firstName: "Kim", 
+      lastName: "Jhonson",
       phoneNumber: "5555555555",
       email: "email@email.com",
       driver: false, 
       batch: {batchLocation: "123abc", batchNumber: 123},
       acceptingRides: false,
-      active: true},
+      active: true,
+      address: "address",
+      longitude: 123,
+      latitude: 456
+    }
   ];
 
   beforeEach(() => {

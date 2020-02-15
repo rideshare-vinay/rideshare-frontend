@@ -63,7 +63,11 @@ describe("MyCarComponent", () => {
       active: true, 
       batch: {batchLocation: "abc123", batchNumber: 123},
       driver: false, 
-      email: "email@email.com"};
+      email: "email@email.com",
+      address: "address",
+      latitude: 123,
+      longitude: 456
+    };
     mockCar = {
       carId: 1,
       color: "red",
