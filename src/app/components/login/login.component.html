@@ -1,4 +1,43 @@
-<div class="container">
+<section class="main" >
+<div fxLayout="row" fxLayout.xs="column-reverse" fxLayoutWrap fxLayoutGap="3%" fxLayoutAlign="center">
+    <div fxFlex="45%" class="image">
+        <img src="../assets/login.jpeg" alt="RideShare" class="responsive"/>
+    </div>
+    <div fxFlex="45%" >
+      <mat-card class="example-card loginCard" >
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Account</mat-label>
+                <input matInput type="text" color="warn" placeholder="Select An Account" name="chosenUserFullName" [(ngModel)]="chosenUserFullName" (click)="toggleDropDown()" (ngModelChange)="searchAccount()">
+                <mat-select>
+                    <div *ngFor="let user of users">
+                    <mat-option (click)="changeUser(user)">{{user.firstName}} {{user.lastName}}: {{user.driver? "Driver" : "Rider"}}</mat-option>
+                    </div>
+                </mat-select>
+            </mat-form-field>
+              <br>
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput type="text" color="warn" [(ngModel)]="userName" name="userName" placeholder="Username">
+              </mat-form-field><br>
+              <p class="alert alert-danger" *ngIf="failed"><strong>Login Failed!</strong></p>
+              <p class="alert alert-danger" *ngIf="banned"><strong>You are banned</strong></p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button type="button" class="button oBut" (click)="login()" (keyup.enter)="login()" [disabled]="!(userName && chosenUserFullName)">LOGIN</button>
+            <p>Need An Account? <a routerLink="/register">Sign Up</a></p>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    </div>
+</section>
+
+
+
+<!-- <div class="container">
     <form class="text-center" id="login-form">
         <div class="form-group">
             <div class="dropdown">
@@ -24,4 +63,4 @@
         <br><br>
         <p>Need An Account? <a routerLink="/register">Sign Up</a></p>
     </form>
-</div>
+</div> -->

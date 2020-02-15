@@ -54,22 +54,22 @@ export class CarService {
 	 */
 	
 	createCar(car, userId) {
-
 		this.user.userId = userId;
 		car.user = this.user;
-
 		this.http.post(this.url, car, {observe: 'response'}).subscribe(
-			(response) => {
-				if (response) {
-					this.userService.updateIsDriver(true, userId);
-					this.router.navigate(['car']);
-				}
-			},
+			(response) => this.addCar(response, userId),
 			(error) => {
 				console.warn(error);
 			}
 		);
 	}
+	
+	addCar(response, userId){
+		if (response) {
+			this.userService.updateIsDriver(true, userId);
+			this.router.navigate(['car']);
+		}
+}
 
 	/**
 	 * This function removes a Car.

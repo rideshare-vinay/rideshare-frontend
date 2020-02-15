@@ -5,6 +5,10 @@ small {
 #add-car-btn {
     margin-right: 1%;
 }
+
+#cancel-btn {
+    background-color: red;
+}
 .dropdown-content p {
     cursor: pointer;
     font-size: 1em;
@@ -29,4 +33,65 @@ small {
     min-width: 208px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-}  
+}
+
+.container{
+    background-image: url(/../assets/blueBck.svg);
+    border: 1px solid #dddddd;
+    border-radius: 7px;
+    padding: 3%;
+    margin-top: 8%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+mat-select {
+    background-color: #FFFFFF; 
+}
+mat-label{
+    color: black;
+}
+input{
+    color: black;
+}
+
+.oBut{
+    background-color: #F26926; 
+    border: none;
+    color: white;
+    padding: 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 150px;     /* Static width buttons */
+    outline:none;   /* Removing outline */
+    border-radius: 10em;
+    font: futura;
+    font-weight: bold;
+    color: #ffffff;
+}
+.oBut:hover{
+    background-color:#717F92;
+    color: white;
+}
+.oBut:disabled{
+    background-color: #F26926 ; 
+    color: #ffffff ;
+}
+section{
+    font: futura;
+}
+#year, #make, #model, #color {
+    background-color: rgba(1,1,1,0.0);
+}
+#centered{
+    text-align: center;
+}
+h3{
+    padding-bottom: 3vw;
+}

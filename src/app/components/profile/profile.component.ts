@@ -7,6 +7,8 @@ import { BatchService } from 'src/app/services/batch-service/batch.service';
 import { ValidationService } from 'src/app/services/validation-service/validation.service';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { LogService } from 'src/app/services/log.service';
+import { Car } from 'src/app/models/car';
+import { CarService } from 'src/app/services/car-service/car.service';
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +22,7 @@ export class ProfileComponent implements OnInit {
    */
 
   user: User = new User();
+  myCar : Car = new Car();
   newUser: User = new User();
   batch: Batch = new Batch();
   batches: Batch[] = [];
@@ -34,6 +37,9 @@ export class ProfileComponent implements OnInit {
   noChange: boolean = false;
   updateSuccess: boolean = false;
   updateFailed: boolean = false;
+  ownCar: boolean;
+  truthy: string = 'btn btn-success';
+  falsy: string = 'btn btn-danger';
 
   /**
    * Constructor
@@ -44,7 +50,7 @@ export class ProfileComponent implements OnInit {
    * @param validationService A validation service is instantiated
    * @param authService An authorization service is instantiated
    */
-  constructor(private log: LogService, private router: Router, private userService: UserService, private batchService: BatchService, public validationService: ValidationService, private authService: AuthService) { }
+  constructor(private log: LogService, private router: Router, private userService: UserService, private batchService: BatchService, public validationService: ValidationService, private authService: AuthService,private carService: CarService) { }
 
   ngOnInit() {
     this.user.userId = this.authService.user.userId;;
@@ -52,6 +58,7 @@ export class ProfileComponent implements OnInit {
       this.router.navigate(['']);
     } else {
       this.getUserInfo();
+      this.getDriverCar(this.user.userId);
     }
   }
 
@@ -68,15 +75,33 @@ export class ProfileComponent implements OnInit {
           this.oldBatchLocation = this.user.batch.batchLocation;
           this.newUser = Object.assign({}, this.user);
 
-          this.batches = this.batchService.getAllBatches();
-          this.batches = this.batches.filter(batch => batch.batchNumber === this.user.batch.batchNumber).concat(this.batches.filter(batch => batch.batchNumber !== this.user.batch.batchNumber))
+          this.batchService.getAllBatches().subscribe(batches =>{
+           
+            this.batches = batches.filter(batch => batch.batchNumber === this.user.batch.batchNumber).concat(this.batches.filter(batch => batch.batchNumber !== this.user.batch.batchNumber))
+
+          });
         } else {
           this.authService.user = {};
           this.router.navigate(['']);
         }
       })
   }
+  
+   /**
+   * A GET method that get driver car 
+   *
+   */
 
+  getDriverCar(userid){
+    this.carService.getCarByUserId(userid).then((response)=>{
+      if (response) {
+        this.myCar = response;
+        this.ownCar = true;
+      }else {
+        this.ownCar = false;
+      }
+    })
+  }
   /**
    * A method that compares two users
    */
@@ -150,5 +175,43 @@ export class ProfileComponent implements OnInit {
     this.newUser = Object.assign({}, this.user);
     this.newUser.batch.batchNumber = this.oldBatchNumber;
     this.newUser.batch.batchLocation = this.oldBatchLocation;
+  }
+
+  /**
+   * @function
+   * this function changes the account from activate to inactive
+   */
+
+  toggleActive() {
+    if (this.user.active) {
+      this.user.active = !this.user.active;
+      this.user.acceptingRides = false;
+      this.userService.updatePreference('active', this.user.active, this.user.userId);
+    } else {
+      this.user.active = !this.user.active;
+      this.userService.updatePreference('active', this.user.active, this.user.userId);
+    }
+    
+  }
+
+    /**
+   * @function
+   * this function changes the mode of driver and rider
+   */
+
+  toggleDriver() {
+    this.user.driver = !this.user.driver;
+    this.userService.updatePreference('driver', this.user.driver, this.user.userId);
+    
+  }
+
+ /**
+   * @function
+   * this function changes the driver account from accepting rides to not accepting rides.
+   */
+
+  toggleAcceptRider() {
+    this.user.acceptingRides = !this.user.acceptingRides;
+    this.userService.updatePreference('acceptingRides', this.user.acceptingRides, this.user.userId);
   }
 }

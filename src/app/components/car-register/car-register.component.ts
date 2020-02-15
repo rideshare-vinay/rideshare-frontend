@@ -23,19 +23,13 @@ export class CarRegisterComponent implements OnInit {
    * Set userId
    * Instantiates a car
    */
-  allYears: string[] = [];
+  colors : string[] = ["Black", "Grey", "White", "Silver", "Blue", "Green", "Red", "Gold", "Orange", "Pink", "Purple","Yellow"];
   years: string[] = [];
-  allMakes: string[] = [];
   makes: string[] = [];
-  allModels: string[] = [];
   models: string[] = [];
   userId: number;
   car: Car = new Car();
-  
-  curPage: number=1;
-  totalPage: number=1;
-  showDropDown: boolean = false;
-  
+  attemptedSubmission = false;
   /**
    * This is constructor
    * @param carService A dependency of a car service is injected.
@@ -52,16 +46,12 @@ export class CarRegisterComponent implements OnInit {
   ngOnInit() {
     this.userId = this.authService.user.userId;
     if (!this.userId) {
-      this.router.navigate(['']);
-    } else {
+      //this.router.navigate(['']);
+    }
       this.carLookupService.getYears().subscribe(data =>{
-        this.allYears=this.xmlParser(data);
-        console.log(this.allYears)
-        this.years = this.allYears.slice(this.curPage * 5 - 5, this.curPage * 5);
-        this.totalPage = Math.ceil(this.allYears.length / 5);
+        this.years=this.xmlParser(data);
       })
       
-    }
   }
 
  /**
@@ -69,53 +59,21 @@ export class CarRegisterComponent implements OnInit {
   * @param year
   * @returns {void}
   */
- newChangeYear(year:number) {
-  this.showDropDown = false;
-  this.curPage = 1;
-  this.years = this.allYears.slice(this.curPage * 5 - 5, this.curPage * 5);
-  this.car.year = year;
+ changeYear() {
   this.car.make="";
   this.car.model="";
   this.makes=[];
   this.models=[];
-  this.carLookupService.getMakes(""+year).subscribe(data =>{
+  this.carLookupService.getMakes(""+this.car.year).subscribe(data =>{
     this.makes=this.xmlParser(data);
-    this.car.make=this.makes[0];
   })
 }
-
-	/**
-	 * Set next page
-	 */
-	nextPage() {
-		this.curPage++;
-		this.years = this.allYears.slice(this.curPage * 5 - 5, this.curPage * 5);
-	}
-
-	/**
-	 * Set prev page
-	 */
-
-	prevPage() {
-		this.curPage--;
-		this.years = this.allYears.slice(this.curPage * 5 - 5, this.curPage * 5);
-  }
-  
-  /**
-	 * Toggles drop-down
-	 */
-
-  toggleDropDown() {
-		this.showDropDown = !this.showDropDown;
-  }
   /**
   * Changes make for the options
   * @param event
   * @returns {void}
   */
-  changeMake(event) {
-		let option = event.target.options.selectedIndex;
-    this.car.make = this.makes[option];
+  changeMake() {
     this.car.model="";
     this.models=[];
     this.carLookupService.getModels(""+this.car.year,this.car.make).subscribe(data =>{     
@@ -125,19 +83,11 @@ export class CarRegisterComponent implements OnInit {
     })
   }
   /**
-  * Changes model for the options
-  * @param event
-  * @returns {void}
-  */
-  changeModel(event) {
-		let option = event.target.options.selectedIndex;
-		this.car.model = this.models[option];
-  }
-  /**
    * A POST method that adds a car object to the user
    */
   addCar() {
-    if (this.validationService.validateSeats(this.car.seats)) {
+    this.attemptedSubmission=true;
+    if (this.validationService.validateCar(this.car)) {
       this.carService.createCar(this.car, this.userId);
     }
   }
@@ -150,13 +100,11 @@ export class CarRegisterComponent implements OnInit {
   xmlParser(text:String):string[]{
     var output:string[];
     output = [];
-    console.log(text)
     var values = text.split("\"value\":\"")
     values.reduce((prev,next,idx,arr) =>{
       output.push(next.split("\"")[0])
       return ""
     })
-    console.log(output)
     return output;
   }
     /**
@@ -170,16 +118,23 @@ export class CarRegisterComponent implements OnInit {
       var model:string;
       while(i<models.length){
         model=models[i];
-        if(previousmodel!="" && model.split(" ")[0]==previousmodel.split(" ")[0]){
+        if(previousmodel!="" && (["Lexus","Tesla"].lastIndexOf(this.car.make))==-1 && model.split(" ")[0]==previousmodel.split(" ")[0]){
           //presumed duplicate needs to be removed
           models.splice(i,1)
         }
         else{
           //new model, need to clean up bogus keywords
-          model=model.split(/ \wWD/)[0]; //clean up wheel driver nonsense
-          models[i]=model
-          previousmodel=model;
-          i+=1
+          model=model.split(/ \wWD/)[0]; //clean up wheel drive nonsense
+          model=model.split(/ \w-Door/)[0]; //clean up door nonsense
+          if(this.car.make == "Tesla" || this.car.make=="Lexus"){model=model.split(" ")[0]+" "+model.split(" ")[1]}//tesla/lexus nonsense
+          if(model==previousmodel){
+            models.splice(i,1)
+          }
+          else{
+            models[i]=model
+            previousmodel=model;
+            i+=1
+          }
         }
       }
       return models;

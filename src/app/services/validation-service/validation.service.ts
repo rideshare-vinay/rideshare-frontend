@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Car } from 'src/app/models/car';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,15 @@ export class ValidationService {
 	*/
   constructor() { }
   
+
+	/** 
+  * this function validates the validity of a car.
+  * @function
+  * @returns {boolean}
+  */
+ validateCar(car: Car) {
+    return this.validateColor(car.color)&&this.validateSeats(car.seats)&&this.validateYear(car.year)&&this.validateMake(car.make)&&this.validateModel(car.model)
+  }
    /** 
   * this function validates the number of seats of the car.
   * @function
@@ -16,6 +26,62 @@ export class ValidationService {
   */
   validateSeats(seats: number) {
     return seats > 0 && seats <= 6 && seats % 1 === 0;
+  }
+
+	/** 
+  * this function validates the color of the car.
+  * @function
+  * @returns {boolean}
+  */
+ validateColor(color: String) {
+	if(color!=null){
+		return true;
+	}
+	else{
+		return false;
+	}
+  }
+
+  	/** 
+  * this function validates the color of the car.
+  * @function
+  * @returns {boolean}
+  */
+ validateYear(year: number) {
+	if(year!=null){
+		return true;
+	}
+	else{
+		return false;
+	}
+  }
+
+  	/** 
+  * this function validates the color of the car.
+  * @function
+  * @returns {boolean}
+  */
+ validateMake(make: string) {
+	if(make!=null && make!=""){
+		return true;
+	}
+	else{
+		return false;
+	}
+  }
+
+  	/** 
+  * this function validates the model of the car.
+  * @function
+  * @returns {boolean}
+  */
+ validateModel(model: string) {
+	if(model!=null && model!=""){
+		return true;
+	}
+	else{
+		return false;
+	}
   }
   
   /**
