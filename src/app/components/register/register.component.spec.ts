@@ -15,13 +15,15 @@ import { ProfileComponent } from '../profile/profile.component';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-describe('RegisterComponent', () => {
+fdescribe('RegisterComponent', () => {
   let component: RegisterComponent;
   let userService: UserService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       declarations: [RegisterComponent],
       providers: [],
       imports: [FormsModule, HttpClientTestingModule, RouterTestingModule]
@@ -34,4 +36,11 @@ describe('RegisterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  
+  // it('should sign up a user', () => {
+  //   spyOn(userService, 'showAllUser').and.returnValue(of(mockUsers));
+  //   component.searchUser();
+  //   expect(component.listofUsers).toEqual(mockUsers);
+  // });
 });

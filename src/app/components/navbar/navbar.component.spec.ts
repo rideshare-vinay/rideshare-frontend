@@ -50,7 +50,10 @@ describe('NavbarComponent', () => {
       driver: false,
       batch: { batchLocation: 'loc', batchNumber: 123 },
       acceptingRides: false,
-      active: true
+      active: true,
+      address: "address",
+      latitude: 123,
+      longitude: 456
     };
   });
 

@@ -24,7 +24,7 @@ describe('UserService', () => {
               acceptingRides: true,
               address: "address",
               longitude: 123,
-              latitude: 456
+              latitude: 456,
             },
             {
               userId: 2,
