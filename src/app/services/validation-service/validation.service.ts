@@ -31,7 +31,7 @@ export class ValidationService {
 	 * This function is validates the length of the name and checks if there is any numeric values in the name string.
 	 */
 	validateName(name: string) {
-		return /^([a-zA-z\s-]){1,20}$/.test(name) && name.length < 20;
+		return /^([a-zA-Z\s-]){1,20}$/.test(name) && name.length < 20;
 	}
 
 	/**
