@@ -1,7 +1,7 @@
 import { browser, logging } from 'protractor';
 import { ProfilePage } from './po/profile.po';
 
-describe('App /login E2E tests', () => {
+describe('App /home/drivers E2E tests', () => {
     let page: ProfilePage;
 
     beforeEach(() => {
