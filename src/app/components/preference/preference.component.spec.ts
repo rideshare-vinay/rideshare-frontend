@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 import { PreferenceComponent } from './preference.component';
 import { AdminComponent } from '../admin/admin.component';
@@ -12,27 +13,49 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { APP_BASE_HREF } from '@angular/common';
+import { DriverComponent } from '../driver/driver.component';
+import { MapDetailComponent } from '../map-detail/map-detail.component';
+import { DriverInfoComponent } from '../driver-info/driver-info.component';
+import { AdminLoginComponent } from '../admin-login/admin-login.component';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
+import { User } from 'src/app/models/user';
 
 describe('PreferenceComponent', () => {
-  let component: PreferenceComponent;
-  let fixture: ComponentFixture<PreferenceComponent>;
+  let preferenceComponent: PreferenceComponent;
+  let preferenceFixture: ComponentFixture<PreferenceComponent>;
+  let mockAuthService:AuthService;
+  let routerSpy = jasmine.createSpyObj("Router", ['navigate'])
+
+  class MockAuthService{
+    user:User;
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PreferenceComponent, AdminComponent, CarRegisterComponent, RegisterComponent, LoginComponent, MyCarComponent, NavbarComponent, ProfileComponent ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      declarations: [ PreferenceComponent, AdminComponent, 
+        CarRegisterComponent, RegisterComponent, 
+        LoginComponent, MyCarComponent, 
+        NavbarComponent, ProfileComponent,
+        DriverComponent, MapDetailComponent,
+        DriverInfoComponent, AdminLoginComponent ],
       imports: [HttpClientModule, AppRoutingModule, FormsModule],
-      providers: [{provide: APP_BASE_HREF, useValue: '/my/app'}]
+      providers: [{ provide: Router, useValue: routerSpy }]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PreferenceComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    preferenceFixture = TestBed.createComponent(PreferenceComponent);
+    preferenceComponent = preferenceFixture.componentInstance;
+    preferenceFixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(preferenceComponent).toBeTruthy();
   });
+
+  // it('should get the users preference when running ngOnInit')
+
 });

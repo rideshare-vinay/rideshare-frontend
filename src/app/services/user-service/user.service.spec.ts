@@ -55,7 +55,7 @@ describe('UserService', () => {
     httpMock = TestBed.get(HttpTestingController);
   });
 
-  afterEach( () => {
+  afterEach(() => {
     httpMock.verify();
   });
 
@@ -64,40 +64,40 @@ describe('UserService', () => {
   });
 
   it("should get all users from an API via a GET Request", () => {
-    userService.getAllUsers().subscribe( users => {
+    userService.getAllUsers().subscribe(users => {
       expect(users).toEqual(mockUsers);
     })
 
-    let request =  httpMock.expectOne(userService.url);
+    let request = httpMock.expectOne(userService.url);
     expect(request.request.method).toBe("GET");
-    
+
     request.flush(mockUsers);
   });
 
   it("should get user by Id from an API via a GET Request", () => {
-    userService.getUserById(mockUsers[0].userId).then( user => {
+    userService.getUserById(mockUsers[0].userId).then(user => {
       expect(user).toEqual(mockUsers[0]);
-  });
+    });
 
-    let request = httpMock.expectOne(userService.url+mockUsers[0].userId);
+    let request = httpMock.expectOne(userService.url + mockUsers[0].userId);
     expect(request.request.method).toBe("GET");
 
     request.flush(mockUsers[0]);
   });
 
   it("should get driver by Id from an API via a GET Request", () => {
-    userService.getDriverById(mockUsers[0].userId).subscribe( user => {
+    userService.getDriverById(mockUsers[0].userId).subscribe(user => {
       expect(user).toEqual(mockUsers[0]);
     });
 
-    let request = httpMock.expectOne(userService.url+mockUsers[0].userId);
+    let request = httpMock.expectOne(userService.url + mockUsers[0].userId);
     expect(request.request.method).toBe("GET");
 
     request.flush(mockUsers[0]);
-  });  
+  });
 
   it("should get a list of all users from an API via a GET Request", () => {
-    userService.showAllUser().subscribe( users => {
+    userService.showAllUser().subscribe(users => {
       expect(users).toEqual(mockUsers);
     })
 
@@ -109,22 +109,23 @@ describe('UserService', () => {
 
   it("should get a list of riders given a location from an API via a GET Request", () => {
     let batchLocation = "somelocation";
-    userService.getRidersForLocation(batchLocation).subscribe( riders => {
+    userService.getRidersForLocation(batchLocation).subscribe(riders => {
       expect(riders).toEqual(mockUsers);
     });
 
-    let request = httpMock.expectOne(userService.url + '?is-driver=false&location='+ batchLocation);
+    let request = httpMock.expectOne(userService.url + '?is-driver=false&location=' + batchLocation);
     expect(request.request.method).toBe("GET");
 
     request.flush(mockUsers);
   });
 
   it("should change driver status to accepting rides using an API via a POST request", () => {
-    let user:User = {userId: 300, 
-      userName: "killainC", 
+    let user: User = {
+      userId: 300,
+      userName: "killainC",
       firstName: "Killian",
-      lastName: "Cumberbatch", 
-      email: "email@email.com", 
+      lastName: "Cumberbatch",
+      email: "email@email.com",
       phoneNumber: "5555555555",
       driver: true, 
       acceptingRides: false, 
@@ -139,13 +140,13 @@ describe('UserService', () => {
       expect(updatedUser).toEqual(user);
     });
 
-    let request = httpMock.expectOne(userService.url+user.userId);
+    let request = httpMock.expectOne(userService.url + user.userId);
     expect(request.request.method).toBe("PUT");
     request.flush(user);
   });
 
   it("should update user information using an API via a PUT Request", () => {
-    userService.updateUserInfo(mockUsers[0]).then( user => {
+    userService.updateUserInfo(mockUsers[0]).then(user => {
       expect(user).toEqual(mockUsers[0]);
     });
 
@@ -153,5 +154,11 @@ describe('UserService', () => {
     expect(request.request.method).toBe("PUT");
     request.flush(mockUsers[0]);
   });
+
+  // it('should ban inactive user from banning function', () => {
+  //   mockUsers[0].active = false;
+  //   component.banning(mockUsers[0]);
+  //   expect(mockUsers[0].active).toBe(true);
+  // });
 
 });

@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 import { BatchService } from './batch.service';
 import { APP_BASE_HREF } from '@angular/common';
@@ -19,18 +20,14 @@ import { HttpTestingController, HttpClientTestingModule } from '@angular/common/
 import { DriverInfoComponent } from 'src/app/components/driver-info/driver-info.component';
 import { DriverComponent } from 'src/app/components/driver/driver.component';
 import { AdminLoginComponent } from 'src/app/components/admin-login/admin-login.component';
+import { MapDetailComponent } from 'src/app/components/map-detail/map-detail.component';
 
 describe('BatchService', () => {
   let batchService: BatchService;
   let httpMock: HttpTestingController;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AdminComponent, CarRegisterComponent, RegisterComponent, LoginComponent,
-        MyCarComponent, NavbarComponent, PreferenceComponent, ProfileComponent,
-        DriverInfoComponent, DriverComponent, AdminLoginComponent
-      ],
-      imports: [HttpClientModule, AppRoutingModule, FormsModule, HttpClientTestingModule],
-      providers: [{ provide: APP_BASE_HREF, useValue: '/my/app' }]
+      imports: [HttpClientTestingModule]
     })
     batchService = TestBed.get(BatchService);
     httpMock = TestBed.get(HttpTestingController);
@@ -53,7 +50,7 @@ describe('BatchService', () => {
       { batchNumber: 5, batchLocation: 'CUNY SPS - New York, NY' },
       { batchNumber: 6, batchLocation: 'CUNY Queens College - Flushing, NY' }
     ]
-    batchService.getAllBatches().subscribe(batches => {
+    batchService.getAllBatchesMock().subscribe(batches => {
       expect(batches.length).toBe(6);
       expect(batches).toEqual(mockBatches);
     })
@@ -61,28 +58,9 @@ describe('BatchService', () => {
     const request = httpMock.expectOne(batchService.url);
     expect(request.request.method).toBe("GET");
     request.flush(mockBatches);
-
-    // const batchResponse = [
-    //   {
-    //     batchNumber: 1,
-    //     batchLocation: 'NYC'
-    //   },
-    //   {
-    //     batchNumber: 2,
-    //     batchLocation: 'VA'
-    //   }
-    // ];
-    // let response;
-    // spyOn(batchService, 'getAllBatches').and.returnValue(of(batchRespo.nse));
-
-    // batchService.getAllBatches().subscribe(res => {
-    //   response = res;
-    // });
-
-    // expect(response).toEqual(batchResponse);
   });
 
-  it('Should return a list of batches based on location from an API via GET', () => {
+  it('should return a list of batches from the API via GET', () => {
     let mockBatches: Batch[] = [
       { batchNumber: 1, batchLocation: 'VWU - Morgantown, WV' },
       { batchNumber: 2, batchLocation: 'UTA - Arlington, TX' },
@@ -91,38 +69,32 @@ describe('BatchService', () => {
       { batchNumber: 5, batchLocation: 'CUNY SPS - New York, NY' },
       { batchNumber: 6, batchLocation: 'CUNY Queens College - Flushing, NY' }
     ]
-    batchService.getAllBatchesByLocation('UTA - Arlington, TX').subscribe(batches => {
-      expect(batches.length).toBe(1);
-      // expect(batches).toEqual({ batchNumber: 2, batchLocation: 'UTA - Arlington, TX' });
+    batchService.getAllBatches().subscribe(batches => {
+      expect(batches.length).toBe(6);
+      expect(batches).toEqual(mockBatches);
     })
+
     const request = httpMock.expectOne(batchService.url);
+    expect(request.request.method).toBe("GET");
+    request.flush(mockBatches);
+  });
+
+  it('Should return a list of batches based on location from an API via GET', () => {
+    let mockBatches: Batch[] = [
+      { batchNumber: 1, batchLocation: 'VWU - Morgantown, WV' },
+      { batchNumber: 2, batchLocation: 'UTA - Arlington, TX' },
+      { batchNumber: 3, batchLocation: 'UTA - Arlington, TX' },
+      { batchNumber: 4, batchLocation: 'Revature HQ - Reston, VA' },
+      { batchNumber: 5, batchLocation: 'CUNY SPS - New York, NY' },
+      { batchNumber: 6, batchLocation: 'CUNY Queens College - Flushing, NY' }
+    ]
+    let batchLocation = "UTA - Arlington, TX"
+    batchService.getAllBatchesByLocation('UTA - Arlington, TX').subscribe(batches => {
+      expect(batches).toEqual(mockBatches);
+    })
+    const request = httpMock.expectOne(batchService.url + "?location=" + batchLocation);
     expect(request.request.method).toBe("GET");
     request.flush(mockBatches);
   })
 
 });
-
-
-
-// describe('BatchService', () => {
-//   let batchService: BatchService;
-
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({
-//     declarations: [AdminComponent, CarRegisterComponent, RegisterComponent, LoginComponent, MyCarComponent, NavbarComponent, PreferenceComponent, ProfileComponent],
-//     imports: [HttpClientModule, AppRoutingModule, FormsModule],
-//     providers: [{provide: APP_BASE_HREF, useValue: '/my/app'}]
-//   })
-
-//   batchService = TestBed.get(BatchService);
-// })
-
-// it('should register a batch', () => {
-//   expect(batchService).toBeTruthy();
-// });
-
-//  //Adding test for getAllBatches() method
-//  describe('getAllBatches', () => {
-
-// });
-// });
