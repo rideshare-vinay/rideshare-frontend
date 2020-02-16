@@ -12,7 +12,6 @@ import { ProfileComponent } from '../profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { APP_BASE_HREF } from '@angular/common';
 import { DriverComponent } from '../driver/driver.component';
 import { MapDetailComponent } from '../map-detail/map-detail.component';
 import { DriverInfoComponent } from '../driver-info/driver-info.component';
@@ -77,8 +76,16 @@ fdescribe('PreferenceComponent', () => {
     expect(preferenceComponent).toBeTruthy();
   });
 
-  it("should route away from the page if the user isn't authorized", () => {
+  xit("should route away from the page if the user isn't authorized", (done) => {
+    mockUser.userId = null;
     mockAuthService.user = mockUser;
+    preferenceComponent.ngOnInit();
+    done();
+
+    const spy = routerSpy.navigate as jasmine.Spy;
+    const navArgs = spy.calls.first().args[0];
+
+    expect(navArgs).toEqual(['']);
   })
 
 });
