@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { User } from 'src/app/models/user';
 import { Admin } from 'src/app/models/admin';
+
+
 
 @Component({
   selector: 'app-navbar',
@@ -16,14 +18,18 @@ import { Admin } from 'src/app/models/admin';
    */
 
 export class NavbarComponent implements OnInit {
-
+  public navBarOpen = true;
+  isOpen = false ; 
+  
   /**
    * This is a name string.
    */
 
   name: string = '';
   admin: string = '';
+  isDriver : boolean;
 
+  
   /**
    * This is a constructor
    * @param router Provides an instance of a router.
@@ -31,7 +37,7 @@ export class NavbarComponent implements OnInit {
    * @param authService A dependency of an auth service is injected.
    */
 
-  constructor(private router: Router, private userService: UserService, public authService: AuthService) { }
+  constructor(private router: Router, private userService: UserService, public authService: AuthService, private eRef: ElementRef) { }
 
   /**
    * This is an OnInit function that sets the token to the parsed token string.
@@ -50,6 +56,7 @@ export class NavbarComponent implements OnInit {
     this.authService.getEmitter().subscribe((user: any) => {
       if (user.userId) {
         this.name = user.firstName;
+        this.isDriver = user.driver;
       } else if (user.adminId) {
         this.admin = user.userName;
       }
@@ -57,6 +64,7 @@ export class NavbarComponent implements OnInit {
 
     this.userService.getEmitter().subscribe((user: User) => {
       this.name = user.firstName;
+      
     });
   }
 
@@ -71,10 +79,20 @@ export class NavbarComponent implements OnInit {
     this.authService.user = {};
     this.name = '';
     this.admin = '';
+    
+    localStorage.clear();
+    sessionStorage.clear();
     this.router.navigate(['']);
   }
 
-  redirectToHome() {
-    this.authService.user.driver ? this.router.navigate(['home/riders']) : this.router.navigate(['home/drivers']);
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if(!this.eRef.nativeElement.contains(event.target)&&this.isOpen == true) {
+      console.log(this.isOpen);
+      this.isOpen = false;
+      //this.navBarOpen = false;
+     
+      //navbar.classList.remove('show');
+    } 
   }
 }

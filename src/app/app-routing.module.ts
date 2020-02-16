@@ -10,46 +10,26 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { PreferenceComponent } from './components/preference/preference.component';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { DriverInfoComponent } from './components/driver-info/driver-info.component';
+import { MapDetailComponent } from './components/map-detail/map-detail.component';
+import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 
 
-const routes: Routes = [{
-  path: 'home/drivers',
-  component: DriverInfoComponent
-}, {
-  path: 'home/riders',
-  component: DriverComponent
-}, {
-  path: 'all-drivers',
-  component: DriverInfoComponent
-}, {
-  path: 'login',
-  component: LoginComponent
-}, {
-  path: 'login/admin',
-  component: AdminLoginComponent
-}, {
-  path: 'login/adminhome',
-  component: AdminComponent
-}, {
-  path: 'register',
-  component: RegisterComponent
-}, {
-  path: 'new/car',
-  component: CarRegisterComponent
-}, {
-  path: 'car',
-  component: MyCarComponent
-}, {
-  path: 'profile',
-  component: ProfileComponent
-},  {
-  path: 'preference',
-  component: PreferenceComponent
-},{
-  path: '**',
-  pathMatch: 'full',
-  redirectTo: ''
-}];
+
+const routes: Routes = [
+  {path: 'home/drivers',component: DriverComponent}, 
+  {path: 'home/riders',component: MapDetailComponent}, 
+  {path: 'all-drivers',component: DriverInfoComponent}, 
+  {path: 'login',component: LoginComponent}, 
+  {path: 'login/admin',component: AdminLoginComponent}, 
+  {path: 'admin',component: AdminComponent}, 
+  {path: 'register',component: RegisterComponent}, 
+  {path: 'new/car',component: CarRegisterComponent}, 
+  {path: 'car',component: MyCarComponent}, 
+  {path: 'profile',component: ProfileComponent},  
+  {path: 'preference',component: PreferenceComponent},
+  {path: 'map', component: GoogleMapsComponent},
+  {path: '**',pathMatch: 'full',redirectTo: 'login'}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

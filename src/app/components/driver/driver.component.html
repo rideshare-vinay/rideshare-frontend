@@ -1,53 +1,46 @@
-<br>
-
-<div class="container-fluid">
-    <div class="row" >
-        <div class="col-md-auto">
-            <h2 class="align-bottom float-center">Driver: {{userDriver?.firstName}}&nbsp;<span>{{userDriver?.lastName}} &nbsp;</span></h2>
-        </div>
-</div>
-<br>
-
-</div>
-
-<div class="container-fluid">
-    <div class="row" *ngIf="userDriver" >
-        <div class="col">
-            <h2 >Location:  &nbsp;<span>{{userDriver?.batch.batchLocation}}</span></h2>
-        </div>
+<section>
+  <div fxLayout="row" fxLayout.sm="column-reverse" fxLayout.xs="column-reverse" fxLayoutWrap fxLayoutGap="3%" fxLayoutAlign="center">
+    <div fxFlex="45%" class="image">
+        <img  mat-card-image src="../assets/driverDetails.jpeg" alt="Driver details" class="responsive">
     </div>
-
-</div>
-<br>
-
-<div class="container-fluid">
-
-<table class="table" class="table text-center">
-    <tr>
-      <th> ID </th>
-      <th> Rider's Name </th>
-      <th> Email </th>
-      <th> Phone Number </th>
-      <th> Batch Number</th>
-      <th>Location</th>
-      <th>Active</th>
-      <th>Role</th>
-    </tr>
-  
-    <tr *ngFor="let get of riders" >
-      <td>{{get.userId}}</td>
-      <td>{{get.firstName}}</td>
-      <td>{{get.email}}</td>
-      <td>{{get.phoneNumber}}</td>
-      <td *ngIf="get.batch">{{get.batch.batchNumber}}</td>
-      <td>{{get.batch.batchLocation}}</td>
-      <td *ngIf="get.active===true"><img src=".\assets\yesno.jpg" width="15" height="15" ></td>
-      <td *ngIf="get.active===false"><img src=".\assets\no.jpg" width="15" height="15"></td>
-      <td *ngIf="get.driver===false">Rider</td>
-      <td *ngIf="get.driver===true">Driver</td>
-     
-    </tr>
-  
-  </table>
-
-</div>
+    <div fxFlex="45%" class="example">
+      <mat-card class="card-detail">
+        <mat-card-header class="card-title" > 
+            <mat-card-title><h3>Driver Details</h3></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div fxLayout="row">
+                <div fxFlex="100%">
+                  <table id="detail" aria-describedby="Driver Details"> 
+                    <tr class="tHeader">
+                      <th id="name">Name: </th>
+                      <td>{{userDriver?.firstName}} {{userDriver?.lastName}}</td>
+                    </tr>
+                    <tr>
+                      <th id="Email">Email: </th>
+                      <td>{{userDriver?.email}}</td>
+                    </tr>
+                    <tr>
+                      <th id="Phone">Phone: </th>
+                      <td>{{userDriver?.phoneNumber}}</td>
+                    </tr>
+                    <tr>
+                      <th id="Batch">Batch: </th>
+                      <td>{{userDriver?.batch.batchLocation}}</td>
+                    </tr>
+                    <tr>
+                      <th id="Car">Car: </th>
+                      <td>{{myCar.year}} {{myCar.make}} {{myCar.model}}</td>
+                    </tr>
+                    <tr>
+                      <th id="Seats">Seats:  </th>
+                      <td>{{myCar.seats}}</td>
+                    </tr>
+                  </table>
+                </div>
+            </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</section>

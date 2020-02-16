@@ -54,21 +54,37 @@ export class CarService {
 	 */
 	
 	createCar(car, userId) {
-
 		this.user.userId = userId;
 		car.user = this.user;
-
 		this.http.post(this.url, car, {observe: 'response'}).subscribe(
-			(response) => {
-				if (response) {
-					this.userService.updateIsDriver(true, userId);
-					this.router.navigate(['car']);
-				}
-			},
+			(response) => this.addCar(response, userId),
 			(error) => {
 				console.warn(error);
 			}
 		);
+	}
+	
+	addCar(response, userId){
+		if (response) {
+			this.userService.updateIsDriver(true, userId);
+			this.router.navigate(['car']);
+		}
+	}
+
+	/**
+	 * This function updata a car.
+	 * @param car 
+	 * @param userId 
+	 */
+
+	updateCar(car, userId){
+		this.user.userId = userId;
+		car.user = this.user;
+		this.http.put(`${this.url}/${userId}`, car, {observe: 'response'}).subscribe(
+			data =>{
+				car= data;
+			}
+		)
 	}
 
 	/**

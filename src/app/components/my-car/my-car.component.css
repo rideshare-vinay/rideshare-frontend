@@ -1,20 +1,88 @@
-h2 {
-    font-size: 1.375rem;
-    font-weight: 400;
+section {
+    font-family: "futura-pt-bold",sans-serif;
+    margin: 3% 2%;
 }
 
 p {
     font-size: 2em;
 }
 
-.car-info-form {
-    border: 1px solid #dadce0;
-    border-radius: 5px;
-    padding: 1.5%;
-    margin-left: 5%;
-    margin-right: 5%;
+.oBut{
+    background-color: #F26926 ; 
+    border: none;
+    color: white;
+    padding: 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 150px;       
+    outline:none;     
+    border-radius: 10vw;
+    font-family: "futura-pt-bold",sans-serif;
+    font-weight: bold;
+    color: #ffffff ;
+    transition-duration: 0.4s;
 }
 
-.table tr:hover {
-    background-color: whitesmoke;
+.oBut:hover{
+    background-color:#717F92;
+    color: white;
+}
+
+.oBut:disabled{
+    background-color: #F26926 ; 
+    color: #ffffff ;
+}
+
+.responsive {
+    max-width: 43%;
+    height: auto;
+}
+
+.card-detail {
+    background-image: url('/../assets/blueBck.svg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 60%;
+    margin: 0px auto;
+}
+
+.card-title {
+    display: flex;
+    justify-content: center;
+}
+
+h1{
+    text-align: center;
+    font-family: "futura-pt-bold",sans-serif;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+th{
+    font-family: "futura-pt-bold",sans-serif;
+    background-color: rgba(255, 255, 255, 0.144);
+    font-size: 1.25em;
+    border-bottom: 2px solid white;
+}
+
+td{
+    font-family: "futura-pt",sans-serif;
+    background-color: rgba(255, 255, 255, 0.144);
+    font-size: 1.25em;
+    border-bottom: 2px solid white;
+}
+
+table{
+    width:100%;
+    padding:0px;
+    margin: 0px;
+}
+.spacer{
+    padding-top: 5vw;
 }
