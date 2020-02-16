@@ -30,9 +30,8 @@ export class AdminPage {
         return element(by.className('button'));
     }
 
-    getLoginFailedMessage() {
-        // TODO: get different element when UI done
-        return element(by.className('alert'));
+    getErr() {
+        return element(by.className('ng-star-inserted'));
     }
 
     // getLoginBannedMessage() {

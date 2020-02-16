@@ -1,5 +1,5 @@
 import { browser, logging } from 'protractor';
-import { AdminPage } from './admin.po';
+import { AdminPage } from './po/admin.po';
 
 describe('App /login/admin E2E tests', () => {
     let page: AdminPage;
@@ -34,30 +34,29 @@ describe('App /login/admin E2E tests', () => {
     });
 
     it('login button should be enabled', () => {
-        // TODO: check mock values after validation
         page.getAccountOptions().sendKeys('abc');
         page.getUsername().sendKeys('abc');
         expect(page.getLoginButton().isEnabled()).toBeTruthy();
     });
 
     it('login with valid inputs', () => {
+        page.getAccountOptions().sendKeys('1');
         page.getUsername().sendKeys('admin');
-        expect(page.getAccountOptions().get(0).getAttribute('value')).toEqual(null);
-        expect(page.getUsername().getAttribute('value')).toEqual('admin');
-        // browser.ignoreSynchronization = true;
-        // page.getLoginButton().click().then(() => {
-        //   browser.getCurrentUrl().then((actualUrl) => {
-        //     expect(actualUrl.indexOf('home/drivers') !== -1).toBeTruthy();
-        //   });
-        // });
+        browser.ignoreSynchronization = true;
+        page.getLoginButton().click().then(() => {
+          browser.getCurrentUrl().then((actualUrl) => {
+            expect(actualUrl.indexOf('admin') !== -1).toBeTruthy();
+          });
+        });
     });
 
     it('login with invalid inputs', () => {
+        page.getAccountOptions().sendKeys('1');
         page.getUsername().sendKeys('abc');
         browser.ignoreSynchronization = true;
         page.getLoginButton().click().then(() => {
             browser.getCurrentUrl().then((actualUrl) => {
-                expect(page.getLoginFailedMessage().isDisplayed()).toBeTruthy();
+                expect(page.getErr().isDisplayed()).toBeTruthy();
             });
         });
     });
@@ -69,7 +68,7 @@ describe('App /login/admin E2E tests', () => {
         page.getLoginButton().click().then(() => {
             browser.getCurrentUrl().then((actualUrl) => {
                 // TODO: get different element when UI done
-                expect(page.getLoginFailedMessage().isDisplayed()).toBeTruthy();
+                // expect(page.getLoginBannedMessage().isDisplayed()).toBeTruthy();
             });
         });
     });
