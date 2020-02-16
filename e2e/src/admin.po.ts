@@ -30,10 +30,9 @@ export class AdminPage {
         return element(by.className('button'));
     }
 
-    getLoginFailedMessage() {
-        // TODO: get different element when UI done
-        return element(by.className('alert'));
-    }
+    // getLoginFailedMessage() {
+    //     return element(by.className('alert'));
+    // }
 
     // getLoginBannedMessage() {
     //   return element(by.className('alert'));
