@@ -1,5 +1,5 @@
 import { browser, logging } from 'protractor';
-import { SignUpPage } from './signup.po';
+import { SignUpPage } from './po/signup.po';
 
 describe('App /register E2E tests', () => {
     let page: SignUpPage;

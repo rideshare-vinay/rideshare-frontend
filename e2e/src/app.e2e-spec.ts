@@ -1,4 +1,4 @@
-import { AppPage } from './app.po';
+import { AppPage } from './po/app.po';
 import { browser, logging } from 'protractor';
 
 describe('App /login E2E tests', () => {

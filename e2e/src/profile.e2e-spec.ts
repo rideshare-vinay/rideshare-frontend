@@ -1,5 +1,5 @@
 import { browser, logging } from 'protractor';
-import { ProfilePage } from './profile.po';
+import { ProfilePage } from './po/profile.po';
 
 describe('App /login E2E tests', () => {
     let page: ProfilePage;

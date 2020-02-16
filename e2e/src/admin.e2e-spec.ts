@@ -1,5 +1,5 @@
 import { browser, logging } from 'protractor';
-import { AdminPage } from './admin.po';
+import { AdminPage } from './po/admin.po';
 
 describe('App /login/admin E2E tests', () => {
     let page: AdminPage;
@@ -40,6 +40,7 @@ describe('App /login/admin E2E tests', () => {
     });
 
     it('login with valid inputs', () => {
+        page.getAccountOptions().sendKeys('1');
         page.getUsername().sendKeys('admin');
         browser.ignoreSynchronization = true;
         page.getLoginButton().click().then(() => {
@@ -50,12 +51,12 @@ describe('App /login/admin E2E tests', () => {
     });
 
     it('login with invalid inputs', () => {
+        page.getAccountOptions().sendKeys('1');
         page.getUsername().sendKeys('abc');
         browser.ignoreSynchronization = true;
         page.getLoginButton().click().then(() => {
             browser.getCurrentUrl().then((actualUrl) => {
-                // TODO: get different element when UI done
-                // expect(page.getLoginFailedMessage().isDisplayed()).toBeTruthy();
+                expect(page.getErr().isDisplayed()).toBeTruthy();
             });
         });
     });

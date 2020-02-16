@@ -30,9 +30,9 @@ export class AdminPage {
         return element(by.className('button'));
     }
 
-    // getLoginFailedMessage() {
-    //     return element(by.className('alert'));
-    // }
+    getErr() {
+        return element(by.className('ng-star-inserted'));
+    }
 
     // getLoginBannedMessage() {
     //   return element(by.className('alert'));
