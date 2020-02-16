@@ -31,7 +31,7 @@ td{
     
 }
 .driverBut{
-    background-color: #717F92; 
+    background-color: rgb(147, 151, 158); 
     border: none;
     color: black;
     padding: 7px;
@@ -43,11 +43,11 @@ td{
     width: 7em;    
     outline:none;  
     border-radius: 10em;
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif;
     font-weight: bold;
 }
 .driverBut:hover{
-    background-color:#F26926;
+    background-color:#717F92;
     color: white;
 }
 .driverBut:disabled{
@@ -71,3 +71,6 @@ table{
 section{
     margin: 7% 2%;
 }
+
+
+
