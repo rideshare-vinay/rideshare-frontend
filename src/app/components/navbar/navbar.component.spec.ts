@@ -63,11 +63,12 @@ describe('NavbarComponent', () => {
   });
 
   describe('ngOnInit function', () => {
-    it('should get user by Id and properly resolve the promise', () => {
+    it('should get user by Id and properly resolve the promise', (done) => {
       spyOn(userService, 'getUserById').and.returnValue(Promise.resolve(mockUser));
       authService.user = mockUser;
       userService.getUserById(mockUser.userId).then(user => {
         expect(user).toEqual(mockUser);
+        done();
       });
     });
     it('should properly assign name value', fakeAsync(() => {

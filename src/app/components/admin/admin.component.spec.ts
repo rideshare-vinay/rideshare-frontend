@@ -10,11 +10,14 @@ import { UserService } from 'src/app/services/user-service/user.service';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { EPERM } from 'constants';
+import { LoginComponent } from '../login/login.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('AdminComponent', () => {
   let component: AdminComponent;
   let authService: AuthService;
   let userService: UserService;
+  let router: Router;
   const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
   let mockAdmin: Admin;
@@ -23,17 +26,18 @@ describe('AdminComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AdminComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      declarations: [AdminComponent, LoginComponent],
       providers: [
-        AuthService,
-        { provide: Router, useValue: routerSpy }
+        AuthService
       ],
-      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule]
+      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule.withRoutes([{path: "", component: LoginComponent}])]
     });
     const fixture = TestBed.createComponent(AdminComponent);
     component = fixture.componentInstance;
     authService = TestBed.get(AuthService);
     userService = TestBed.get(UserService);
+    router = TestBed.get(Router);
     mockAdmin = {
       adminId: 1,
       userName: 'admin'
@@ -86,20 +90,18 @@ describe('AdminComponent', () => {
     });
 
     it('should redirect if not auth Admin', () => {
+      const spy = spyOn(router, "navigate");
       mockAdmin.adminId = 0;
       authService.admin = mockAdmin;
       component.ngOnInit();
-      const spy = routerSpy.navigate as jasmine.Spy;
-      const navArgs = spy.calls.first().args[0];
-      expect(navArgs).toEqual(['']);
+      expect(spy).toHaveBeenCalledWith(['/']);
     });
   });
 
   it('should logout when session clear', () => {
+    let navigateSpy = spyOn(router, "navigate");
     component.logout();
-    const spy = routerSpy.navigate as jasmine.Spy;
-    const navArgs = spy.calls.first().args[0];
-    expect(navArgs).toEqual(['']);
+    expect(navigateSpy).toHaveBeenCalledWith(['']);
   });
 
   it('should get a list of users from searchUser function', () => {
