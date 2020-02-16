@@ -189,7 +189,9 @@ export class ProfileComponent implements OnInit {
       this.userService.updatePreference('active', this.user.active, this.user.userId);
     } else {
       this.user.active = !this.user.active;
+      console.log(this.user.active);
       this.userService.updatePreference('active', this.user.active, this.user.userId);
+      console.log(this.user.active);
     }
 
   }

@@ -77,7 +77,9 @@ fdescribe('ProfileComponent', () => {
         resolve(mockUser)
       })
     }
-    
+    updatePreference(property, bool, userId){
+      
+    }
   }
 
   class MockBatchService {
@@ -281,10 +283,24 @@ fdescribe('ProfileComponent', () => {
     expect(myProfileComponent.newUser).toBeNull;
   })
 
-  it("should toggle the user's active flag", () => {
+  it("should toggle the user's active flag if true", () => {
     myProfileComponent.user = mockUser;
     myProfileComponent.toggleActive();
     expect(myProfileComponent.user.active).toBeFalsy();
+  })
+
+  it("should toggle the user's active flag if false", () => {
+    myProfileComponent.user = mockUser;
+    myProfileComponent.user.active = false;
+    myProfileComponent.toggleActive();
+    expect(myProfileComponent.user.active).toBeTruthy();
+  })
+
+  it("should toggle the driver flag to false if true", () =>{
+    myProfileComponent.user = mockUser;
+    myProfileComponent.user.driver = true;
+    myProfileComponent.toggleDriver();
+    expect(myProfileComponent.user.driver).toBeFalsy();
   })
 
 });
