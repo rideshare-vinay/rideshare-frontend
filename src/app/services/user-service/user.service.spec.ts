@@ -154,4 +154,10 @@ describe('UserService', () => {
     request.flush(mockUsers[0]);
   });
 
+  // it('should ban inactive user from banning function', () => {
+  //   mockUsers[0].active = false;
+  //   component.banning(mockUsers[0]);
+  //   expect(mockUsers[0].active).toBe(true);
+  // });
+
 });
