@@ -18,6 +18,9 @@ import { CarRegisterComponent } from 'src/app/components/car-register/car-regist
 import { MyCarComponent } from 'src/app/components/my-car/my-car.component';
 import { ProfileComponent } from 'src/app/components/profile/profile.component';
 import { PreferenceComponent } from 'src/app/components/preference/preference.component';
+import { MapDetailComponent } from 'src/app/components/map-detail/map-detail.component';
+import { GoogleMapsComponent } from 'src/app/components/google-maps/google-maps.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('AdminService', () => {
   let adminService: AdminService;
@@ -25,10 +28,11 @@ describe('AdminService', () => {
   let mockAdmih: Admin = { adminId: 0, userName:"test0"};
   beforeEach(() => {
     TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         AdminComponent, DriverInfoComponent, DriverComponent, LoginComponent, 
         AdminLoginComponent, RegisterComponent, CarRegisterComponent, MyCarComponent,
-        ProfileComponent, PreferenceComponent
+        ProfileComponent, PreferenceComponent, MapDetailComponent, GoogleMapsComponent
       ],
       imports: [HttpClientModule, AppRoutingModule, FormsModule, HttpClientTestingModule],
       providers: [{ provide: APP_BASE_HREF, useValue: '/my/app' }]

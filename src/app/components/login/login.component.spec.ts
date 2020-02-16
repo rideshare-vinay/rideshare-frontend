@@ -169,16 +169,36 @@ describe("Login Component", () => {
       expect(loginComponent.curPage).toBe(3);
     });
 
-    // I don't know why this is not working try again later
     it("should update users variable when nextPage() is called", () => {
+      let localMockUsers = [...mockUsers];
       loginComponent.curPage = 1; 
-      loginComponent.allUsers = [...mockUsers];
-      let expectedUsers = mockUsers.slice(1 * 5 - 5, 1 * 5);
+      loginComponent.allUsers = localMockUsers;
+      let expectedUsers = localMockUsers.slice(2 * 5 - 5, 2 * 5);
       loginComponent.nextPage();
 
       expect(loginComponent.users).toEqual(expectedUsers);
     });
-  })
+  });
+
+  describe("prev function", () => {
+    it("should decrease the curPage variable when prevPage() is called", () => {
+      loginComponent.curPage = 3;
+      loginComponent.prevPage();
+      expect(loginComponent.curPage).toBe(2);
+      loginComponent.prevPage();
+      expect(loginComponent.curPage).toBe(1);
+    });
+
+    it("should update users variable when nextPage() is called", () => {
+      let localMockUsers = [...mockUsers];
+      loginComponent.curPage = 2; 
+      loginComponent.allUsers = localMockUsers;
+      let expectedUsers = localMockUsers.slice(1 * 5 - 5, 1 * 5);
+      loginComponent.prevPage();
+
+      expect(loginComponent.users).toEqual(expectedUsers);
+    });
+  });
 
   describe("loginFailed() and loginBanned() functions", () => {
     it("should reset userName if loginFailed is called", () => {
@@ -249,26 +269,6 @@ describe("Login Component", () => {
 
       httpMock.expectOne(`${environment.userUri}?username=${loginComponent.userName}`).flush(mockUsers);
       expect(loginComponent.loginFailed).toHaveBeenCalled();
-    });
-  });
-
-  describe("nextPage function", () => {
-    it("should increase the curPage variable it nextPage() is called", () => {
-      loginComponent.curPage = 1;
-      loginComponent.nextPage();
-      expect(loginComponent.curPage).toBe(2);
-      loginComponent.nextPage();
-      expect(loginComponent.curPage).toBe(3);
-    });
-
-    it("should update users variable when nextPage() is called", () => {
-      loginComponent.curPage = 1;
-      loginComponent.allUsers = mockUsers;
-      let expectedUsers = mockUsers.slice(loginComponent.curPage * 5 - 5, loginComponent.curPage * 5);
-
-      loginComponent.nextPage();
-
-      expect(loginComponent.users).toEqual(expectedUsers);
     });
   });
 
