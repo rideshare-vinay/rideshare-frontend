@@ -18,7 +18,7 @@ import { User } from 'src/app/models/user';
 export class RegisterComponent implements OnInit {
 
 /**
- * An array of batches 
+ * An array of batches
  */
 	batches: Batch[] = [];
 	validAddress: boolean = false;
@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
    * This is an OnInit function that sets the token to the parsed token string.
    * The system will check if the token is valid; once validated a batch service is called.
    */
-	ngOnInit() { 
+	ngOnInit() {
 		this.batchService.getAllBatches().subscribe(data=>this.batches=data);
 	}
 
@@ -78,15 +78,13 @@ export class RegisterComponent implements OnInit {
 	 */
 
 	signUp() {
-		if (this.validationService.validateUserName(this.user.userName) && this.validationService.validateName(this.user.firstName) && this.validationService.validateName(this.user.lastName) && this.validationService.validateEmail(this.user.email) && this.validationService.validatePhone(this.user.phoneNumber)) {
-			this.user.firstName = this.validationService.nameFormat(this.user.firstName);
-			this.user.lastName = this.validationService.nameFormat(this.user.lastName);
-			this.user.phoneNumber = this.validationService.phoneFormat(this.user.phoneNumber);
-			this.batch.batchNumber= this.batchNumber;
-			this.batch.batchLocation= this.location;
-			this.user.batch = this.batch;
-			this.userService.createUser(this.user, this.role);
-		}
+		this.user.firstName = this.validationService.nameFormat(this.user.firstName);
+		this.user.lastName = this.validationService.nameFormat(this.user.lastName);
+		this.user.phoneNumber = this.validationService.phoneFormat(this.user.phoneNumber);
+		this.batch.batchNumber= this.batchNumber;
+		this.batch.batchLocation= this.location;
+		this.user.batch = this.batch;
+		this.userService.createUser(this.user, this.role);
 	}
 
 }

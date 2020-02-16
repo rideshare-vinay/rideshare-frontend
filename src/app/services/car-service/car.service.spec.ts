@@ -11,7 +11,7 @@ import { UserService } from '../user-service/user.service';
 describe('CarService', () => {
   let carService: CarService;
   let httpMock: HttpTestingController;
-  let mockUser: User = { userId: 1, acceptingRides: false, active: true, batch: null, driver: false, email: "dsjcsd", firstName: "dsjncskdnc", lastName: "jksdncksn", phoneNumber: "cknsdcnsdl", userName: "sjcnskd", address: "address", latitude: 123, longitude: 456 };
+  let mockUser: User = { userId: 1, acceptingRides: false, active: true, batch: null, driver: false, email: "dsjcsd", firstName: "dsjncskdnc", lastName: "jksdncksn", phoneNumber: "cknsdcnsdl", userName: "sjcnskd", address: "testing addres", latitude: 1, longitude: 1};
   let mockCar: Car = { carId: 1, color: "red", make: "Jenkin", model: "Simprola", seats: 7, user: mockUser, year: 2000 };
 
   beforeEach(() => {
@@ -71,4 +71,12 @@ describe('CarService', () => {
     expect(request.request.method).toBe("DELETE");
     request.flush(mockCar);
   });
+
+  // it("should redirect on createCar", () => {
+  //   carService.createCar(mockCar, mockUser.userId);
+
+  //   let request = httpMock.expectOne(carService.url);
+  //   expect(request.request.method).toBe("POST");
+  //   request.flush(mockCar);
+  // });
 });
