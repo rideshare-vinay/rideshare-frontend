@@ -77,13 +77,6 @@ describe('AdminLoginComponent', () => {
       component.login();
       expect(component.failed).toEqual(false);
     });
-
-    // it('should login from authService loginAsAdmin', () => {
-    //   const admin = component.chosenAdmin = mockAdmins[0];
-    //   component.login();
-    //   expect(authService.loginAsAdmin).toHaveBeenCalledWith({ adminId: admin.adminId, userName: admin.userName });
-    //   expect(component.failed).toEqual(false);
-    // });
   });
 
 });

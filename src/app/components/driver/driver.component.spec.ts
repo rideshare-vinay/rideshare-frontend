@@ -20,7 +20,21 @@ describe('DriverComponent', () => {
   let authService: AuthService;
   const router = jasmine.createSpyObj('Router', ['navigate']);
 
-  let mockDriver: User;
+  let mockDriver = {
+    userId: 1,
+    userName: 'driver1',
+    firstName: 'john',
+    lastName: 'smith',
+    phoneNumber: '1234567890',
+    email: 'email@email.com',
+    driver: true,
+    batch: { batchLocation: '123abc', batchNumber: 123 },
+    acceptingRides: true,
+    active: true,
+    address: "address",
+    latitude: 123,
+    longitude: 456
+  };
   const mockCar: Car = {
     carId: 1,
     color: 'white',
@@ -46,21 +60,6 @@ describe('DriverComponent', () => {
     authService = TestBed.get(AuthService);
     userService = TestBed.get(UserService);
     carService = TestBed.get(CarService);
-    mockDriver = {
-      userId: 1,
-      userName: 'driver1',
-      firstName: 'john',
-      lastName: 'smith',
-      phoneNumber: '1234567890',
-      email: 'email@email.com',
-      driver: true,
-      batch: { batchLocation: '123abc', batchNumber: 123 },
-      acceptingRides: true,
-      active: true,
-      address: "address",
-      latitude: 123,
-      longitude: 456
-    };
   });
 
   it('should create', () => {
@@ -69,7 +68,7 @@ describe('DriverComponent', () => {
 
   describe('ngOnInit function', () => {
     it('should get driver by userId from userService', () => {
-      spyOn(userService, 'getDriverById').and.returnValue(of(mockDriver.userId));
+      spyOn(userService, 'getDriverById').and.returnValue(of(mockDriver));
       authService.user = mockDriver;
       component.ngOnInit();
       expect(component.userId).toEqual(mockDriver.userId);

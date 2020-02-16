@@ -38,27 +38,8 @@ describe('BatchService', () => {
   });
 
   afterEach(() => {
-    httpMock.verify;
+    httpMock.verify();
   })
-
-  it('should return a list of batches from the API via GET', () => {
-    let mockBatches: Batch[] = [
-      { batchNumber: 1, batchLocation: 'VWU - Morgantown, WV' },
-      { batchNumber: 2, batchLocation: 'UTA - Arlington, TX' },
-      { batchNumber: 3, batchLocation: 'USF - Tampa, FL' },
-      { batchNumber: 4, batchLocation: 'Revature HQ - Reston, VA' },
-      { batchNumber: 5, batchLocation: 'CUNY SPS - New York, NY' },
-      { batchNumber: 6, batchLocation: 'CUNY Queens College - Flushing, NY' }
-    ]
-    batchService.getAllBatchesMock().subscribe(batches => {
-      expect(batches.length).toBe(6);
-      expect(batches).toEqual(mockBatches);
-    })
-
-    const request = httpMock.expectOne(batchService.url);
-    expect(request.request.method).toBe("GET");
-    request.flush(mockBatches);
-  });
 
   it('should return a list of batches from the API via GET', () => {
     let mockBatches: Batch[] = [
