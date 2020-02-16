@@ -48,23 +48,6 @@ export class RegisterComponent implements OnInit {
 		this.batchService.getAllBatches().subscribe(data=>this.batches=data);
 	}
 
-
-	/**
-	 * This function allows the user to select the batch location.
-	 * @param event
-	 */
-	changeLocation(event) {
-		// let location = event.target.value;
-		this.user.batch.batchLocation = this.location;
-		this.batchService.getAllBatchesByLocation(this.location).subscribe(data => {
-			this.batches = data;
-		});
-	}
-
-	changeBatchNumber(event) {
-		this.user.batch.batchNumber = event.target.value;
-	}
-
 	onLocationSelected(location: Location) {
 		this.user.address = (<HTMLInputElement>document.getElementById('address')).value;
 		this.user.latitude = location[this.latKey];
