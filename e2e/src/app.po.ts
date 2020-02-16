@@ -46,10 +46,9 @@ export class AppPage {
     return element(by.className('button'));
   }
 
-  getLoginFailedMessage() {
-    // TODO: get different element when UI done
-    return element(by.className('alert-danger'));
-  }
+  // getLoginFailedMessage() {
+  //   return element(by.className('alert-danger'));
+  // }
 
   // getLoginBannedMessage() {
   //   return element(by.className('alert'));
