@@ -59,15 +59,15 @@
             <mat-form-field>
                 <mat-label>Location</mat-label>
                 <mat-select  id="location" [(value)]="location" class="form-control">
-                    <mat-option *ngFor="let batch of batches" value="{{batch.batchLocation}}">{{batch.batchLocation}}</mat-option>
+                    <mat-option *ngFor="let locationName of locationNames" value="{{locationName}}">{{locationName}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
         <div fxFlex="30%" class="fillInput">
             <mat-form-field>
                 <mat-label>Batch Number</mat-label>
-                <mat-select id="batchNumber" [(value)]="batchNumber" class="form-control">
-                    <mat-option *ngFor="let batch of batches" value="{{batch.batchNumber}}">{{batch.batchNumber}}</mat-option>
+                <mat-select id="batchNumber" [(value)]="batchNumber" class="form-control" (click)="getLocationBatches()">
+                    <mat-option *ngFor="let batchNumber of locationBatchNumbers" value="{{batchNumber}}">{{batchNumber}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
