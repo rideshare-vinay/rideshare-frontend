@@ -186,11 +186,6 @@ describe('ProfileComponent', () => {
       expect(myProfileComponent.user).toEqual(mockUser);
       done();
     })
-    // mockUser.userId = 1;
-    // spyOn(mockUserService, 'getUserById').and.returnValue(Promise.resolve(mockUser))
-    // myProfileComponent.user.userId = mockUser.userId;
-    // myProfileComponent.ngOnInit();
-    // done();
   })
 
   it("should call a user's car info when running ngOnInit", (done) => {
