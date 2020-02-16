@@ -48,8 +48,8 @@
         <div fxFlex="30%" class="address fillInput">
             <mat-form-field>
                 <mat-label>Address</mat-label>
-                <input id="address" matInput type="text" placeholder="Address">
-                <!--small *ngIf="user.email && !validationService.validateEmail(user.email)">Invalid Email</small-->
+                <input id="address" matInput type="text" [disabled]="validAddress" placeholder="Address" name="address" matGoogleMapsAutocomplete
+                (onLocationSelected)="onLocationSelected($event)">
             </mat-form-field>
         </div>
 
@@ -76,11 +76,11 @@
     </div>
     <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" class="relocate2">
         <mat-card-actions>
-            <button mat-raised-button type="submit" (click)="signUp()" [disabled]="!(user.userName && user.firstName && user.lastName && user.email 
-            && user.phoneNumber && validationService.validatePhone(user.phoneNumber) 
-            && validationService.validateUserName(user.userName) && validationService.validateName(user.firstName) 
+            <button mat-raised-button type="submit" (click)="signUp()" [disabled]="!(user.userName && user.firstName && user.lastName && user.email
+            && user.phoneNumber && validationService.validatePhone(user.phoneNumber)
+            && validationService.validateUserName(user.userName) && validationService.validateName(user.firstName)
             && validationService.validateName(user.lastName) && validationService.validateEmail(user.email)
-            && validationService.validateBatchNumber(batchNumber) && validationService.validateBatchLocation(location))" 
+            && validationService.validateBatchNumber(batchNumber) && validationService.validateBatchLocation(location))"
             class="button oBut">SUBMIT</button>
         </mat-card-actions>
     </div>
