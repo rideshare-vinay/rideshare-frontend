@@ -16,7 +16,7 @@
                     <div class="form-group col-sm">
                         <mat-form-field class="example-form-field">
                             <mat-label> Seats</mat-label>
-                            <input id="seatNumber" matInput type="number" placeholder="Seats" [(ngModel)]="car.seats" name="seats"min="1"
+                            <input matInput type="number" placeholder="Seats" [(ngModel)]="car.seats" name="seats"min="1"
                             max="6" step="1" required>
                             <small *ngIf="(car.seats || car.seats===0) && !validationService.validateSeats(car.seats)">The
                                 Passenge Capacity Must Between 1 to 7</small>
