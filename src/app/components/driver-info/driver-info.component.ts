@@ -67,6 +67,7 @@ export class DriverInfoComponent implements OnInit {
         data => {
           this.allAvailableCars = data.filter(car => car.user.acceptingRides);
           this.orderByLocation();
+          console.log(this.allAvailableCars);
         }
       )
       this.batchService.getAllBatches().subscribe(batches =>{
