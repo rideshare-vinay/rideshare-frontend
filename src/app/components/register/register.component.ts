@@ -4,7 +4,6 @@ import { BatchService } from 'src/app/services/batch-service/batch.service';
 import { Batch } from 'src/app/models/batch';
 import { ValidationService } from 'src/app/services/validation-service/validation.service';
 import { User } from 'src/app/models/user';
-import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-register',
@@ -22,11 +21,14 @@ export class RegisterComponent implements OnInit {
  * An array of batches 
  */
 	batches: Batch[] = [];
+	validAddress: boolean = false;
 	batch: Batch = new Batch()
 	user: User = new User();
 	batchNumber: number;
 	location: string ="";
 	role: string ="";
+	private readonly latKey = 'latitude';
+	private readonly longKey = 'longitude';
 
   /**
    * This is a constructor
@@ -43,8 +45,9 @@ export class RegisterComponent implements OnInit {
    * The system will check if the token is valid; once validated a batch service is called.
    */
 	ngOnInit() { 
-		this.batchService.getAllBatche().subscribe(data=>this.batches=data);
+		this.batchService.getAllBatches().subscribe(data=>this.batches=data);
 	}
+
 
 	/**
 	 * This function allows the user to select the batch location.
@@ -62,11 +65,19 @@ export class RegisterComponent implements OnInit {
 		this.user.batch.batchNumber = event.target.value;
 	}
 
+	onLocationSelected(location: Location) {
+		this.user.address = (<HTMLInputElement>document.getElementById('address')).value;
+		this.user.latitude = location[this.latKey];
+		this.user.longitude = location[this.longKey];
+		this.validAddress = true;
+	}
+
 	/**
 	 * This function creates a driver if all the validations are true.
 	 * @param role
 	 */
-	signUp() {
+
+	signUp() 
 		this.user.firstName = this.validationService.nameFormat(this.user.firstName);
 		this.user.lastName = this.validationService.nameFormat(this.user.lastName);
 		this.user.phoneNumber = this.validationService.phoneFormat(this.user.phoneNumber);

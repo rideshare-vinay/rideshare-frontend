@@ -20,5 +20,7 @@ export const environment = {
   userUri: `${baseUri}/users/`,
   batchesUri: `${baseUri}/batches`,
   carUri: `${baseUri}/cars/`,
-  adminUri: `${baseUri}/admins/`
+  adminUri: `${baseUri}/admins/`,
+  recommendationUri: `${baseUri}:${port}/recommendations/`,
+  googleMapsApiKey: ``
 };
