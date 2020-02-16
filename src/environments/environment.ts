@@ -22,7 +22,7 @@ export const environment = {
   carUri: `${baseUri}:${port}/cars/`,
   adminUri: `${baseUri}:${port}/admins/`,
   recommendationUri: `${baseUri}:${port}/recommendations/`,
-  googleMapsApiKey: `AIzaSyAr562PbBB9Egu6D83LyFfaFmcEzz6q1Sg`
+  googleMapsApiKey: `AIzaSyCrYh4onvyHswGwLrvo6rgE0eB47qzi2AI`
 };
 
 /*
