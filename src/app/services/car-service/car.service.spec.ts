@@ -71,4 +71,12 @@ describe('CarService', () => {
     expect(request.request.method).toBe("DELETE");
     request.flush(mockCar);
   });
+
+  // it("should redirect on createCar", () => {
+  //   carService.createCar(mockCar, mockUser.userId);
+
+  //   let request = httpMock.expectOne(carService.url);
+  //   expect(request.request.method).toBe("POST");
+  //   request.flush(mockCar);
+  // });
 });
