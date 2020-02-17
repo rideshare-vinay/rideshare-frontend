@@ -12,7 +12,7 @@
         <div>
           <tr *ngFor="let recommendedUser of recommendations" >
             <td >{{ recommendedUser.firstName }} {{ recommendedUser.lastName }}</td>
-            <td><button id="driverdetButtons" class="driverBut">Details</button></td>
+            <td><button id="driverdetButtons" class="driverBut" (click)="getDriverDetail(recommendedUser.userId)">Details</button></td>
           </tr>
         </div>
       </table>
