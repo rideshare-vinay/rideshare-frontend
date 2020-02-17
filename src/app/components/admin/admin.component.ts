@@ -22,6 +22,7 @@ export class AdminComponent implements OnInit {
    */
   constructor(private router: Router, private adminservice: UserService, private authService: AuthService) { }
 
+   adminId: number;
    users: User[];
    listofUsers: User[];
 
@@ -29,9 +30,9 @@ export class AdminComponent implements OnInit {
    falsy: string = 'btn btn-danger';
    searchText;
   ngOnInit() {
-    let adminId = this.authService.admin.adminId;
+    this.adminId = this.authService.admin.adminId;
 
-    if(adminId){
+    if(this.adminId){
         this.adminservice.showAllUser()
         .subscribe(
           data=> {

@@ -12,13 +12,15 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { DriverInfoComponent } from './components/driver-info/driver-info.component';
 import { MapDetailComponent } from './components/map-detail/map-detail.component';
 import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
+import { DriverDetailComponent } from './components/driver-detail/driver-detail.component';
 
 
 
 const routes: Routes = [
   {path: 'home/drivers',component: DriverComponent}, 
   {path: 'home/riders',component: MapDetailComponent}, 
-  {path: 'all-drivers',component: DriverInfoComponent}, 
+  {path: 'all-drivers',component: DriverInfoComponent},
+  {path: 'driver/detail/:id', component: DriverDetailComponent}, 
   {path: 'login',component: LoginComponent}, 
   {path: 'login/admin',component: AdminLoginComponent}, 
   {path: 'admin',component: AdminComponent}, 

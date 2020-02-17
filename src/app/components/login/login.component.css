@@ -64,6 +64,7 @@ p {
 
 #next-btn, #prev-btn {
     background-color: white;
+    outline-color: #F26926 !important;
     color: black;
     width: 100%;
     font-size: small;
