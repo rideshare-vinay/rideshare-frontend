@@ -10,7 +10,6 @@ import { User } from 'src/app/models/user';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-
 /**
  * This is the Register Component
  */
@@ -29,20 +28,17 @@ export class RegisterComponent implements OnInit {
   role: string = '';
   private readonly latKey = 'latitude';
   private readonly longKey = 'longitude';
-
   /**
    * This is a constructor
    * @param router Provides an instance of a router.
    * @param userService A dependency of an user service is injected.
    * @param batchService A dependency of a batch service is injected.
    */
-
   constructor(
     private userService: UserService,
     private batchService: BatchService,
     public validationService: ValidationService
   ) {}
-
   /**
    * This is an OnInit function that sets the token to the parsed token string.
    * The system will check if the token is valid; once validated a batch service is called.
@@ -50,20 +46,46 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.batchService.getAllBatches().subscribe(data => {
       this.batches = data;
-
-	onLocationSelected(location: Location) {
-		this.user.address = (<HTMLInputElement>document.getElementById('address')).value;
-		this.user.latitude = location[this.latKey];
-		this.user.longitude = location[this.longKey];
-		this.validAddress = true;
-	}
-
-
+      // Loop to get list of batch names with no duplicates.
+      for (const batch of this.batches) {
+        let insert = true;
+        for (const location of this.locationNames) {
+          if (batch.batchLocation === location) {
+            insert = false;
+            break;
+          }
+        }
+        if (insert) {
+          this.locationNames.push(batch.batchLocation);
+        }
+      }
+    });
+  }
+  /**
+   * This function allows the user to select the batch location.
+   * @param event
+   */
+  changeLocation(event) {
+    // let location = event.target.value;
+    this.user.batch.batchLocation = this.location;
+    this.batchService.getAllBatchesByLocation(this.location).subscribe(data => {
+      this.batches = data;
+    });
+  }
+  changeBatchNumber(event) {
+    this.user.batch.batchNumber = event.target.value;
+  }
+  onLocationSelected(location: Location) {
+    const addressInput: HTMLInputElement = document.getElementById('address') as HTMLInputElement;
+    this.user.address = addressInput.value;
+    this.user.latitude = location[this.latKey];
+    this.user.longitude = location[this.longKey];
+    this.validAddress = true;
+  }
   /**
    * This function creates a driver if all the validations are true.
    * @param role
    */
-
   signUp() {
     this.user.firstName = this.validationService.nameFormat(
       this.user.firstName
@@ -77,13 +99,11 @@ export class RegisterComponent implements OnInit {
     this.user.batch = this.batch;
     this.userService.createUser(this.user, this.role);
   }
-
   /**
    * Function to get the batch numbers for the current location.
    */
   getLocationBatches() {
     this.locationBatchNumbers = [];
-
     if (this.location !== undefined) {
       for (const batch of this.batches) {
         if (batch.batchLocation === this.location) {

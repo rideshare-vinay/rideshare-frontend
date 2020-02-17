@@ -90,4 +90,11 @@ export class MapDetailComponent implements OnInit {
         this.googleMapsService.setCoordinatesList(markerList);
       });
   }
+
+   /**
+   * Get driver details
+   */
+  getDriverDetail(userId:number){
+    this.router.navigate([`${"driver/detail"}/${userId}`]);
+  }
 }
