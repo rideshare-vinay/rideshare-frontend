@@ -77,6 +77,8 @@ export class MapDetailComponent implements OnInit {
         this.recommendations = recommendations;
 
         const markerList: Coordinates[] = [];
+        console.log(recommendations);
+        console.dir(recommendations);
         for (const recommendation of recommendations) {
           const marker: Coordinates = new Coordinates(
             recommendation.latitude,
@@ -87,5 +89,12 @@ export class MapDetailComponent implements OnInit {
 
         this.googleMapsService.setCoordinatesList(markerList);
       });
+  }
+
+   /**
+   * Get driver details
+   */
+  getDriverDetail(userId:number){
+    this.router.navigate([`${"driver/detail"}/${userId}`]);
   }
 }

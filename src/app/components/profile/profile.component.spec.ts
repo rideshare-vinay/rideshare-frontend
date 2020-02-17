@@ -6,7 +6,6 @@ import { AdminComponent } from '../admin/admin.component';
 import { RegisterComponent } from '../register/register.component';
 import { LoginComponent } from '../login/login.component';
 import { MyCarComponent } from '../my-car/my-car.component';
-import { NavbarComponent } from '../navbar/navbar.component';
 import { PreferenceComponent } from '../preference/preference.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from 'src/app/app-routing.module';
@@ -29,6 +28,7 @@ import { Car } from 'src/app/models/car';
 import { Observable, of } from 'rxjs';
 import { GoogleMapsComponent } from '../google-maps/google-maps.component';
 import { BatchService } from 'src/app/services/batch-service/batch.service';
+import { DriverDetailComponent } from '../driver-detail/driver-detail.component';
 
 describe('ProfileComponent', () => {
   let myProfileComponent: ProfileComponent;
@@ -96,6 +96,7 @@ describe('ProfileComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [ProfileComponent,
         DriverComponent,
+        DriverDetailComponent,
         MapDetailComponent,
         DriverInfoComponent,
         LoginComponent,

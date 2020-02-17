@@ -25,6 +25,7 @@ import { Car } from 'src/app/models/car';
 import { Observable, of } from 'rxjs';
 import { resolve } from 'url';
 import { CarService } from 'src/app/services/car-service/car.service';
+import { DriverDetailComponent } from '../driver-detail/driver-detail.component';
 
 describe('DriverInfoComponent', () => {
   let driverInfoComponent: DriverInfoComponent;
@@ -66,6 +67,7 @@ describe('DriverInfoComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [DriverInfoComponent,
         DriverComponent,
+        DriverDetailComponent,
         MapDetailComponent,
         LoginComponent,
         AdminLoginComponent,

@@ -38,6 +38,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MapDetailComponent } from './components/map-detail/map-detail.component';
 import { environment } from 'src/environments/environment';
+import { DriverDetailComponent } from './components/driver-detail/driver-detail.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { environment } from 'src/environments/environment';
     AdminLoginComponent,
     DriverInfoComponent,
     MapDetailComponent,
-    GoogleMapsComponent
+    GoogleMapsComponent,
+    DriverDetailComponent
   ],
   imports: [
     BrowserModule,
