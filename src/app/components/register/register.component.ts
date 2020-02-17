@@ -51,45 +51,13 @@ export class RegisterComponent implements OnInit {
     this.batchService.getAllBatches().subscribe(data => {
       this.batches = data;
 
-      // Loop to get list of batch names with no duplicates.
-      for (const batch of this.batches) {
-        let insert = true;
-        for (const location of this.locationNames) {
-          if (batch.batchLocation === location) {
-            insert = false;
-            break;
-          }
-        }
-        if (insert) {
-          this.locationNames.push(batch.batchLocation);
-        }
-      }
-    });
-  }
+	onLocationSelected(location: Location) {
+		this.user.address = (<HTMLInputElement>document.getElementById('address')).value;
+		this.user.latitude = location[this.latKey];
+		this.user.longitude = location[this.longKey];
+		this.validAddress = true;
+	}
 
-  /**
-   * This function allows the user to select the batch location.
-   * @param event
-   */
-  changeLocation(event) {
-    // let location = event.target.value;
-    this.user.batch.batchLocation = this.location;
-    this.batchService.getAllBatchesByLocation(this.location).subscribe(data => {
-      this.batches = data;
-    });
-  }
-
-  changeBatchNumber(event) {
-    this.user.batch.batchNumber = event.target.value;
-  }
-
-  onLocationSelected(location: Location) {
-    const addressInput: HTMLInputElement = document.getElementById('address') as HTMLInputElement;
-    this.user.address = addressInput.value;
-    this.user.latitude = location[this.latKey];
-    this.user.longitude = location[this.longKey];
-    this.validAddress = true;
-  }
 
   /**
    * This function creates a driver if all the validations are true.

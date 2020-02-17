@@ -4,34 +4,37 @@
 }
 .lHead{
     font-family: "futura-pt-bold",sans-serif;
-    font-size: 1.5vw;
+    font-size: 150%;
     padding: 1.5em 3em;
     background-color: #F36928;
     border-top-left-radius: 1.5em;
     font-weight: bold;
     border-bottom: 4px solid white;
+    width: 100%;
 
 }
 .rHead{
     font-family: "futura-pt-bold",sans-serif;
-    font-size: 1.5vw;
+    font-size: 150%;
     padding: 1.25em 3em;
     background-color: #F36928;
     border-top-right-radius: 1.5em;
     border-bottom: 4px solid white;
+    width: 100%;
 }
 td{
     font-family: "futura-pt",sans-serif;
-    font-size: 1.2vw;
+    font-size: 130%;
     border-bottom: 2px solid white;
-    padding: 1em 1.5em;
+    padding: 1.1em 2.31em;
+    padding-top: 1.5em;
     color: white;
     font-weight: bold;
     background-color: #F68C5A;
-    
+    width: 100%;
 }
 .driverBut{
-    background-color: #717F92; 
+    background-color: #717F92;
     border: none;
     color: black;
     padding: 7px;
@@ -43,15 +46,15 @@ td{
     width: 7em;    
     outline:none;  
     border-radius: 10em;
-    font: futura;
+    font-family: "futura-pt-bold",sans-serif;
     font-weight: bold;
 }
 .driverBut:hover{
-    background-color:#F26926;
+    background-color:#F36928;
     color: white;
 }
 .driverBut:disabled{
-    background-color: #717F92 ; 
+    background-color: #F36928;
     color: #ffffff ;
 }
 .lBot{
@@ -64,10 +67,12 @@ table{
     display:inline;  
 }
 .responsive {
-    max-width: 90%;
+    max-width: 100%;
     height: auto;
 }
 
 section{
     margin: 7% 2%;
 }
+
+
