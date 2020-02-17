@@ -49,7 +49,7 @@
             <mat-form-field>
                 <mat-label>Address</mat-label>
                 <input id="address" matInput type="text" [disabled]="validAddress" placeholder="Address" name="address" matGoogleMapsAutocomplete
-                (onLocationSelected)="onLocationSelected($event)" [(ngModel)]="user.address">
+                (onLocationSelected)="onLocationSelected($event)">
             </mat-form-field>
         </div>
 
