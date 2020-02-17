@@ -21,6 +21,7 @@ import { PreferenceComponent } from 'src/app/components/preference/preference.co
 import { MapDetailComponent } from 'src/app/components/map-detail/map-detail.component';
 import { GoogleMapsComponent } from 'src/app/components/google-maps/google-maps.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { DriverDetailComponent } from 'src/app/components/driver-detail/driver-detail.component';
 
 describe('AdminService', () => {
   let adminService: AdminService;
@@ -32,7 +33,8 @@ describe('AdminService', () => {
       declarations: [
         AdminComponent, DriverInfoComponent, DriverComponent, LoginComponent, 
         AdminLoginComponent, RegisterComponent, CarRegisterComponent, MyCarComponent,
-        ProfileComponent, PreferenceComponent, MapDetailComponent, GoogleMapsComponent
+        ProfileComponent, PreferenceComponent, MapDetailComponent, GoogleMapsComponent,
+        DriverDetailComponent
       ],
       imports: [HttpClientModule, AppRoutingModule, FormsModule, HttpClientTestingModule],
       providers: [{ provide: APP_BASE_HREF, useValue: '/my/app' }]

@@ -22,6 +22,7 @@ import { User } from 'src/app/models/user';
 import { GoogleMapsComponent } from '../google-maps/google-maps.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { UserService } from 'src/app/services/user-service/user.service';
+import { DriverDetailComponent } from '../driver-detail/driver-detail.component';
 
 describe('PreferenceComponent', () => {
   let preferenceComponent: PreferenceComponent;
@@ -70,6 +71,7 @@ describe('PreferenceComponent', () => {
         DriverComponent,
         MapDetailComponent,
         DriverInfoComponent,
+        DriverDetailComponent,
         AdminLoginComponent,
         GoogleMapsComponent],
       imports: [
