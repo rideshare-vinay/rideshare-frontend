@@ -77,18 +77,6 @@ section{
   background-color: #F26926 !important;   
 }
   
-.table-mobile {
-	display: table !important;
-}
-
-.table-mobile .row {
-	display: table-row !important;
-}
-
-.table-mobile .cell {
-	display: table-cell;
-}
-
 input{
   color: black;
   width: 100%;

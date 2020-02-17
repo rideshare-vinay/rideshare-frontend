@@ -77,7 +77,7 @@ export class UserService {
 			if (role === 'driver') {
 				this.router.navigate(['new/car']);
 			} else {
-				this.router.navigate(['home/drivers']);
+				this.router.navigate(['home/riders']);
 			}
 
 	}
