@@ -67,6 +67,8 @@ export class GoogleMapsComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(position => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
+        this.googleMapsService.setLatitude(this.latitude);
+        this.googleMapsService.setLongitude(this.longitude);
       });
     }
   }
