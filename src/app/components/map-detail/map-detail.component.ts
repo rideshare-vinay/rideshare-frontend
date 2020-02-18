@@ -58,6 +58,8 @@ export class MapDetailComponent implements OnInit {
     this.userService.getUserById(this.user.userId).then(user => {
       if (user) {
         this.user = user;
+        this.user.latitude = this.googleMapsService.getLatitude();
+        this.user.longitude = this.googleMapsService.getLongitude();
         this.getDriverRecommendations(this.numberOfRecommendations, this.user);
       } else {
         this.authService.user = {};

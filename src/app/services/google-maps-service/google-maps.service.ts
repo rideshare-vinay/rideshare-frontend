@@ -21,6 +21,14 @@ export class GoogleMapsService {
    * A string url for HttpClient requests.
    */
   private url: string;
+  /**
+   * The current user's latitude if they use geolocation
+   */
+  private latitude: number = 0;
+  /**
+   * The current user's longitude if they use geolocation
+   */
+  private longitude: number = 0;
 
   // prettier-ignore
   /**
@@ -85,5 +93,35 @@ export class GoogleMapsService {
     riderInformation: User
   ): Observable<User[]> {
     return this.http.post<User[]>(this.url + numberOfDrivers, riderInformation);
+  }
+
+  /**
+   * A setter method to set the user latitude to the given latitude.
+   * @param latitude The latitude to set.
+   */
+  public setLatitude(latitude: number) {
+    this.latitude = latitude;
+  }
+
+  /**
+   * A getter method to get the current user latitude.
+   */
+  public getLatitude(): number {
+    return this.latitude;
+  }
+
+  /**
+   * A setter method to set the user longitude to the given longitude.
+   * @param longitude The longitude to set.
+   */
+  public setLongitude(longitude: number) {
+    this.longitude = longitude;
+  }
+
+  /**
+   * A getter method to get the current user longitude.
+   */
+  public getLongitude(): number {
+    return this.longitude;
   }
 }
