@@ -1,1 +1,1 @@
-docker build -t rideshare-frontend:dev .
+docker build -t revaturerideshare/rideshare-frontend:dev .
